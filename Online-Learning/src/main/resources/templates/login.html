@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>登录浪子短租网 </title>
+
+    <!-- Bootstrap -->
+    <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+
+    <link th:href="@{/build/css/custom.min.css}" rel="stylesheet">
+    <!-- NProgress -->
+    <link th:href="@{/vendors/nprogress/nprogress.css}" rel="stylesheet">
+    <!-- Animate.css -->
+    <link th:href="@{/vendors/animate.css/animate.min.css}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link th:href="@{/build/css/custom.min.css}" rel="stylesheet">
+
+    <style>
+        .loginpage {
+            position: relative;
+            height: 680px;
+            background: whitesmoke;
+            width: 100%;
+        }
+
+        .registerpage {
+            position: relative;
+            height: 720px;
+            background: url(1.jpg) 0/cover no-repeat;
+            width: 100%;
+        }
+
+        .login {
+            width: 600px;
+            height: 450px;
+            box-shadow: 0 0 10px #ccc;
+            border-radius: 3px;
+            border: 1px solid rgba(21, 184, 190, 0.97);
+            margin-top: 100px;
+            margin-left: 40px;
+            background: white;
+        }
+
+        .register {
+            width: 600px;
+            box-shadow: 0 0 10px #ccc;
+            border-radius: 5px;
+            border: 1px solid rgba(21, 184, 190, 0.97);
+            margin-top: 50px;
+            margin-left: -20px;
+            background: white;
+            margin-bottom: 50px;
+        }
+
+        .register input {
+            border-radius: 3px;
+            border: 1px solid rgb(202, 199, 199);
+        }
+
+        .reg-foot {
+            margin-bottom: 20px;
+        }
+
+
+        .login input,
+        .login select,
+        .login button {
+            width: 400px;
+            height: 50px;
+            margin-left: 100px;
+            margin-top: 20px;
+
+        }
+
+        .register input,
+        .register select {
+            width: 400px;
+            height: 50px;
+            margin-left: 100px;
+            margin-top: 1px;
+            margin-bottom: 1px;
+
+        }
+
+        .register button {
+            margin-top: 13px;
+            width: 400px;
+            height: 50px;
+            margin-left: 100px;
+        }
+
+        .login h2 {
+            text-align: center;
+            margin-bottom: 0px;
+            margin-top: 30px;
+            font-size: 25px;
+            color: rgba(21, 184, 190, 0.97);
+        }
+
+        .register h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            margin-top: 30px;
+            font-size: 25px;
+            color: rgba(21, 184, 190, 0.97);
+        }
+
+
+        .login span {
+            font-size: 50px;
+        }
+
+        .login a,
+        .register a {
+            margin-left: 230px;
+        }
+
+        .msg {
+            font-size: 20px;
+            font-weight: 30;
+        }
+
+        .int {
+            height: 30px;
+            text-align: left;
+            width: 800px;
+        }
+
+        .high {
+            color: red;
+        }
+
+        .onError {
+            color: red;
+        }
+
+        .onSuccess {
+            color: green;
+        }
+
+        /* .notices {
+            margin-left: 50px;
+        }
+
+        .noticeInf {
+            background: gray;
+            width: 300px;
+            height: 150px;
+            margin: 20px;
+            border-radius: 5px;
+        }
+
+        #notice span,
+        #home span,
+        #count span,
+        #data span #talk span #admin span {
+            font-size: 20px;
+            font-weight: 20px;
+        }
+
+        .newnotice {
+            float: right;
+        } */
+    </style>
+</head>
+
+<body >
+<div class="loginpage">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="login">
+                    <div class="title">
+                        <h2><span class="glyphicon glyphicon-education"></span>网络教学辅助平台</h2>
+                    </div>
+                    <form th:action="@{/loginCheck.action}" method="POST" role="form" class="login-form">
+                        <div class="form-group">
+                            <label for="id" class="sr-only">Username</label>
+                            <input type="text" name="id" placeholder="Username..." class="username form-control" id="id">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="sr-only">Username</label>
+                            <input type="password" name="password" placeholder="Password..." class="password form-control" id="password">
+                        </div>
+                        <select class="selectpicker show-tick form-control" name="option" id="option">
+                            <option value="teacher">教师</option>
+                            <option value="student">学生</option>
+                            <option value="help">助教</option>
+                        </select>
+                        <button type="submit" class="btn btn-dark">登录</button><br><br>
+                        <a href="/register">还没有账号？去注册。。。</a>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/vendors/bootstrap/dist/js/bootstrap.min.js}"></script>
+<!--<div>-->
+    <!--<div class="login_wrapper">-->
+        <!--<section class="login_content">-->
+            <!--<form th:action="@{/loginCheck.action}" method="POST">-->
+                <!--<h1>登录浪子短租网</h1>-->
+                <!--<div>-->
+                    <!--<input type="text" class="form-control" name="id" placeholder="账号" required="required" />-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<input type="password" class="form-control" name="password" placeholder="密码" required="required" />-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<input type="submit" class="btn btn-default submit" value="登录"/>-->
+
+                    <!--<select class="select2-selection__choice" title="选择账号种类" name="option" id="option">-->
+                        <!--<option value ="admin">管理员</option>-->
+                        <!--<option value ="leaseholder">租户</option>-->
+                        <!--<option value="landlord">房东</option>-->
+                    <!--</select>-->
+
+                    <!--<a class="reset_pass" href="/register">注册新账号</a>-->
+                <!--</div>-->
+
+                <!--<div class="clearfix"></div>-->
+
+                <!--<div class="separator">-->
+                    <!--<div class="clearfix"></div>-->
+                    <!--<br />-->
+
+                    <!--<div>-->
+                        <!--<h1><em class="fa fa-home"></em> Lang Zi Short Rent</h1>-->
+                        <!--<p>©2018 All Rights Reserved. Lang Zi Short Rent using a Bootstrap 3 template. Privacy and Terms</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</form>-->
+        <!--</section>-->
+    <!--</div>-->
+<!--</div>-->
+</body>
+</html>
