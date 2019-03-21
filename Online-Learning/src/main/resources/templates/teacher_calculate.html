@@ -58,31 +58,31 @@
                     <div class="menu_section">
                         <h3>基础功能</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher"><i class="fa fa-home"></i> 系统总览 </a></li>
-
-                            <li><a href="/teacher_self_info"><i class="fa fa-cogs"></i> 个人信息 </a></li>
+                            <li><a href="/teacher"><i class="fa fa-home"></i> 系统总览 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/teacher_course"><i class="fa fa-book"></i> 我的课程<i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/teacher_self_info"><i class="fa fa-cogs"></i> 个人信息 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
 
                     <div class="menu_section">
                         <h3>作业管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher_add_homework"><i class="fa fa-users"></i> 布置作业 </a></li>
+                            <li><a href="/teacher_add_homework"><i class="fa fa-users"></i> 布置作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
-                            <li><a href="/teacher_check_homework"><i class="fa fa-user"></i> 批改作业 </a></li>
+                            <li><a href="/teacher_check_homework"><i class="fa fa-user"></i> 批改作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
-                            <li><a href="/teacher_studydata"><i class="fa fa-laptop"></i> 学习资料 </a></li>
+                            <li><a href="/teacher_studydata"><i class="fa fa-laptop"></i> 学习资料<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
                         </ul>
                     </div>
 
                     <div class="menu_section">
                         <h3>学生管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher_update_student"><i class="fa fa-home"></i> 加入学生 </a></li>
+                            <li><a href="/teacher_update_student"><i class="fa fa-home"></i> 加入学生 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
-                            <li><a href="/teacher_notice"><i class="fa fa-check"></i> 发布通知 </a></li>
+                            <li><a href="/teacher_notice"><i class="fa fa-check"></i> 发布通知<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
 
-                            <li><a href="/teacher_calculate"><i class="fa fa-list-ul"></i> 统计成绩 </a></li>
+                            <li><a href="/teacher_calculate"><i class="fa fa-list-ul"></i> 统计成绩 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
 
@@ -143,22 +143,21 @@
                                 <table id="datatable" class="table table-striped table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>记录号</th>
-                                        <th>操作人</th>
-                                        <th>房屋号</th>
-                                        <th>操作时间</th>
-                                        <th>操作结果</th>
+                                        <th>学号</th>
+                                        <th>课程号</th>
+                                        <th>课程名</th>
+                                        <th>学生姓名</th>
+                                        <th>成绩</th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
-                                    <tr th:each="checklogList:${checklogList}">
-                                        <td th:text="${checklogList.id}"></td>
-                                        <td th:text="${checklogList.admin}"></td>
-                                        <td th:text="${checklogList.house}"></td>
-                                        <td th:text="${checklogList.checkdate}"></td>
-                                        <td th:if="${checklogList.checkresult == true}">审核通过</td>
-                                        <td th:if="${checklogList.checkresult == false}">审核未通过</td>
+                                    <tr th:each="scoreList:${scoreList}">
+                                        <td th:text="${scoreList.stuid}"></td>
+                                        <td th:text="${scoreList.courseid}"></td>
+                                        <td th:text="${scoreList.coursename}"></td>
+                                        <td th:text="${scoreList.stuname}"></td>
+                                        <td th:text="${scoreList.score}"></td>
                                     </tr>
                                     </tbody>
                                 </table>

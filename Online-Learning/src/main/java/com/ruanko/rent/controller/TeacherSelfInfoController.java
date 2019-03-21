@@ -19,7 +19,7 @@ public class TeacherSelfInfoController {
     @Autowired
     private AdminService adminService;
 
-    //跳转到管理员个人信息页面
+    //跳转到教师个人信息页面
     @RequestMapping("/teacher_self_info")
     public String showAdminSelfInfoPage()
     {
@@ -47,7 +47,7 @@ public class TeacherSelfInfoController {
             return "error";
         }
     }
-
+    //教师修改密码
     @RequestMapping("/teacher_self_change_password")
     public String showAdminSelfChangePasswordPage()
     {

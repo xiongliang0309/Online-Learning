@@ -13,14 +13,14 @@ import java.util.List;
 public class TeacherNoticeListController {
     @Autowired
     private NoticeService noticeService;
-
+    //教师通知列表
     @RequestMapping("/teacher_notice")
     public String showTeacherNoticeList(Model model) {
         List<Notice> noticeList = noticeService.getNoticeList();
         model.addAttribute("noticeList", noticeList);
         return "teacher_notice";
     }
-
+    //删除通知
     @RequestMapping("/teacherDeleteNotice")
     public String teacherDeleteNotice(String id){
         noticeService.delete(id);
