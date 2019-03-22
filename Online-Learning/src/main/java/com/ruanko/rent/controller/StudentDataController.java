@@ -2,7 +2,6 @@ package com.ruanko.rent.controller;
 
 import com.ruanko.rent.entity.House;
 import com.ruanko.rent.entity.Landlord;
-import com.ruanko.rent.entity.Leaseholder;
 import com.ruanko.rent.entity.Order;
 import com.ruanko.rent.service.HouseService;
 import com.ruanko.rent.service.LandlordService;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-public class LeaseholderOrderInfoController {
+public class StudentDataController {
     @Autowired
     private OrderService orderService;
     @Autowired
@@ -24,12 +23,12 @@ public class LeaseholderOrderInfoController {
     private LandlordService landlordService;
 
     //跳转到订单信息页面
-    @RequestMapping("/student_order_info")
+    @RequestMapping("/student_data")
     public String showLeaseholderOrderInfoPage(Model model){
         //从数据库中取出订单列表，存入model
         List<Order> orderList = orderService.getOrderList();
         model.addAttribute("orderList", orderList);
-        return "student_order_info";
+        return "student_data";
     }
 
     //跳转到订单详情页面
@@ -65,6 +64,6 @@ public class LeaseholderOrderInfoController {
         houseService.edit(house);
 
         //删除成功，重定向到订单信息页面
-        return "redirect:/student_order_info";
+        return "redirect:/student_data";
     }
 }

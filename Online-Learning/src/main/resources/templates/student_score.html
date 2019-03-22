@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>租户界面 </title>
+    <title>学生—成绩 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -46,7 +46,7 @@
                         <img th:src="${session.leaseholder.icon}" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>欢迎使用</span>
+                        <span>欢迎使用！</span>
                         <h2 th:text="${session.leaseholder.name}"></h2>
                     </div>
                 </div>
@@ -68,16 +68,15 @@
                     <div class="menu_section">
                         <h3>作业管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/student_house_info"><i class="fa fa-home"></i> 提交作业<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
-                            <li><a href="/student_order_info"><i class="fa fa-folder-open"></i> 下载资料 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/student_order_info"><i class="fa fa-folder-open"></i> 查看成绩<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+                            <li><a href="/student_homework"><i class="fa fa-home"></i> 提交作业<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+                            <li><a href="/student_data"><i class="fa fa-folder-open"></i> 下载资料 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/student_score"><i class="fa fa-folder-open"></i> 查看成绩<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
 
                         </ul>
                     </div>
 
                 </div>
                 <!-- /sidebar menu -->
-
             </div>
         </div>
 
@@ -114,53 +113,46 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>我的订单</h3>
+                        <h3>成绩查询</h3>
                     </div>
-
                 </div>
+
                 <div class="clearfix"></div>
 
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>订单列表</h2>
+                                <h2>我的成绩</h2>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
 
+                                <!-- start project list -->
                                 <table id="datatable" class="table table-striped table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>订单号</th>
-                                        <th>房东账号</th>
-                                        <th>房屋号</th>
-                                        <th>下单时间</th>
-                                        <th>租用天数</th>
-                                        <th>总价</th>
-                                        <th>订单状态</th>
+                                        <th>通知号</th>
+                                        <th>通知标题</th>
+                                        <th>发布者</th>
+                                        <th>发布时间</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
-
                                     <tbody>
-                                    <tr th:each="orderList:${orderList}" th:if="${orderList.leaseholder == session.leaseholder.id}">
-                                        <td th:text="${orderList.id}"></td>
-                                        <td th:text="${orderList.landlord}"></td>
-                                        <td th:text="${orderList.house}"></td>
-                                        <td th:text="${orderList.orderdate}"></td>
-                                        <td th:text="${orderList.duration}"></td>
-                                        <td th:text="${orderList.price}"></td>
-                                        <td><button th:if="${orderList.state == true}" type="button" class="btn btn-success btn-xs" disabled>房东已接单</button>
-                                            <button th:if="${orderList.state == false}" type="button" class="btn btn-dark btn-xs" disabled>房东未接单</button>
-                                        </td>
+                                    <tr th:each="noticeList:${noticeList}">
+                                        <td th:text="${noticeList.id}"></td>
+                                        <td th:text="${noticeList.title}"></td>
+                                        <td th:text="${noticeList.noticer}"></td>
+                                        <td th:text="${noticeList.noticedate}"></td>
                                         <td>
-                                            <a th:href="@{/studentShowOrder(id=${orderList.id})}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看订单 </a>
-                                            <a th:href="@{/studentDeleteOrder(id=${orderList.id})}" th:if="${orderList.state == false}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 取消订单 </a>
+                                            <a th:href="@{/studentShowNoticeDetailInfo(id=${noticeList.id})}" class="btn btn-success btn-xs"><i class="fa fa-folder"></i> 查看详情 </a>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
+                                <!-- end project list -->
+
                             </div>
                         </div>
                     </div>
@@ -172,7 +164,7 @@
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                浪子短租网 - 南昌航空大学软酷实训
+                高校网络教学辅助平台 - 南昌航空大学
             </div>
             <div class="clearfix"></div>
         </footer>
@@ -188,24 +180,35 @@
 <script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
 <!-- NProgress -->
 <script th:src="@{/vendors/nprogress/nprogress.js}"></script>
+<!-- Chart.js -->
+<script th:src="@{/vendors/Chart.js/dist/Chart.min.js}"></script>
+<!-- gauge.js -->
+<script th:src="@{/vendors/gauge.js/dist/gauge.min.js}"></script>
+<!-- bootstrap-progressbar -->
+<script th:src="@{/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
 <!-- iCheck -->
 <script th:src="@{/vendors/iCheck/icheck.min.js}"></script>
-<!-- Datatables -->
-<script th:src="@{/vendors/datatables.net/js/jquery.dataTables.min.js}"></script>
-<script th:src="@{/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
-<script th:src="@{/vendors/datatables.net-buttons/js/dataTables.buttons.min.js}"></script>
-<script th:src="@{/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js}"></script>
-<script th:src="@{/vendors/datatables.net-buttons/js/buttons.flash.min.js}"></script>
-<script th:src="@{/vendors/datatables.net-buttons/js/buttons.html5.min.js}"></script>
-<script th:src="@{/vendors/datatables.net-buttons/js/buttons.print.min.js}"></script>
-<script th:src="@{/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js}"></script>
-<script th:src="@{/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js}"></script>
-<script th:src="@{/vendors/datatables.net-responsive/js/dataTables.responsive.min.js}"></script>
-<script th:src="@{/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js}"></script>
-<script th:src="@{/vendors/datatables.net-scroller/js/dataTables.scroller.min.js}"></script>
-<script th:src="@{/vendors/jszip/dist/jszip.min.js}"></script>
-<script th:src="@{/vendors/pdfmake/build/pdfmake.min.js}"></script>
-<script th:src="@{/vendors/pdfmake/build/vfs_fonts.js}"></script>
+<!-- Skycons -->
+<script th:src="@{/vendors/skycons/skycons.js}"></script>
+<!-- Flot -->
+<script th:src="@{/vendors/Flot/jquery.flot.js}"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.pie.js}"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.time.js}"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.stack.js}"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.resize.js}"></script>
+<!-- Flot plugins -->
+<script th:src="@{/vendors/flot.orderbars/js/jquery.flot.orderBars.js}"></script>
+<script th:src="@{/vendors/flot-spline/js/jquery.flot.spline.min.js}"></script>
+<script th:src="@{/vendors/flot.curvedlines/curvedLines.js}"></script>
+<!-- DateJS -->
+<script th:src="@{/vendors/DateJS/build/date.js}"></script>
+<!-- JQVMap -->
+<script th:src="@{/vendors/jqvmap/dist/jquery.vmap.js}"></script>
+<script th:src="@{/vendors/jqvmap/dist/maps/jquery.vmap.world.js}"></script>
+<script th:src="@{/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js}"></script>
+<!-- bootstrap-daterangepicker -->
+<script th:src="@{/vendors/moment/min/moment.min.js}"></script>
+<script th:src="@{/vendors/bootstrap-daterangepicker/daterangepicker.js}"></script>
 
 <!-- Custom Theme Scripts -->
 <script th:src="@{/build/js/custom.min.js}"></script>

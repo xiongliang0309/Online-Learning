@@ -1,7 +1,6 @@
 package com.ruanko.rent.controller;
 
 import com.ruanko.rent.entity.House;
-import com.ruanko.rent.entity.Landlord;
 import com.ruanko.rent.entity.Leaseholder;
 import com.ruanko.rent.entity.Order;
 import com.ruanko.rent.service.HouseService;
@@ -24,11 +23,11 @@ public class LandlordOrderInfoController {
     private LeaseholderService leaseholderService;
 
     //跳转到房东查看订单界面
-    @RequestMapping("/landlord_order_info")
+    @RequestMapping("/help_calculate")
     public String showLandlordOrderInfoPage(Model model){
         List<Order> orderList = orderService.getOrderList();
         model.addAttribute("orderList", orderList);
-        return "landlord_order_info";
+        return "help_calculate";
     }
 
     //跳转到房东查看订单详情界面
@@ -53,7 +52,7 @@ public class LandlordOrderInfoController {
         Order order = orderService.findOrderById(id);
         order.setState(true);
         orderService.edit(order);
-        return "redirect:/landlord_order_info";
+        return "redirect:/help_calculate";
     }
 
     //删除订单操作
@@ -73,6 +72,6 @@ public class LandlordOrderInfoController {
         houseService.edit(house);
 
         //删除成功，重定向到订单信息页面
-        return "redirect:/landlord_order_info";
+        return "redirect:/help_calculate";
     }
 }

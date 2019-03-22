@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>租户界面 </title>
+    <title>学生—首页 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -46,7 +46,7 @@
                         <img th:src="${session.leaseholder.icon}" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>欢迎使用</span>
+                        <span>欢迎使用！</span>
                         <h2 th:text="${session.leaseholder.name}"></h2>
                     </div>
                 </div>
@@ -68,9 +68,9 @@
                     <div class="menu_section">
                         <h3>作业管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/student_house_info"><i class="fa fa-home"></i> 提交作业<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
-                            <li><a href="/student_order_info"><i class="fa fa-folder-open"></i> 下载资料 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/student_order_info"><i class="fa fa-folder-open"></i> 查看成绩<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+                            <li><a href="/student_homework"><i class="fa fa-home"></i> 提交作业<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+                            <li><a href="/student_data"><i class="fa fa-folder-open"></i> 下载资料 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/student_score"><i class="fa fa-folder-open"></i> 查看成绩<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
 
                         </ul>
                     </div>

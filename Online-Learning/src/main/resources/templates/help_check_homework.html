@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>房东界面 </title>
+    <title>助教—批改作业 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -35,7 +35,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/landlord" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
+                    <a href="/help" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -46,7 +46,7 @@
                         <img th:src="${session.landlord.icon}" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>欢迎使用</span>
+                        <span>欢迎使用！</span>
                         <h2 th:text="${session.landlord.name}"></h2>
                     </div>
                 </div>
@@ -59,18 +59,18 @@
                     <div class="menu_section">
                         <h3>基础功能</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/landlord"><i class="fa fa-home"></i> 我的通知 </a></li>
+                            <li><a href="/help"><i class="fa fa-home"></i> 我的通知 <i class="fa fa-angle-right" style="float: right"></i></a></li>
 
-                            <li><a href="/landlord_self_info"><i class="fa fa-cogs"></i> 个人信息 </a></li>
+                            <li><a href="/help_self_info"><i class="fa fa-cogs"></i> 个人信息<i class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
 
                     <div class="menu_section">
                         <h3>我的权限</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/landlord_house_publish"><i class="fa fa-edit"></i> 批改作业 </a></li>
-                            <li><a href="/landlord_house_info"><i class="fa fa-home"></i> 参与讨论 </a></li>
-                            <li><a href="/landlord_order_info"><i class="fa fa-folder-open"></i> 统计成绩 </a></li>
+                            <li><a href="/help_check_homework"><i class="fa fa-edit"></i> 批改作业 <i class="fa fa-angle-right" style="float: right"></i></a></li>
+                            <li><a href="/help_chat"><i class="fa fa-home"></i> 参与讨论<i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/help_calculate"><i class="fa fa-folder-open"></i> 统计成绩<i class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
 
@@ -95,9 +95,9 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="/landlord_self_info"> 个人信息</a></li>
+                                <li><a href="/help_self_info"> 个人信息</a></li>
 
-                                <li><a href="/landlord_help"> 使用帮助</a></li>
+                                <li><a href="/help_help"> 使用帮助</a></li>
 
                                 <li><a href="/index"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
                             </ul>
@@ -113,8 +113,9 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>个人信息管理</h3>
+                        <h3>批改作业</h3>
                     </div>
+
                 </div>
                 <div class="clearfix"></div>
 
@@ -123,38 +124,74 @@
                         <div class="x_panel">
                             <div class="x_content">
 
-                                <form class="form-horizontal form-label-left" novalidate th:action="@{/changeLandlordSelfPassword.action}" method="POST">
+                                <form class="form-horizontal form-label-left" novalidate enctype="multipart/form-data" th:action="@{/landlordPublishHouse.action}" method="POST">
 
-                                    <span class="section">修改密码</span>
+                                    <div class="x_title">
+                                        <h2>批改作业</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
 
                                     <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">原始密码
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">标题
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="oldpassword" name="oldpassword" required="required" class="form-control col-md-7 col-xs-12"/>
+                                            <input type="text" class="form-control col-md-7 col-xs-12" id="name" name="name" required="required"/>
                                         </div>
                                     </div>
                                     <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">新密码
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">地址
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="password" id="newpassword1" name="newpassword1" class="form-control col-md-7 col-xs-12">
+                                            <input type="text" class="optional form-control col-md-7 col-xs-12" id="location" name="location" required="required"/>
                                         </div>
                                     </div>
                                     <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">确认密码
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">房屋面积
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="password" id="newpassword2" name="newpassword2" class="form-control col-md-7 col-xs-12">
+                                            <input type="text" class="form-control col-md-7 col-xs-12" id="area" name="area" placeholder="以数字方式输入房屋面积" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">房屋楼层
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control col-md-7 col-xs-12" id="floor" name="floor" placeholder="以数字方式输入房屋楼层" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">每日租金
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control col-md-7 col-xs-12" id="price" name="price" placeholder="以数字方式输入每日租金" required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">房屋类别
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="select2-selection__choice" title="房屋类别" name="category" id="category">
+                                                <option value ="公寓">公寓</option>
+                                                <option value="单间">单间</option>
+                                                <option value="合租">合租</option>
+                                                <option value="复式楼">复式楼</option>
+                                                <option value="别墅">别墅</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">上传照片
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="file" id="picture" name="picture">
                                         </div>
                                     </div>
 
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-3">
-                                            <a href="/landlord_self_info"><input type="button" class="btn btn-primary" value="返回"></a>
-                                            <input type="reset" class="btn btn-primary" value="重置"/>
-                                            <input type="submit" class="btn btn-success" value="修改"/>
+                                            <a href="/help_check_homework"><input type="button" class="btn btn-primary" value="返回"/></a>
+                                            <input type="submit" class="btn btn-success" value="确定"/>
                                         </div>
                                     </div>
                                 </form>
@@ -169,7 +206,7 @@
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                浪子短租网 - 南昌航空大学软酷实训
+                高校网络教学辅助平台 - 南昌航空大学
             </div>
             <div class="clearfix"></div>
         </footer>

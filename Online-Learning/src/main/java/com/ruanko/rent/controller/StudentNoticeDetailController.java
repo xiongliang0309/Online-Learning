@@ -1,7 +1,5 @@
 package com.ruanko.rent.controller;
 
-import com.ruanko.rent.entity.House;
-import com.ruanko.rent.entity.Leaseholder;
 import com.ruanko.rent.entity.Notice;
 import com.ruanko.rent.entity.Order;
 import com.ruanko.rent.service.HouseService;
@@ -12,15 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
-public class LeaseholderHouseInfoController {
+public class StudentNoticeDetailController {
     @Autowired
     private HouseService houseService;
     @Autowired
@@ -40,6 +34,6 @@ public class LeaseholderHouseInfoController {
     public String showStudentNoticeDetailInf(Model model, String id) {
         Notice notice = noticeService.findNoticeById(id);
         model.addAttribute("notice", notice);
-        return "student_house_detail_info";
+        return "student_score";
     }
 }

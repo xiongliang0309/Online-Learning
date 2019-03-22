@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>房东界面 </title>
+    <title>助教—帮助 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -35,7 +35,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/landlord" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
+                    <a href="/help" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -46,7 +46,7 @@
                         <img th:src="${session.landlord.icon}" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>欢迎使用</span>
+                        <span>欢迎使用！</span>
                         <h2 th:text="${session.landlord.name}"></h2>
                     </div>
                 </div>
@@ -59,18 +59,18 @@
                     <div class="menu_section">
                         <h3>基础功能</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/landlord"><i class="fa fa-home"></i> 我的通知 </a></li>
+                            <li><a href="/help"><i class="fa fa-home"></i> 我的通知 <i class="fa fa-angle-right" style="float: right"></i></a></li>
 
-                            <li><a href="/landlord_self_info"><i class="fa fa-cogs"></i> 个人信息 </a></li>
+                            <li><a href="/help_self_info"><i class="fa fa-cogs"></i> 个人信息<i class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
 
                     <div class="menu_section">
                         <h3>我的权限</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/landlord_house_publish"><i class="fa fa-edit"></i> 批改作业 </a></li>
-                            <li><a href="/landlord_house_info"><i class="fa fa-home"></i> 参与讨论 </a></li>
-                            <li><a href="/landlord_order_info"><i class="fa fa-folder-open"></i> 统计成绩 </a></li>
+                            <li><a href="/help_check_homework"><i class="fa fa-edit"></i> 批改作业 <i class="fa fa-angle-right" style="float: right"></i></a></li>
+                            <li><a href="/help_chat"><i class="fa fa-home"></i> 参与讨论<i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/help_calculate"><i class="fa fa-folder-open"></i> 统计成绩<i class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
 
@@ -95,9 +95,9 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="/landlord_self_info"> 个人信息</a></li>
+                                <li><a href="/help_self_info"> 个人信息</a></li>
 
-                                <li><a href="/landlord_help"> 使用帮助</a></li>
+                                <li><a href="/help_help"> 使用帮助</a></li>
 
                                 <li><a href="/index"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
                             </ul>
@@ -113,74 +113,33 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>个人信息管理</h3>
+                        <h3>使用帮助</h3>
                     </div>
 
                 </div>
+
                 <div class="clearfix"></div>
 
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-12">
                         <div class="x_panel">
+                            <div class="x_title">
+                                <h2>系统简介</h2>
+                                <div class="clearfix"></div>
+                            </div>
                             <div class="x_content">
 
-                                <form class="form-horizontal form-label-left" novalidate enctype="multipart/form-data" th:action="@{/changeLandlordSelfInfo.action}" method="POST">
+                                <div class="col-md-8 col-lg-12 col-sm-8">
+                                    <blockquote>
+                                        <p>浪子短租网（Lang Zi Short Rent）是一个给用户提供房屋短租中介服务的平台，该平台拥有房东、房客、管理员三种用户，用户可以发布自己拥有的房屋，还能租赁别人发布的房屋。该系统中，房东可以发布房屋，并对自己房屋的信息进行修改和管理，房客可以搜索房屋，然后进行预订。管理员可以查询并修改用户的个人信息，还能对房东发布的信息进行审核。
+                                        </p>
+                                        <p>房东拥有发布房屋信息，查看订单信息并确认订单，修改房屋信息的功能。还可以修改个人账号信息以及头像。
+                                        </p>
+                                    </blockquote>
+                                </div>
 
-                                    <span class="section">修改基本信息</span>
+                                <div class="clearfix"></div>
 
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">账号
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control col-md-7 col-xs-12" id="id" name="id" disabled="disabled" th:value="${session.landlord.id}"/>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">注册日期
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="optional form-control col-md-7 col-xs-12" id="registerdate" name="registerdate" disabled="disabled" th:value="${session.landlord.registerdate}"/>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">姓名
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control col-md-7 col-xs-12" id="name" name="name" th:value="${session.landlord.name}"/>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">电话
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control col-md-7 col-xs-12" id="phone" name="phone" th:value="${session.landlord.phone}">
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">邮箱
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control col-md-7 col-xs-12" id="email" name="email" th:value="${session.landlord.email}">
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">头像
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <img th:src="${session.landlord.icon}" width="100" height="100">
-                                            <br><br><input type="file" id="icon" name="icon">
-                                        </div>
-                                    </div>
-
-                                    <div class="ln_solid"></div>
-                                    <div class="form-group">
-                                        <div class="col-md-6 col-md-offset-3">
-                                            <a href="/landlord_self_change_password"><input type="button" class="btn btn-primary" value="修改密码"/></a>
-                                            <input type="reset" class="btn btn-primary" value="重置"/>
-                                            <input type="submit" class="btn btn-success" value="保存"/>
-                                        </div>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -192,7 +151,7 @@
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                浪子短租网 - 南昌航空大学软酷实训
+                高校网络教学辅助平台 - 南昌航空大学
             </div>
             <div class="clearfix"></div>
         </footer>

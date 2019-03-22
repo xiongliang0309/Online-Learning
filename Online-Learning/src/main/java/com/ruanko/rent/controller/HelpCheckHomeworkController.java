@@ -31,9 +31,9 @@ public class LandlordHousePublishController {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     //跳转到发布房屋界面
-    @RequestMapping("/landlord_house_publish")
+    @RequestMapping("/help_check_homework")
     public String showLandlordHousePublish(){
-        return "landlord_house_publish";
+        return "help_check_homework";
     }
 
     //发布房屋
@@ -58,7 +58,7 @@ public class LandlordHousePublishController {
         //保存到数据库
         try{
             houseService.save(house);
-            return "redirect:/landlord";
+            return "redirect:/help";
         }catch(Exception e) {
             System.out.print(e);
             return "error";

@@ -26,11 +26,11 @@ public class LandlordHouseInfoController {
 
 
     //显示房屋界面
-    @RequestMapping("/landlord_house_info")
+    @RequestMapping("/help_chat")
     public String showLandlordHouseInfoPage(Model model) {
         List<House> houseList = houseService.getHouseList();
         model.addAttribute("houseList", houseList);
-        return "landlord_house_info";
+        return "help_chat";
     }
 
     //跳转到房屋详情界面
@@ -54,7 +54,7 @@ public class LandlordHouseInfoController {
     public String landlordDeleteLandlordInfo(int id) {
         House house = houseService.findHouseById(id);
         houseService.delete(id);
-        return "redirect:/landlord_house_info";
+        return "redirect:/help_chat";
     }
 
     //修改房屋资料操作
@@ -76,7 +76,7 @@ public class LandlordHouseInfoController {
         //保存到数据库
         try{
             houseService.edit(house);
-            return "redirect:/landlord_house_info";
+            return "redirect:/help_chat";
         }catch(Exception e) {
             System.out.print(e);
             return "error";

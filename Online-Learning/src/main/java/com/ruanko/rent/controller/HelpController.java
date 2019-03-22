@@ -1,6 +1,5 @@
 package com.ruanko.rent.controller;
 
-import com.ruanko.rent.entity.House;
 import com.ruanko.rent.entity.Notice;
 import com.ruanko.rent.service.HouseService;
 import com.ruanko.rent.service.NoticeService;
@@ -18,17 +17,17 @@ public class LandlordController {
     @Autowired
     private NoticeService noticeService;
 
-    //跳转到landlord页面
-    @RequestMapping("/landlord")
+    //跳转到h页面
+    @RequestMapping("/help")
     public String showLandlordPage(Model model) {
         List<Notice> noticeList=noticeService.getNoticeList();
         model.addAttribute("noticeList",noticeList);
-        return "landlord";
+        return "help";
     }
 
     //跳转到landlord_help页面
-    @RequestMapping("/landlord_help")
+    @RequestMapping("/help_help")
     public String showLandlordHelpPage() {
-        return "landlord_help";
+        return "help_help";
     }
 }

@@ -1,9 +1,7 @@
 package com.ruanko.rent.controller;
 
 import com.ruanko.rent.entity.Landlord;
-import com.ruanko.rent.entity.Leaseholder;
 import com.ruanko.rent.service.LandlordService;
-import com.ruanko.rent.service.LeaseholderService;
 import com.ruanko.rent.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +19,10 @@ public class LandlordSelfInfoController {
     private LandlordService landlordService;
 
     //跳转到房东个人信息页面
-    @RequestMapping("/landlord_self_info")
+    @RequestMapping("/help_self_info")
     public String showLandlordSelfInfoPage()
     {
-        return "landlord_self_info";
+        return "help_self_info";
     }
 
     //修改个人信息操作
@@ -43,7 +41,7 @@ public class LandlordSelfInfoController {
         try{
             landlordService.edit(landlord);
             session.setAttribute("landlord", landlord);
-            return "redirect:/landlord";
+            return "redirect:/help";
         }catch(Exception e) {
             System.out.print(e);
             return "error";
@@ -51,10 +49,10 @@ public class LandlordSelfInfoController {
     }
 
     //跳转到修改密码界面
-    @RequestMapping("/landlord_self_change_password")
+    @RequestMapping("/help_self_change_password")
     public String showLandlordSelfChangePasswordPage()
     {
-        return "landlord_self_change_password";
+        return "help_self_change_password";
     }
 
     //修改密码操作
@@ -67,7 +65,7 @@ public class LandlordSelfInfoController {
 
             landlordService.edit(landlord);
             session.setAttribute("landlord", landlord);
-            return "redirect:/landlord";
+            return "redirect:/help";
         }
         else{
             return "error";

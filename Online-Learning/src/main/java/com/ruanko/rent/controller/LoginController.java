@@ -61,7 +61,7 @@ public class LoginController {
                 return "login_failed";
             } else {
                 session.setAttribute("landlord", landlord);
-                return "redirect:/landlord";   //重定向到landlord主界面
+                return "redirect:/help";   //重定向到landlord主界面
             }
         }
     }

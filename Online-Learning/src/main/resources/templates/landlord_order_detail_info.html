@@ -35,7 +35,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/landlord" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
+                    <a href="/help" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -59,18 +59,18 @@
                     <div class="menu_section">
                         <h3>基础功能</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/landlord"><i class="fa fa-home"></i> 我的通知 </a></li>
+                            <li><a href="/help"><i class="fa fa-home"></i> 我的通知 </a></li>
 
-                            <li><a href="/landlord_self_info"><i class="fa fa-cogs"></i> 个人信息 </a></li>
+                            <li><a href="/help_self_info"><i class="fa fa-cogs"></i> 个人信息 </a></li>
                         </ul>
                     </div>
 
                     <div class="menu_section">
                         <h3>我的权限</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/landlord_house_publish"><i class="fa fa-edit"></i> 批改作业 </a></li>
-                            <li><a href="/landlord_house_info"><i class="fa fa-home"></i> 参与讨论 </a></li>
-                            <li><a href="/landlord_order_info"><i class="fa fa-folder-open"></i> 统计成绩 </a></li>
+                            <li><a href="/help_check_homework"><i class="fa fa-edit"></i> 批改作业 </a></li>
+                            <li><a href="/help_chat"><i class="fa fa-home"></i> 参与讨论 </a></li>
+                            <li><a href="/help_calculate"><i class="fa fa-folder-open"></i> 统计成绩 </a></li>
                         </ul>
                     </div>
 
@@ -95,9 +95,9 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="/landlord_self_info"> 个人信息</a></li>
+                                <li><a href="/help_self_info"> 个人信息</a></li>
 
-                                <li><a href="/landlord_help"> 使用帮助</a></li>
+                                <li><a href="/help_help"> 使用帮助</a></li>
 
                                 <li><a href="/index"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
                             </ul>
@@ -192,7 +192,7 @@
                                             </div>
 
                                             <div class="text-center mtop20">
-                                                <a href="/landlord_order_info" class="btn btn-sm btn-primary">返回</a>
+                                                <a href="/help_calculate" class="btn btn-sm btn-primary">返回</a>
                                                 <a th:href="@{/landlordReceiveOrderInfo(id=${order.id})}" th:if="${order.state == false}" class="btn btn-sm btn-success">接受订单</a>
                                                 <a th:href="@{/landlordDetailDeleteOrder(id=${order.id})}" th:if="${order.state == false}" class="btn btn-sm btn-danger">取消订单</a>
                                             </div>

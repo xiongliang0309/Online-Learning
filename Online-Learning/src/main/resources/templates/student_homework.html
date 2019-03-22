@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>租户界面 </title>
+    <title>学生—作业 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -46,7 +46,7 @@
                         <img th:src="${session.leaseholder.icon}" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>欢迎使用</span>
+                        <span>欢迎使用！</span>
                         <h2 th:text="${session.leaseholder.name}"></h2>
                     </div>
                 </div>
@@ -68,9 +68,9 @@
                     <div class="menu_section">
                         <h3>作业管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/student_house_info"><i class="fa fa-home"></i> 提交作业<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
-                            <li><a href="/student_order_info"><i class="fa fa-folder-open"></i> 下载资料 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/student_order_info"><i class="fa fa-folder-open"></i> 查看成绩<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+                            <li><a href="/student_homework"><i class="fa fa-home"></i> 提交作业<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+                            <li><a href="/student_data"><i class="fa fa-folder-open"></i> 下载资料 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/student_score"><i class="fa fa-folder-open"></i> 查看成绩<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
 
                         </ul>
                     </div>
@@ -114,94 +114,56 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>订单信息管理</h3>
+                        <h3>课程作业</h3>
                     </div>
                 </div>
 
                 <div class="clearfix"></div>
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>订单信息详情</h2>
+                                <h2>我的作业</h2>
                                 <div class="clearfix"></div>
                             </div>
-
                             <div class="x_content">
 
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-
-                                    <ul class="stats-overview">
-                                        <li>
-                                            <span class="name"> 订单号 </span>
-                                            <span class="value text-success" th:text="${order.id}"></span>
-                                        </li>
-                                        <li>
-                                            <span class="name"> 下单日期 </span>
-                                            <span class="value text-success" th:text="${order.orderdate}"></span>
-                                        </li>
-                                        <li>
-                                            <span class="name"> 总金额 </span>
-                                            <span class="value text-success" th:text="|¥${order.price}|"></span>
-                                        </li>
-                                    </ul>
-                                    <br />
-                                    <img id="mainb" style="height:350px;" th:src="${house.picture}">
-
-                                </div>
-
-                                <!-- start project-detail sidebar -->
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-
-                                    <section class="panel">
-
-
-                                        <div class="panel-body">
-                                            <div th:if="${order.state == true}">
-                                                <h3 class="green"><i class="fa fa-check"></i> 房东已接单 </h3>
-                                                <p>该订单已被房东确认，房东会尽快和你联系，请维持电话畅通。</p>
-                                            </div>
-                                            <div th:if="${order.state == false}">
-                                                <h3 class="blue"><i class="fa fa-clock-o"></i> 房东未接单 </h3>
-                                                <p>由于时间或订单信息等原因，该订单尚未被房东确认，如有疑问请及时联系房东。</p>
-                                            </div>
-
-                                            <br />
-
-                                            <div class="project_detail">
-                                                <p class="title">房屋名称</p>
-                                                <p th:text="${house.name}"></p>
-                                                <p class="title">房东</p>
-                                                <p th:text="${landlord.name}"></p>
-                                                <p class="title">房东电话</p>
-                                                <p th:text="${landlord.phone}"></p>
-                                                <p class="title">房东邮箱</p>
-                                                <p th:text="${landlord.email}"></p>
-                                                <p class="title">地址</p>
-                                                <p th:text="${house.location}"></p>
-                                                <p class="title">类型</p>
-                                                <p th:text="${house.category}"></p>
-                                                <p class="title">面积</p>
-                                                <p th:text="|${house.area}㎡|"></p>
-                                                <p class="title">楼层</p>
-                                                <p th:text="${house.floor}"></p>
-                                                <p class="title">租期</p>
-                                                <p th:text="|${order.duration}天|"></p>
-                                                <p class="title">每日租金</p>
-                                                <p th:text="|¥${house.price}|"></p>
-                                            </div>
-
-                                            <div class="text-center mtop20">
-                                                <a href="/student_order_info" class="btn btn-sm btn-primary">返回</a>
-                                                <a th:href="@{/studentDetailDeleteOrder(id=${order.id})}" th:if="${order.state == false}" class="btn btn-sm btn-danger">取消订单</a>
-                                            </div>
-                                        </div>
-
-                                    </section>
-
-                                </div>
-                                <!-- end project-detail sidebar -->
+                                <table id="datatable" class="table table-striped table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>房屋号</th>
+                                        <th>照片</th>
+                                        <th>发布名称</th>
+                                        <th>发布者</th>
+                                        <th>发布时间</th>
+                                        <th>审核状态</th>
+                                        <th>租用状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="houseList:${houseList}" th:if="${houseList.ischeck == true && houseList.islease == true}">
+                                        <td th:text="${houseList.id}"></td>
+                                        <td><img th:src="${houseList.picture}" width="130" height="60"></td>
+                                        <td th:text="${houseList.name}"></td>
+                                        <td th:text="${houseList.landlord}"></td>
+                                        <td th:text="${houseList.publishdate}"></td>
+                                        <td>
+                                            <button th:if="${houseList.ischeck == true}" type="button" class="btn btn-success btn-xs" disabled>审核已通过</button>
+                                            <button th:if="${houseList.ischeck == false}" type="button" class="btn btn-dark btn-xs" disabled>审核未通过</button>
+                                        </td>
+                                        <td>
+                                            <button th:if="${houseList.islease == true}" type="button" class="btn btn-success btn-xs" disabled>当前未被租用</button>
+                                            <button th:if="${houseList.islease == false}" type="button" class="btn btn-dark btn-xs" disabled>当前已被租用</button>
+                                        </td>
+                                        <td>
+                                            <a th:href="@{/studentShowHouseInfo(id=${houseList.id})}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看详情 </a>
+                                            <a th:href="@{/studentShowHouseOrder(id=${houseList.id})}" class="btn btn-success btn-xs"><i class="fa fa-check"></i> 租用房屋 </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
 
                             </div>
                         </div>
@@ -214,7 +176,7 @@
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                浪子短租网 - 南昌航空大学软酷实训
+                高校网络教学辅助平台 - 南昌航空大学
             </div>
             <div class="clearfix"></div>
         </footer>

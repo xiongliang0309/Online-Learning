@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
-public class LeaseholderSelfInfoController {
+public class StudentSelfInfoController {
     @Autowired
     private LeaseholderService leaseholderService;
 

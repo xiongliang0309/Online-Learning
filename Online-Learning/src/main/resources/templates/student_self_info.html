@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>租户界面 </title>
+    <title>学生—个人信息 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -46,7 +46,7 @@
                         <img th:src="${session.leaseholder.icon}" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>欢迎使用</span>
+                        <span>欢迎使用！</span>
                         <h2 th:text="${session.leaseholder.name}"></h2>
                     </div>
                 </div>
@@ -68,9 +68,9 @@
                     <div class="menu_section">
                         <h3>作业管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/student_house_info"><i class="fa fa-home"></i> 提交作业<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
-                            <li><a href="/student_order_info"><i class="fa fa-folder-open"></i> 下载资料 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/student_order_info"><i class="fa fa-folder-open"></i> 查看成绩<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+                            <li><a href="/student_homework"><i class="fa fa-home"></i> 提交作业<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+                            <li><a href="/student_data"><i class="fa fa-folder-open"></i> 下载资料 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/student_score"><i class="fa fa-folder-open"></i> 查看成绩<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
 
                         </ul>
                     </div>
@@ -125,7 +125,10 @@
 
                                 <form class="form-horizontal form-label-left" novalidate enctype="multipart/form-data" th:action="@{/changeLeaseholderSelfInfo.action}" method="POST">
 
-                                    <span class="section">修改基本信息</span>
+                                    <div class="x_title">
+                                        <h2>个人基本信息</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
 
                                     <div class="item form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">账号
@@ -191,7 +194,7 @@
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                浪子短租网 - 南昌航空大学软酷实训
+                高校网络教学辅助平台 - 南昌航空大学
             </div>
             <div class="clearfix"></div>
         </footer>
