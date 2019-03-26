@@ -126,7 +126,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>新建通知</h3>
+                        <h3>新建课程</h3>
                     </div>
 
                 </div>
@@ -137,28 +137,20 @@
                         <div class="x_panel">
                             <div class="x_content">
 
-                                <form class="form-horizontal form-label-left" novalidate th:action="@{/addNotice.action}" method="POST">
+                                <form class="form-horizontal form-label-left" novalidate th:action="@{/addCourse.action}" method="POST">
 
                                     <div class="x_title">
-                                        <h2>新建通知</h2>
+                                        <h2>新建课程</h2>
                                         <div class="clearfix"></div>
                                     </div>
 
                                     <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">标题
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">课程
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" id="title" name="title" required="required" class="form-control col-md-7 col-xs-12"/>
+                                            <input type="text" id="name" name="name" required="required" class="form-control col-md-7 col-xs-12"/>
                                         </div>
                                     </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">通知内容
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <textarea  id="content" name="content" class="form-control col-md-7 col-xs-12" rows="3"></textarea>
-                                        </div>
-                                    </div>
-
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-3">

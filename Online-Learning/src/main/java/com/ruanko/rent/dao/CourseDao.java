@@ -14,6 +14,7 @@ public interface CourseDao {
             @Result(property = "id",  column = "id"),
             @Result(property = "name", column = "name"),
             @Result(property = "teachername", column = "teachername"),
+            @Result(property = "coursedate", column = "coursedate"),
     })
     List<Course> getAll();
 
@@ -22,13 +23,14 @@ public interface CourseDao {
             @Result(property = "id",  column = "id"),
             @Result(property = "name", column = "name"),
             @Result(property = "teachername", column = "teachername"),
+            @Result(property = "coursedate", column = "coursedate")
     })
     Course getOne(int id);
 
-    @Insert("INSERT INTO course(id, name, teachername) VALUES(#{id}, #{name}, #{teachername})")
+    @Insert("INSERT INTO course(id, name, teachername,coursedate) VALUES(#{id}, #{name}, #{teachername},#{coursedate})")
     void insert(Course course);
 
-    @Update("UPDATE course SET id=#{id}, name = #{name}, teachername = #{teachername}")
+    @Update("UPDATE course SET id=#{id}, name = #{name}, teachername = #{teachername},coursedate=#{coursedate}")
     void update(Course course);
 
     @Delete("DELETE FROM course WHERE id = #{id}")

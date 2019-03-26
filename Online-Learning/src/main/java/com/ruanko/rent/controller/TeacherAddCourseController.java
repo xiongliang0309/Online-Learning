@@ -1,9 +1,9 @@
 package com.ruanko.rent.controller;
 
-import com.ruanko.rent.entity.Notice;
+import com.ruanko.rent.entity.Course;
 import com.ruanko.rent.entity.Admin;
 import com.ruanko.rent.service.AdminService;
-import com.ruanko.rent.service.NoticeService;
+import com.ruanko.rent.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,35 +16,34 @@ import java.util.Date;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
-public class TeacherAddNoticeController {
+public class TeacherAddCourseController {
     @Autowired
     private AdminService adminService;
     @Autowired
-    private NoticeService noticeService;
+    private CourseService courseService;
     @Autowired
-    private Notice notice;
+    private Course course;
 
     private Date date = new Date();
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    @RequestMapping("/teacher_addnotice")
-    public String showTeacherAddNotice() {
-        return "teacher_addnotice";
+    @RequestMapping("/teacher_addcourse")
+    public String showTeacherAddCourse() {
+        return "teacher_addcourse";
     }
 
-    @RequestMapping(value="/addNotice.action", method = POST)
-    public String teacherAddNotice(HttpSession session, String title, String content){
+    @RequestMapping(value="/addCourse.action", method = POST)
+    public String teacherAddNotice(HttpSession session, String name){
         Admin admin = (Admin) session.getAttribute("admin");
-        notice.setTitle(title);
-        notice.setContent(content);
-        notice.setNoticer(admin.getName());
-        notice.setNoticedate(sdf.format(date));
+        course.setName(name);
+        course.setTeachername(admin.getName());
+        course.setCoursedate(sdf.format(date));
 
 
         //保存到数据库
         try{
-            noticeService.save(notice);
-            return "redirect:/teacher_notice";
+            courseService.save(course);
+            return "redirect:/teacher_course";
         }catch(Exception e) {
             System.out.print(e);
             return "error";

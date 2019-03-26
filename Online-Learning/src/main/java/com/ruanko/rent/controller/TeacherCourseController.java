@@ -22,4 +22,11 @@ public class TeacherCourseController {
         return "teacher_course";
     }
 
+    //删除课程
+    @RequestMapping("/teacherDeleteCourse")
+    public String teacherDeleteNotice(int id){
+        courseService.delete(id);
+        return "redirect:/teacher_course";
+    }
+
 }

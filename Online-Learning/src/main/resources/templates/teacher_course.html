@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>教师首页 </title>
+    <title>教师—通知 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -17,13 +17,12 @@
     <link th:href="@{/vendors/nprogress/nprogress.css}" rel="stylesheet">
     <!-- iCheck -->
     <link th:href="@{/vendors/iCheck/skins/flat/green.css}" rel="stylesheet">
-
-    <!-- bootstrap-progressbar -->
-    <link th:href="@{/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet">
-    <!-- JQVMap -->
-    <link th:href="@{/vendors/jqvmap/dist/jqvmap.min.css}" rel="stylesheet"/>
-    <!-- bootstrap-daterangepicker -->
-    <link th:href="@{/vendors/bootstrap-daterangepicker/daterangepicker.css}" rel="stylesheet">
+    <!-- Datatables -->
+    <link th:href="@{/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link th:href="@{/build/css/custom.min.css}" rel="stylesheet">
@@ -123,50 +122,55 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-            <div class="row">
-                <div class="title_left">
-                    <span style="font-size:30px;“">我的课程</span>
-                    <a href="/student_noticelist" style="float: right;margin-top: 8px"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i>新建课程</button></a>
-
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>课程管理</h3>
+                    </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="x_panel">
-                        <div class="x_content">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                </div>
 
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>新建课程</h2>
+                                <a href="/teacher_addcourse" style="float: right; margin-top: 4px;"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i> 开设课程</button></a>
                                 <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
 
-                                <div class="col-md-4 col-sm-4 col-xs-12 profile_details" th:each="courseList:${courseList}">
-                                    <div class="well profile_view">
-                                        <div class="col-sm-12">
-                                            <div class="left col-xs-12">
-                                                <h1 th:text="|课程：${courseList.name}" style="margin-bottom: 35px; text-align: center"></h1>
-                                                <ul class="list-unstyled">
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 bottom text-center">
-                                            <div class="col-xs-12 col-sm-6 emphasis">
-                                                <p class="ratings">
-                                                <h2 th:text="|教师：${courseList.teachername}|"></h2>
-                                                </p>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-6 emphasis" style="margin-top: 5px">
-                                                <a ><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i> 查看详情</button></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- start project list -->
+                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">
+                                    <thead>
+                                    <tr class="success">
+                                        <th>课程号</th>
+                                        <th>课程名</th>
+                                        <th>教师</th>
+                                        <th>开课时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="courseList:${courseList}">
+                                        <td th:text="${courseList.id}"></td>
+                                        <td th:text="${courseList.name}"></td>
+                                        <td th:text="${courseList.teachername}"></td>
+                                        <td th:text="${courseList.coursedate}"></td>
+                                        <td>
+                                            <a th:href="@{/teacherDeleteCourse(id=${courseList.id})}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!-- end project list -->
 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <!-- /page content -->
 
@@ -189,35 +193,24 @@
 <script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
 <!-- NProgress -->
 <script th:src="@{/vendors/nprogress/nprogress.js}"></script>
-<!-- Chart.js -->
-<script th:src="@{/vendors/Chart.js/dist/Chart.min.js}"></script>
-<!-- gauge.js -->
-<script th:src="@{/vendors/gauge.js/dist/gauge.min.js}"></script>
-<!-- bootstrap-progressbar -->
-<script th:src="@{/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
 <!-- iCheck -->
 <script th:src="@{/vendors/iCheck/icheck.min.js}"></script>
-<!-- Skycons -->
-<script th:src="@{/vendors/skycons/skycons.js}"></script>
-<!-- Flot -->
-<script th:src="@{/vendors/Flot/jquery.flot.js}"></script>
-<script th:src="@{/vendors/Flot/jquery.flot.pie.js}"></script>
-<script th:src="@{/vendors/Flot/jquery.flot.time.js}"></script>
-<script th:src="@{/vendors/Flot/jquery.flot.stack.js}"></script>
-<script th:src="@{/vendors/Flot/jquery.flot.resize.js}"></script>
-<!-- Flot plugins -->
-<script th:src="@{/vendors/flot.orderbars/js/jquery.flot.orderBars.js}"></script>
-<script th:src="@{/vendors/flot-spline/js/jquery.flot.spline.min.js}"></script>
-<script th:src="@{/vendors/flot.curvedlines/curvedLines.js}"></script>
-<!-- DateJS -->
-<script th:src="@{/vendors/DateJS/build/date.js}"></script>
-<!-- JQVMap -->
-<script th:src="@{/vendors/jqvmap/dist/jquery.vmap.js}"></script>
-<script th:src="@{/vendors/jqvmap/dist/maps/jquery.vmap.world.js}"></script>
-<script th:src="@{/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js}"></script>
-<!-- bootstrap-daterangepicker -->
-<script th:src="@{/vendors/moment/min/moment.min.js}"></script>
-<script th:src="@{/vendors/bootstrap-daterangepicker/daterangepicker.js}"></script>
+<!-- Datatables -->
+<script th:src="@{/vendors/datatables.net/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-buttons/js/dataTables.buttons.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-buttons/js/buttons.flash.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-buttons/js/buttons.html5.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-buttons/js/buttons.print.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-responsive/js/dataTables.responsive.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js}"></script>
+<script th:src="@{/vendors/datatables.net-scroller/js/dataTables.scroller.min.js}"></script>
+<script th:src="@{/vendors/jszip/dist/jszip.min.js}"></script>
+<script th:src="@{/vendors/pdfmake/build/pdfmake.min.js}"></script>
+<script th:src="@{/vendors/pdfmake/build/vfs_fonts.js}"></script>
 
 <!-- Custom Theme Scripts -->
 <script th:src="@{/build/js/custom.min.js}"></script>

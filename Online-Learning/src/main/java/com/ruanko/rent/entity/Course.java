@@ -7,6 +7,8 @@ public class Course {
     private int id;
     private String name;
     private String teachername;
+    private String coursedate;
+
 
     public Course() {
         super();
@@ -36,6 +38,14 @@ public class Course {
         this.teachername = teachername;
     }
 
+    public String getCoursedate() {
+        return coursedate;
+    }
+
+    public void setCoursedate(String coursedate) {
+        this.coursedate = coursedate;
+    }
+
 
     @Override
     public String toString() {
@@ -43,6 +53,7 @@ public class Course {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", teachername='" + teachername + '\'' +
+                ", coursedate='" + coursedate + '\'' +
                 '}';
     }
 }
