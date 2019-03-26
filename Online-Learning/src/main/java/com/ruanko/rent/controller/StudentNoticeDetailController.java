@@ -34,6 +34,6 @@ public class StudentNoticeDetailController {
     public String showStudentNoticeDetailInf(Model model, String id) {
         Notice notice = noticeService.findNoticeById(id);
         model.addAttribute("notice", notice);
-        return "student_score";
+        return "student_notice_detail_info";
     }
 }

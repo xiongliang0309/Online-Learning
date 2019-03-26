@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-public class LandlordOrderInfoController {
+public class HelpCalculateController {
     @Autowired
     private OrderService orderService;
     @Autowired
