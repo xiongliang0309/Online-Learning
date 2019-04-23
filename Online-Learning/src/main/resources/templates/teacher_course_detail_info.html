@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>教师—个人资料 </title>
+    <title>教师-课程详情 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -110,8 +110,8 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
-                            <a href="javascript:" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img th:src="${session.admin.icon}" alt=""><span th:text="${session.admin.name}"></span>
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img th:src="${session.admin.icon}" alt="" ><span th:text="${session.admin.name}"></span>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -133,77 +133,53 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>个人信息管理</h3>
+                        <h3>我的课程</h3>
                     </div>
-
                 </div>
+
                 <div class="clearfix"></div>
 
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-12">
                         <div class="x_panel">
+                            <div class="x_title">
+                                <h2>课程详情</h2>
+                                <a th:href="@{/teacherCourseStudent(id=${course.id})}"  style="float: right; margin-top: 4px;"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-pencil"> </i>课程花名册</button></a>
+                                <div class="clearfix"></div>
+                            </div>
+
                             <div class="x_content">
 
-                                <form class="form-horizontal form-label-left" novalidate enctype="multipart/form-data" th:action="@{/changeAdminSelfInfo.action}" method="POST">
+                                <div class="col-md-10 col-md-offset-1 ">
 
-                                    <div class="x_title">
-                                        <h2>个人基本信息</h2>
-                                        <div class="clearfix"></div>
+                                    <ul class="stats-overview">
+                                        <li>
+                                            <span class="name"> 课程号 </span>
+                                            <span class="value text-success" th:text="${course.id}"></span>
+                                        </li>
+                                        <li>
+                                            <span class="name"> 课程名字 </span>
+                                            <span class="value text-success" th:text="${course.name}"></span>
+                                        </li>
+                                        <li>
+                                            <span class="name"> 上课班级 </span>
+                                            <span class="value text-success" th:text="${course.classid}"></span>
+                                        </li>
+                                    </ul>
+                                    <br />
+                                    <div>
+                                        <h2 style="text-align: center" th:text="课程介绍"></h2>
+                                        <div th:text="${course.intro}" style="text-indent: 2em; line-height: 30px"></div>
                                     </div>
+                                    <br>
 
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">账号
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control col-md-7 col-xs-12" id="id" name="id" disabled="disabled" th:value="${session.admin.id}"/>
-                                        </div>
+                                    <div class="col-md-offset-10" style="text-align: center">
+                                        <p th:text="${course.teachername}"></p>
+                                        <p th:text="${course.coursedate}"></p>
                                     </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">注册日期
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="optional form-control col-md-7 col-xs-12" id="registerdate" name="registerdate" disabled="disabled" th:value="${session.admin.registerdate}"/>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">姓名
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control col-md-7 col-xs-12" id="name" name="name" th:value="${session.admin.name}"/>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">电话
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control col-md-7 col-xs-12" id="phone" name="phone" th:value="${session.admin.phone}">
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">邮箱
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control col-md-7 col-xs-12" id="email" name="email" th:value="${session.admin.email}">
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">头像
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <img th:src="${session.admin.icon}" width="100" height="100">
-                                            <br><br><input type="file" id="icon" name="icon">
-                                        </div>
-                                    </div>
+                                </div>
 
-                                    <div class="ln_solid"></div>
-                                    <div class="form-group">
-                                        <div class="col-md-6 col-md-offset-3">
-                                            <a href="/teacher_self_change_password"><input type="button" class="btn btn-primary" value="修改密码"/></a>
-                                            <input type="reset" class="btn btn-primary" value="重置"/>
-                                            <input type="submit" class="btn btn-success" value="保存"/>
-                                        </div>
-                                    </div>
-                                </form>
+
                             </div>
                         </div>
                     </div>

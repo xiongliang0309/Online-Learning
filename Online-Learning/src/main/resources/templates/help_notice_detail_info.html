@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>助教—讨论 </title>
+    <title>助教—首页 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -97,7 +97,7 @@
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
                                 <li><a href="/help_self_info"> 个人信息</a></li>
 
-                                <li><a href="/help_help"> 使用帮助</a></li>
+                                <li><a href="/landlord_help"> 使用帮助</a></li>
 
                                 <li><a href="/login"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
                             </ul>
@@ -113,7 +113,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>参与讨论</h3>
+                        <h3>我的通知</h3>
                     </div>
                 </div>
 
@@ -123,49 +123,40 @@
                     <div class="col-md-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>我的讨论</h2>
+                                <h2>通知详情</h2>
                                 <div class="clearfix"></div>
                             </div>
+
                             <div class="x_content">
 
-                                <!-- start project list -->
-                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">                                    <thead>
-                                    <tr>
-                                        <th>房屋号</th>
-                                        <th>照片</th>
-                                        <th>发布名称</th>
-                                        <th>发布者</th>
-                                        <th>发布时间</th>
-                                        <th>审核状态</th>
-                                        <th>租用状态</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr th:each="houseList:${houseList}" th:if="${houseList.landlord == session.landlord.id}">
-                                        <td th:text="${houseList.id}"></td>
-                                        <td><img th:src="${houseList.picture}" width="130" height="60"></td>
-                                        <td th:text="${houseList.name}"></td>
-                                        <td th:text="${houseList.landlord}"></td>
-                                        <td th:text="${houseList.publishdate}"></td>
-                                        <td>
-                                            <button th:if="${houseList.ischeck == true}" type="button" class="btn btn-success btn-xs" disabled>审核通过</button>
-                                            <button th:if="${houseList.ischeck == false}" type="button" class="btn btn-dark btn-xs" disabled>审核未通过</button>
-                                        </td>
-                                        <td>
-                                            <button th:if="${houseList.islease == true}" type="button" class="btn btn-dark btn-xs" disabled>当前未被租用</button>
-                                            <button th:if="${houseList.islease == false}" type="button" class="btn btn-success btn-xs" disabled>当前已被租用</button>
-                                        </td>
-                                        <td>
-                                            <a th:href="@{/landlordShowHouseInfo(id=${houseList.id})}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看 </a>
-                                            <a th:href="@{/landlordChangeHouseInfo(id=${houseList.id})}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> 修改 </a>
-                                            <a th:href="@{/landlordDeleteHouseInfo(id=${houseList.id})}" th:if="${houseList.islease == true}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <!-- end project list -->
+                                <div class="col-md-10 col-md-offset-1 ">
 
+                                    <ul class="stats-overview">
+                                        <li>
+                                            <span class="name"> 通知号 </span>
+                                            <span class="value text-success" th:text="${notice.id}"></span>
+                                        </li>
+                                        <li>
+                                            <span class="name"> 发布日期 </span>
+                                            <span class="value text-success" th:text="${notice.noticedate}"></span>
+                                        </li>
+                                        <li>
+                                            <span class="name"> 发布人 </span>
+                                            <span class="value text-success" th:text="${notice.noticer}|"></span>
+                                        </li>
+                                    </ul>
+                                    <br />
+                                    <div>
+                                        <h2 style="text-align: center" th:text="${notice.title}"></h2>
+                                        <div th:text="${notice.content}" style="text-indent: 2em; line-height: 30px"></div>
+                                    </div>
+                                    <br>
+
+                                    <div class="col-md-offset-10" style="text-align: center">
+                                        <p th:text="${notice.noticer}"></p>
+                                        <p th:text="${notice.noticedate}"></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -183,36 +174,48 @@
         </footer>
         <!-- /footer content -->
     </div>
+</div>
 
-    <!-- jQuery -->
-    <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
-    <!-- Bootstrap -->
-    <script th:src="@{/vendors/bootstrap/dist/js/bootstrap.min.js}"></script>
-    <!-- FastClick -->
-    <script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
-    <!-- NProgress -->
-    <script th:src="@{/vendors/nprogress/nprogress.js}"></script>
-    <!-- iCheck -->
-    <script th:src="@{/vendors/iCheck/icheck.min.js}"></script>
-    <!-- Datatables -->
-    <script th:src="@{/vendors/datatables.net/js/jquery.dataTables.min.js}"></script>
-    <script th:src="@{/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
-    <script th:src="@{/vendors/datatables.net-buttons/js/dataTables.buttons.min.js}"></script>
-    <script th:src="@{/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js}"></script>
-    <script th:src="@{/vendors/datatables.net-buttons/js/buttons.flash.min.js}"></script>
-    <script th:src="@{/vendors/datatables.net-buttons/js/buttons.html5.min.js}"></script>
-    <script th:src="@{/vendors/datatables.net-buttons/js/buttons.print.min.js}"></script>
-    <script th:src="@{/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js}"></script>
-    <script th:src="@{/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js}"></script>
-    <script th:src="@{/vendors/datatables.net-responsive/js/dataTables.responsive.min.js}"></script>
-    <script th:src="@{/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js}"></script>
-    <script th:src="@{/vendors/datatables.net-scroller/js/dataTables.scroller.min.js}"></script>
-    <script th:src="@{/vendors/jszip/dist/jszip.min.js}"></script>
-    <script th:src="@{/vendors/pdfmake/build/pdfmake.min.js}"></script>
-    <script th:src="@{/vendors/pdfmake/build/vfs_fonts.js}"></script>
+<!-- jQuery -->
+<script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/vendors/bootstrap/dist/js/bootstrap.min.js}"></script>
+<!-- FastClick -->
+<script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
+<!-- NProgress -->
+<script th:src="@{/vendors/nprogress/nprogress.js}"></script>
+<!-- Chart.js -->
+<script th:src="@{/vendors/Chart.js/dist/Chart.min.js}"></script>
+<!-- gauge.js -->
+<script th:src="@{/vendors/gauge.js/dist/gauge.min.js}"></script>
+<!-- bootstrap-progressbar -->
+<script th:src="@{/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
+<!-- iCheck -->
+<script th:src="@{/vendors/iCheck/icheck.min.js}"></script>
+<!-- Skycons -->
+<script th:src="@{/vendors/skycons/skycons.js}"></script>
+<!-- Flot -->
+<script th:src="@{/vendors/Flot/jquery.flot.js}"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.pie.js}"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.time.js}"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.stack.js}"></script>
+<script th:src="@{/vendors/Flot/jquery.flot.resize.js}"></script>
+<!-- Flot plugins -->
+<script th:src="@{/vendors/flot.orderbars/js/jquery.flot.orderBars.js}"></script>
+<script th:src="@{/vendors/flot-spline/js/jquery.flot.spline.min.js}"></script>
+<script th:src="@{/vendors/flot.curvedlines/curvedLines.js}"></script>
+<!-- DateJS -->
+<script th:src="@{/vendors/DateJS/build/date.js}"></script>
+<!-- JQVMap -->
+<script th:src="@{/vendors/jqvmap/dist/jquery.vmap.js}"></script>
+<script th:src="@{/vendors/jqvmap/dist/maps/jquery.vmap.world.js}"></script>
+<script th:src="@{/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js}"></script>
+<!-- bootstrap-daterangepicker -->
+<script th:src="@{/vendors/moment/min/moment.min.js}"></script>
+<script th:src="@{/vendors/bootstrap-daterangepicker/daterangepicker.js}"></script>
 
-    <!-- Custom Theme Scripts -->
-    <script th:src="@{/build/js/custom.min.js}"></script>
+<!-- Custom Theme Scripts -->
+<script th:src="@{/build/js/custom.min.js}"></script>
 
 </body>
 </html>

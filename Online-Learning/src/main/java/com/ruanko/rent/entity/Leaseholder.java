@@ -9,6 +9,7 @@ public class Leaseholder {
     private String name;
     private String phone;
     private String email;
+    private String classid;
     private String icon = "/picture/user.png";
     private String registerdate;
 
@@ -56,6 +57,14 @@ public class Leaseholder {
         this.email = email;
     }
 
+    public String getClassid() {
+        return classid;
+    }
+
+    public void setClassid(String classid) {
+        this.classid = classid;
+    }
+
     public String getIcon() {
         return icon;
     }
@@ -80,6 +89,7 @@ public class Leaseholder {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", classid='" + classid + '\'' +
                 ", icon='" + icon + '\'' +
                 ", registerdate='" + registerdate + '\'' +
                 '}';

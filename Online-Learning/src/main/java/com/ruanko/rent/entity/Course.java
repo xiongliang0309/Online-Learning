@@ -4,21 +4,23 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Course {
-    private int id;
+    private String id;
     private String name;
     private String teachername;
     private String coursedate;
+    private String classid;
+    private  String intro;
 
 
     public Course() {
         super();
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -46,6 +48,20 @@ public class Course {
         this.coursedate = coursedate;
     }
 
+    public String getClassid() {
+        return classid;
+    }
+
+    public void setClassid(String classid) {
+        this.classid = classid;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) { this.intro = intro; }
+
 
     @Override
     public String toString() {
@@ -54,6 +70,8 @@ public class Course {
                 ", name='" + name + '\'' +
                 ", teachername='" + teachername + '\'' +
                 ", coursedate='" + coursedate + '\'' +
+                ", classid='" + classid + '\'' +
+                ", intro='" + intro + '\'' +
                 '}';
     }
 }

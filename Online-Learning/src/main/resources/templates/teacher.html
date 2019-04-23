@@ -87,6 +87,13 @@
                         </ul>
                     </div>
 
+                    <div class="menu_section">
+                        <h3>教学论坛</h3>
+                        <ul class="nav side-menu">
+                            <li><a href="/teacher_discuss"><i class="fa fa-pencil"></i> 论坛中心 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                        </ul>
+                    </div>
+
                 </div>
                 <!-- /sidebar menu -->
 
@@ -112,7 +119,7 @@
 
                                 <li><a href="/teacher_help"> 使用帮助</a></li>
 
-                                <li><a href="/index"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
+                                <li><a href="/login"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -146,14 +153,14 @@
                     <span class="count_bottom"> 系统中老师数量</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-list-ul"></i> 已审核房屋</span>
+                    <span class="count_top"><i class="fa fa-list-ul"></i> </span>
                     <div class="count" th:text="${checkedHouseNum}"></div>
-                    <span class="count_bottom"> 系统中已审核房屋数量</span>
+                    <span class="count_bottom"></span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-tags"></i> 订单数量</span>
+                    <span class="count_top"><i class="fa fa-tags"></i></span>
                     <div class="count" th:text="${orderNum}"></div>
-                    <span class="count_bottom"> 系统中的订单数量</span>
+                    <span class="count_bottom"></span>
                 </div>
             </div>
             <!-- /top tiles -->

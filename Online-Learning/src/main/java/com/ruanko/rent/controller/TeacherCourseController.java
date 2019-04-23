@@ -14,7 +14,7 @@ public class TeacherCourseController {
     @Autowired
     private CourseService courseService;
 
-    //跳转到leaseholder页面
+    //跳转到课程页面
     @RequestMapping("/teacher_course")
     public String showTeacherCourse(Model model) {
         List<Course> courseList = courseService.getCourseList();
@@ -24,7 +24,7 @@ public class TeacherCourseController {
 
     //删除课程
     @RequestMapping("/teacherDeleteCourse")
-    public String teacherDeleteNotice(int id){
+    public String teacherDeleteNotice(String id){
         courseService.delete(id);
         return "redirect:/teacher_course";
     }

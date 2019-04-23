@@ -86,6 +86,13 @@
                         </ul>
                     </div>
 
+                    <div class="menu_section">
+                        <h3>教学论坛</h3>
+                        <ul class="nav side-menu">
+                            <li><a href="/teacher_discuss"><i class="fa fa-pencil"></i> 论坛中心 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                        </ul>
+                    </div>
+
                 </div>
                 <!-- /sidebar menu -->
 
@@ -111,7 +118,7 @@
 
                                 <li><a href="/teacher_help"> 使用帮助</a></li>
 
-                                <li><a href="/index"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
+                                <li><a href="/login"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -148,6 +155,7 @@
                                         <th>课程号</th>
                                         <th>课程名</th>
                                         <th>教师</th>
+                                        <th>上课班级</th>
                                         <th>开课时间</th>
                                         <th>操作</th>
                                     </tr>
@@ -157,9 +165,12 @@
                                         <td th:text="${courseList.id}"></td>
                                         <td th:text="${courseList.name}"></td>
                                         <td th:text="${courseList.teachername}"></td>
+                                        <td th:text="${courseList.classid}"></td>
                                         <td th:text="${courseList.coursedate}"></td>
                                         <td>
+                                            <a th:href="@{/teacherCourseDetail(id=${courseList.id})}" class="btn btn-primary btn-xs"><i class="fa fa-book"></i> 课程详情 </a>
                                             <a th:href="@{/teacherDeleteCourse(id=${courseList.id})}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+
                                         </td>
                                     </tr>
                                     </tbody>

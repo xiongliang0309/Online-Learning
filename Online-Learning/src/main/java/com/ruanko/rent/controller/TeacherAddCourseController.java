@@ -33,10 +33,12 @@ public class TeacherAddCourseController {
     }
 
     @RequestMapping(value="/addCourse.action", method = POST)
-    public String teacherAddNotice(HttpSession session, String name){
+    public String teacherAddCourse(HttpSession session, String name,String classid,String intro){
         Admin admin = (Admin) session.getAttribute("admin");
         course.setName(name);
         course.setTeachername(admin.getName());
+        course.setClassid(classid);
+        course.setIntro(intro);
         course.setCoursedate(sdf.format(date));
 
 

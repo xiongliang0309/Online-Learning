@@ -97,9 +97,9 @@
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
                                 <li><a href="/help_self_info"> 个人信息</a></li>
 
-                                <li><a href="/landlord_help"> 使用帮助</a></li>
+                                <li><a href="/help_help"> 使用帮助</a></li>
 
-                                <li><a href="/index"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
+                                <li><a href="/login"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -113,7 +113,7 @@
             <div class="row">
                 <div class="title_left">
                     <span style="font-size: 30px;">我的通知</span>
-                    <a href="/student_noticelist" style="float: right;margin-top: 8px"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i>查看表格模式</button></a>
+                    <a href="/help_noticelist" style="float: right;margin-top: 8px"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i>查看表格模式</button></a>
 
                 </div>
                 <div class="col-md-12">
@@ -142,7 +142,7 @@
                                                 </p>
                                             </div>
                                             <div class="col-xs-12 col-sm-6 emphasis">
-                                                <a th:href="@{/studentShowHouseInfo(id=${noticeList.id})}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i> 查看详情</button></a>
+                                                <a th:href="@{/helpShowNoticeDetailInfo(id=${noticeList.id})}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i> 查看详情</button></a>
                                             </div>
                                         </div>
                                     </div>

@@ -1,6 +1,6 @@
 package com.ruanko.rent.dao;
 
-import com.ruanko.rent.entity.Admin;
+
 import com.ruanko.rent.entity.Course;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -15,6 +15,9 @@ public interface CourseDao {
             @Result(property = "name", column = "name"),
             @Result(property = "teachername", column = "teachername"),
             @Result(property = "coursedate", column = "coursedate"),
+            @Result(property = "classid", column = "classid"),
+            @Result(property = "intro", column = "intro")
+
     })
     List<Course> getAll();
 
@@ -23,16 +26,19 @@ public interface CourseDao {
             @Result(property = "id",  column = "id"),
             @Result(property = "name", column = "name"),
             @Result(property = "teachername", column = "teachername"),
-            @Result(property = "coursedate", column = "coursedate")
-    })
-    Course getOne(int id);
+            @Result(property = "coursedate", column = "coursedate"),
+            @Result(property = "classid", column = "classid"),
+            @Result(property = "intro", column = "intro")
 
-    @Insert("INSERT INTO course(id, name, teachername,coursedate) VALUES(#{id}, #{name}, #{teachername},#{coursedate})")
+    })
+    Course getOne(String id);
+
+    @Insert("INSERT INTO course(id, name, teachername, coursedate, classid, intro) VALUES(#{id}, #{name}, #{teachername}, #{coursedate}, #{classid}, #{intro})")
     void insert(Course course);
 
-    @Update("UPDATE course SET id=#{id}, name = #{name}, teachername = #{teachername},coursedate=#{coursedate}")
+    @Update("UPDATE course SET id=#{id}, name = #{name}, teachername = #{teachername},coursedate=#{coursedate},classid=#{classid},intro=#{intro}")
     void update(Course course);
 
     @Delete("DELETE FROM course WHERE id = #{id}")
-    void delete(int id);
+    void delete(String id);
 }

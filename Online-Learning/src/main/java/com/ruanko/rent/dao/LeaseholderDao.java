@@ -15,6 +15,7 @@ public interface LeaseholderDao {
             @Result(property = "name", column = "name"),
             @Result(property = "phone", column = "phone"),
             @Result(property = "email", column = "email"),
+            @Result(property = "classid", column = "classid"),
             @Result(property = "icon", column = "icon"),
             @Result(property = "registerdate", column = "registerdate")
     })
@@ -27,15 +28,16 @@ public interface LeaseholderDao {
             @Result(property = "name", column = "name"),
             @Result(property = "phone", column = "phone"),
             @Result(property = "email", column = "email"),
+            @Result(property = "classid", column = "classid"),
             @Result(property = "icon", column = "icon"),
             @Result(property = "registerdate", column = "registerdate")
     })
     Leaseholder getOne(String id);
 
-    @Insert("INSERT INTO leaseholder(id, password, name, phone, email, icon, registerdate) VALUES(#{id}, #{password}, #{name}, #{phone}, #{email}, #{icon}, #{registerdate})")
+    @Insert("INSERT INTO leaseholder(id, password, name, phone, email,classid, icon, registerdate) VALUES(#{id}, #{password}, #{name}, #{phone}, #{email}, #{classid}, #{icon}, #{registerdate})")
     void insert(Leaseholder leaseholder);
 
-    @Update("UPDATE leaseholder SET id=#{id},password = #{password}, name = #{name}, phone = #{phone}, email = #{email}, icon = #{icon}, registerdate = #{registerdate} WHERE id = #{id}")
+    @Update("UPDATE leaseholder SET id=#{id},password = #{password}, name = #{name}, phone = #{phone}, email = #{email}, classid = #{classid}, icon = #{icon}, registerdate = #{registerdate} WHERE id = #{id}")
     void update(Leaseholder leaseholder);
 
     @Delete("DELETE FROM leaseholder WHERE id = #{id}")
