@@ -45,16 +45,5 @@ public class TeacherUpdateStudentController {
         return "redirect:/teacher_update_student";
     }
 
-//    @RequestMapping("/adminShowHouseInfo")
-//    public String showAdminHouseDetailInfoPage(Model model, int id) {
-//        House house = houseService.findHouseById(id);
-//        model.addAttribute("house", house);
-//        return "admin_house_detail_info";
-//    }
-//
-//    @RequestMapping("/adminDeleteHouseInfo")
-//    public String adminDeleteHouseInfo(int id) {
-//        houseService.delete(id);
-//        return "redirect:/admin_house_info";
-//    }
+
 }

@@ -28,7 +28,7 @@ public interface CommentDao {
     })
     Comment getOne(String commentid);
 
-    @Insert("INSERT INTO comment(commentid, commenter, commentcontent, comtentdate, discussid) VALUES(#{commentid}, #{commenter}, #{commentcontent}, #{commentdate}, #{discussid})")
+    @Insert("INSERT INTO comment(commentid, commenter, commentcontent, commentdate, discussid) VALUES(#{commentid}, #{commenter}, #{commentcontent}, #{commentdate}, #{discussid})")
     void insert(Comment comment);
 
     @Update("UPDATE comment SET commentid=#{commentid}, commenter = #{commenter}, commentcontent = #{commentcontent}, commentdate = #{commentdate}, discussid = #{discussid} WHERE commentid = #{commentid}")

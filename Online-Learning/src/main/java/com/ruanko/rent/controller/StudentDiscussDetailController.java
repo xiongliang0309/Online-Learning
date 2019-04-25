@@ -17,7 +17,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 
 @Controller
-public class TeacherDiscussDetailController {
+public class StudentDiscussDetailController {
     @Autowired
     private DiscussService discussService;
 
@@ -32,29 +32,29 @@ public class TeacherDiscussDetailController {
 
 
 
-    //跳转到Notice详情界面
-    @RequestMapping("/teacherDiscussDetail")
-    public String teacherDiscussDetail(Model model, String discussid) {
+    //跳转到discuss详情界面
+    @RequestMapping("/studentDiscussDetail")
+    public String studentDiscussDetail(Model model, String discussid) {
         Discuss discuss = discussService.findDiscussById(discussid);
         model.addAttribute("discuss", discuss);
         List<Comment> commentList = commentService.getCommentList();
         model.addAttribute("commentList", commentList);
-        return "teacher_discuss_detail";
+        return "student_discuss_detail";
     }
 
     //添加留言
-    @RequestMapping(value = "/addComment.action", method = POST)
+    @RequestMapping(value = "/studentAddComment.action", method = POST)
     public String addToClass(HttpSession session,String discussid, String commentcontent) {
 
-        Admin admin = (Admin) session.getAttribute("admin");
+        Leaseholder leaseholder = (Leaseholder) session.getAttribute("leaseholder");
         comment.setCommentcontent(commentcontent);
         comment.setDiscussid(discussid);
         comment.setCommentdate(sdf.format(new Date()));
-        comment.setCommenter(admin.getName());
+        comment.setCommenter(leaseholder.getName());
         //保存到数据库
         try{
             commentService.save(comment);
-            return "redirect:/teacherDiscussDetail?discussid="+discussid;
+            return "redirect:/studentDiscussDetail?discussid="+discussid;
         }catch(Exception e) {
             System.out.print(e);
             return "error";
@@ -62,9 +62,9 @@ public class TeacherDiscussDetailController {
     }
 
     //删除留言
-    @RequestMapping("/teacherDeleteComment")
-    public String teacherDeleteDiscuss(String commentid,String discussid){
+    @RequestMapping("/studentDeleteComment")
+    public String studentDeleteComment(String commentid,String discussid){
         commentService.delete(commentid);
-        return "redirect:/teacherDiscussDetail?discussid="+discussid;
+        return "redirect:/studentDiscussDetail?discussid="+discussid;
     }
 }

@@ -17,7 +17,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 
 @Controller
-public class TeacherDiscussDetailController {
+public class HelpDiscussDetailController {
     @Autowired
     private DiscussService discussService;
 
@@ -33,28 +33,28 @@ public class TeacherDiscussDetailController {
 
 
     //跳转到Notice详情界面
-    @RequestMapping("/teacherDiscussDetail")
+    @RequestMapping("/helpDiscussDetail")
     public String teacherDiscussDetail(Model model, String discussid) {
         Discuss discuss = discussService.findDiscussById(discussid);
         model.addAttribute("discuss", discuss);
         List<Comment> commentList = commentService.getCommentList();
         model.addAttribute("commentList", commentList);
-        return "teacher_discuss_detail";
+        return "help_discuss_detail";
     }
 
     //添加留言
-    @RequestMapping(value = "/addComment.action", method = POST)
+    @RequestMapping(value = "/helpAddComment.action", method = POST)
     public String addToClass(HttpSession session,String discussid, String commentcontent) {
 
-        Admin admin = (Admin) session.getAttribute("admin");
+        Landlord landlord = (Landlord) session.getAttribute("landlord");
         comment.setCommentcontent(commentcontent);
         comment.setDiscussid(discussid);
         comment.setCommentdate(sdf.format(new Date()));
-        comment.setCommenter(admin.getName());
+        comment.setCommenter(landlord.getName());
         //保存到数据库
         try{
             commentService.save(comment);
-            return "redirect:/teacherDiscussDetail?discussid="+discussid;
+            return "redirect:/helpDiscussDetail?discussid="+discussid;
         }catch(Exception e) {
             System.out.print(e);
             return "error";
@@ -62,9 +62,9 @@ public class TeacherDiscussDetailController {
     }
 
     //删除留言
-    @RequestMapping("/teacherDeleteComment")
-    public String teacherDeleteDiscuss(String commentid,String discussid){
+    @RequestMapping("/helpDeleteComment")
+    public String helpDeleteComment(String commentid,String discussid){
         commentService.delete(commentid);
-        return "redirect:/teacherDiscussDetail?discussid="+discussid;
+        return "redirect:/helpDiscussDetail?discussid="+discussid;
     }
 }

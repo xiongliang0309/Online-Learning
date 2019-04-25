@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>教师—通知 </title>
+    <title>学生—作业 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -17,12 +17,13 @@
     <link th:href="@{/vendors/nprogress/nprogress.css}" rel="stylesheet">
     <!-- iCheck -->
     <link th:href="@{/vendors/iCheck/skins/flat/green.css}" rel="stylesheet">
-    <!-- Datatables -->
-    <link th:href="@{/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css}" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link th:href="@{/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet">
+    <!-- JQVMap -->
+    <link th:href="@{/vendors/jqvmap/dist/jqvmap.min.css}" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link th:href="@{/vendors/bootstrap-daterangepicker/daterangepicker.css}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link th:href="@{/build/css/custom.min.css}" rel="stylesheet">
@@ -34,7 +35,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/teacher" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
+                    <a href="/student" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -42,11 +43,11 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img th:src="${session.admin.icon}" alt="..." class="img-circle profile_img">
+                        <img th:src="${session.leaseholder.icon}" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>欢迎使用！</span>
-                        <h2 th:text="${session.admin.name}"></h2>
+                        <h2 th:text="${session.leaseholder.name}"></h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -58,39 +59,27 @@
                     <div class="menu_section">
                         <h3>基础功能</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher"><i class="fa fa-home"></i> 系统总览 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/teacher_course"><i class="fa fa-book"></i> 我的课程<i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/teacher_self_info"><i class="fa fa-cogs"></i> 个人信息 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/student"><i class="fa fa-home"></i> 我的通知<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+
+                            <li><a href="/student_self_info"><i class="fa fa-cogs"></i> 个人信息 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
 
                     <div class="menu_section">
                         <h3>作业管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher_add_homework"><i class="fa fa-users"></i> 布置作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/student_homework"><i class="fa fa-home"></i> 提交作业<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+                            <li><a href="/student_data"><i class="fa fa-folder-open"></i> 下载资料 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/student_score"><i class="fa fa-folder-open"></i> 查看成绩<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
 
-                            <li><a href="/teacher_check_homework"><i class="fa fa-user"></i> 批改作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-
-                            <li><a href="/teacher_studydata"><i class="fa fa-laptop"></i> 学习资料<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
-                        </ul>
-                    </div>
-
-                    <div class="menu_section">
-                        <h3>学生管理</h3>
-                        <ul class="nav side-menu">
-                            <li><a href="/teacher_update_student"><i class="fa fa-home"></i> 加入学生 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-
-                            <li><a href="/teacher_notice"><i class="fa fa-check"></i> 发布通知<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
-
-                            <li><a href="/teacher_calculate"><i class="fa fa-list-ul"></i> 统计成绩 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
 
                     <div class="menu_section">
                         <h3>教学论坛</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher_discuss"><i class="fa fa-pencil"></i> 论坛中心 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/teacher_mydiscuss"><i class="fa fa-calendar"></i> 我的论坛 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/student_discuss"><i class="fa fa-pencil"></i> 论坛中心 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/student_mydiscuss"><i class="fa fa-calendar"></i> 我的论坛 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
 
@@ -110,14 +99,14 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img th:src="${session.admin.icon}" alt="" ><span th:text="${session.admin.name}"></span>
+                            <a href="javascript:" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img th:src="${session.leaseholder.icon}" alt="" ><span th:text="${session.leaseholder.name}"></span>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="/teacher_self_info"> 个人信息</a></li>
+                                <li><a href="/student_self_info"> 个人信息</a></li>
 
-                                <li><a href="/teacher_help"> 使用帮助</a></li>
+                                <li><a href="/student_help"> 使用帮助</a></li>
 
                                 <li><a href="/login"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
                             </ul>
@@ -133,46 +122,45 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>我的通知</h3>
+                        <h3>教学论坛</h3>
                     </div>
                 </div>
 
                 <div class="clearfix"></div>
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>通知列表详情</h2>
-                                <a href="/teacher_addnotice" style="float: right; margin-top: 4px;"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i> 新建通知</button></a>
+                                <h2>论坛中心</h2>
+                                <a href="/student_adddiscuss" style="float: right; margin-top: 4px;"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i> 发起论坛</button></a>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
 
-                                <!-- start project list -->
-                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">                                    <thead>
+                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">
+                                    <thead>
                                     <tr class="success">
-                                        <th>通知号</th>
-                                        <th>通知标题</th>
-                                        <th>发布者</th>
+                                        <th>论坛号</th>
+                                        <th>论坛名</th>
                                         <th>发布时间</th>
+                                        <th>发布人</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="noticeList:${noticeList}">
-                                        <td th:text="${noticeList.id}"></td>
-                                        <td th:text="${noticeList.title}"></td>
-                                        <td th:text="${noticeList.noticer}"></td>
-                                        <td th:text="${noticeList.noticedate}"></td>
+                                    <tr th:each="discussList:${discussList}" th:if="${discussList.discusser==session.leaseholder.name}">
+                                        <td th:text="${discussList.discussid}"></td>
+                                        <td th:text="${discussList.discusstitle}"></td>
+                                        <td th:text="${discussList.discussdate}"></td>
+                                        <td th:text="${discussList.discusser}"></td>
                                         <td>
-                                            <a th:href="@{/teacherShowNoticeDetailInfo(id=${noticeList.id})}" class="btn btn-success btn-xs"><i class="fa fa-folder"></i> 查看详情 </a>
-                                            <a th:href="@{/teacherDeleteNotice(id=${noticeList.id})}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+                                            <a th:href="@{/studentDiscussDetail(discussid=${discussList.discussid})}" class="btn btn-info btn-xs"><i class="fa fa-black-tie"></i> 论坛详情 </a>
+                                            <a th:href="@{/studentDeleteDiscuss(discussid=${discussList.discussid})}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
-                                <!-- end project list -->
 
                             </div>
                         </div>
@@ -185,7 +173,7 @@
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-               高校网络教学辅助平台 - 南昌航空大学
+                高校网络教学辅助平台 - 南昌航空大学
             </div>
             <div class="clearfix"></div>
         </footer>

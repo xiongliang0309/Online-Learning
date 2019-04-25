@@ -32,13 +32,13 @@ public class HelpCheckHomeworkController {
 
     //跳转到发布房屋界面
     @RequestMapping("/help_check_homework")
-    public String showLandlordHousePublish(){
+    public String showLandlordHousePublish() {
         return "help_check_homework";
     }
 
     //发布房屋
-    @RequestMapping(value="/landlordPublishHouse.action", method = POST)
-    public String landlordPublishHouse(HttpSession session, String name, String location, String category, String area, String floor, int price, @RequestParam("picture") MultipartFile file){
+    @RequestMapping(value = "/landlordPublishHouse.action", method = POST)
+    public String landlordPublishHouse(HttpSession session, String name, String location, String category, String area, String floor, int price, @RequestParam("picture") MultipartFile file) {
         Landlord landlord = (Landlord) session.getAttribute("landlord");
         house.setName(name);
         house.setLocation(location);
@@ -51,15 +51,15 @@ public class HelpCheckHomeworkController {
         house.setPublishdate(sdf.format(date));
 
         String newPicture = FileUtil.uploadFile(file);
-        if(newPicture != null){
+        if (newPicture != null) {
             house.setPicture(newPicture);
         }
 
         //保存到数据库
-        try{
+        try {
             houseService.save(house);
             return "redirect:/help";
-        }catch(Exception e) {
+        } catch (Exception e) {
             System.out.print(e);
             return "error";
         }

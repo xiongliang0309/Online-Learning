@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>学生—帮助 </title>
+    <title>学生—论坛详情 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -71,7 +71,6 @@
                             <li><a href="/student_homework"><i class="fa fa-home"></i> 提交作业<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
                             <li><a href="/student_data"><i class="fa fa-folder-open"></i> 下载资料 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
                             <li><a href="/student_score"><i class="fa fa-folder-open"></i> 查看成绩<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
-
                         </ul>
                     </div>
 
@@ -122,9 +121,8 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>使用帮助</h3>
+                        <h3>论坛中心</h3>
                     </div>
-
                 </div>
 
                 <div class="clearfix"></div>
@@ -133,27 +131,116 @@
                     <div class="col-md-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>系统简介</h2>
+                                <h2>论坛详情</h2>
                                 <div class="clearfix"></div>
                             </div>
+
                             <div class="x_content">
 
-                                <div class="col-md-8 col-lg-12 col-sm-8">
-                                    <blockquote>
-                                        <p>高校网络教学平台是一个面向于广大高校的辅助学习平台，该平台为高校的教学提供了更加现代化的教学方式，使得高校的教学变得更加的方便，同时也加强了学生与老师之间的交流</p>
-                                        <p>该系统的主要功能是在功能上实现教师可以修改个人基本信息、加入学生、查看系统帮助，开设课程，布置作业、批改作业、发放通知、发起讨论、成绩统计，上传下载资料。学生可以修改个人基本信息、参与讨论、查看系统帮助、查看通知、下载资料、查看成绩、提交作业。助教可以修改个人基本信息、查看系统帮助、批改作业、参与讨论、查看通知。
-                                        </p>
-                                    </blockquote>
+                                <div class="col-md-10 col-md-offset-1 ">
+
+                                    <ul class="stats-overview">
+                                        <li>
+                                            <span class="name"> 论坛号 </span>
+                                            <span class="value text-success" th:text="${discuss.discussid}"></span>
+                                        </li>
+                                        <li>
+                                            <span class="name"> 论坛名 </span>
+                                            <span class="value text-success" th:text="${discuss.discusstitle}"></span>
+                                        </li>
+                                        <li>
+                                            <span class="name"> 发布人 </span>
+                                            <span class="value text-success" th:text="${discuss.discusser}"></span>
+                                        </li>
+                                    </ul>
+                                    <br/>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="x_panel">
+                                                <div>
+                                                    <b th:text="${discuss.discusser}"></b><b>:</b>
+                                                    <div th:text="${discuss.discusscontent}"
+                                                         style="text-indent: 2em; line-height: 30px"></div>
+                                                </div>
+                                                <div class="col-md-offset-10" style="text-align: center">
+                                                    <p th:text="${discuss.discussdate}"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="clearfix"></div>
 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>留言</h2>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="x_content">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="x_panel">
+                                            <div class="col-md-12 col-sm-12 col-xs-12 profile_details">
+                                                <div class="col-md-12">
+                                                    <form class="form-horizontal form-label-left" novalidate th:action="@{/studentAddComment.action}" method="POST">
+                                                        <div class="item form-group">
+                                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                <textarea  id="commentcontent" name="commentcontent" class="form-control col-md-7 col-xs-12" rows="3" placeholder="说点什么吧。。。。"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="item form-group" style="display: none">
+                                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                <input type="text" class="form-control col-md-7 col-xs-12" id="discussid" name="discussid" th:value="${discuss.discussid}"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="col-md-2 col-md-offset-10">
+                                                                <input type="submit" class="btn btn-sm btn-dark" value="我也要留言^_^"/>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-10 col-md-offset-1" th:each="commentList:${commentList}"
+                                 th:if="${commentList.discussid == discuss.discussid}">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="x_panel">
+                                            <div class="col-md-12 col-sm-12 col-xs-12 profile_details">
+                                                <div class="col-sm-12">
+                                                    <b th:text="${commentList.commenter}" style="color: #2e99ff"></b><b>:</b><span
+                                                        th:text="${commentList.commentcontent}"
+                                                        style="text-indent: 2em; line-height: 30px"></span>
+                                                    <span>-------</span>
+                                                    <span th:text="${commentList.commentdate}"></span>
+                                                    <a th:href="@{/studentDeleteComment(commentid=${commentList.commentid},discussid=${discuss.discussid})}" th:if="${(commentList.commenter == session.leaseholder.name)||(discuss.discusser==session.leaseholder.name)}" type="button" class="btn btn-default btn-xs">删除</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
         <!-- /page content -->
 
         <!-- footer content -->

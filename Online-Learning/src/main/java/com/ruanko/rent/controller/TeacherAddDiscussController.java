@@ -1,8 +1,10 @@
 package com.ruanko.rent.controller;
 
+import com.ruanko.rent.entity.Discuss;
 import com.ruanko.rent.entity.Notice;
 import com.ruanko.rent.entity.Admin;
 import com.ruanko.rent.service.AdminService;
+import com.ruanko.rent.service.DiscussService;
 import com.ruanko.rent.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,34 +18,34 @@ import java.util.Date;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
-public class TeacherAddNoticeController {
+public class TeacherAddDiscussController {
     @Autowired
     private AdminService adminService;
     @Autowired
-    private NoticeService noticeService;
+    private DiscussService discussService;
     @Autowired
-    private Notice notice;
+    private Discuss discuss;
 
     private Date date = new Date();
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    @RequestMapping("/teacher_addnotice")
-    public String showTeacherAddNotice() {
-        return "teacher_addnotice";
+    @RequestMapping("/teacher_adddiscuss")
+    public String showTeacherAddDiscuss() {
+        return "teacher_adddiscuss";
     }
 
-    @RequestMapping(value="/addNotice.action", method = POST)
-    public String teacherAddNotice(HttpSession session, String title, String content){
+    @RequestMapping(value="/teacherAddDiscuss.action", method = POST)
+    public String teacherAddDiscuss(HttpSession session, String discusstitle, String discusscontent){
         Admin admin = (Admin) session.getAttribute("admin");
-        notice.setTitle(title);
-        notice.setContent(content);
-        notice.setNoticer(admin.getName());
-        notice.setNoticedate(sdf.format(date));
+        discuss.setDiscusstitle(discusstitle);
+        discuss.setDiscusscontent(discusscontent);
+        discuss.setDiscusser(admin.getName());
+        discuss.setDiscussdate(sdf.format(new Date()));
 
         //保存到数据库
         try{
-            noticeService.save(notice);
-            return "redirect:/teacher_notice";
+            discussService.save(discuss);
+            return "redirect:/teacher_discuss";
         }catch(Exception e) {
             System.out.print(e);
             return "error";
