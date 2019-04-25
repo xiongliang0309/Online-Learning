@@ -1,20 +1,12 @@
 package com.ruanko.rent.util;
 
-import com.ruanko.rent.entity.Admin;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
-/**
- * FileUtil Class
- *
- * @author zhangjianyun
- * @date 2018-9-29
- */
+
 public class FileUtil {
     public static String uploadFile(MultipartFile file) {
         /**

@@ -1,7 +1,7 @@
 package com.ruanko.rent.controller;
 
-import com.ruanko.rent.entity.Admin;
-import com.ruanko.rent.service.AdminService;
+import com.ruanko.rent.entity.Studydata;
+import com.ruanko.rent.service.StudydataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,13 +12,15 @@ import java.util.List;
 @Controller
 public class TeacherStudyDataController {
     @Autowired
-    private AdminService adminService;
+    private StudydataService studydataService;
 
-    //teacher_studydata.html 学习资料上传下载
+    //teacher_studydata.html资料显示
     @RequestMapping("/teacher_studydata")
-    public String showAdminAdminInfoPage(Model model) {
-        List<Admin> adminList = adminService.getAdminList();
-        model.addAttribute("adminList", adminList);
+    public String showTeacherStudydata(Model model) {
+        List<Studydata> studydataList = studydataService.getStudydataList();
+        model.addAttribute("studydataList", studydataList);
         return "teacher_studydata";
     }
+
+
 }

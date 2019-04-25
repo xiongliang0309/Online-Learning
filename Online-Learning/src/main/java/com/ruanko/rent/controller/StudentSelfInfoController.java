@@ -27,9 +27,8 @@ public class StudentSelfInfoController {
 
     //修改个人信息操作
     @RequestMapping(value = "/changeLeaseholderSelfInfo.action", method = POST)
-    public String changeLeaseholderSelfInfo(HttpSession session, String name, String phone, String email, @RequestParam("icon") MultipartFile file) {
+    public String changeLeaseholderSelfInfo(HttpSession session, String phone, String email, @RequestParam("icon") MultipartFile file) {
         Leaseholder leaseholder = (Leaseholder) session.getAttribute("leaseholder");
-        leaseholder.setName(name);
         leaseholder.setPhone(phone);
         leaseholder.setEmail(email);
         String newIcon = FileUtil.uploadFile(file);

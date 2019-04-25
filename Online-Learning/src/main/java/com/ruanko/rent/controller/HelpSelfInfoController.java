@@ -27,9 +27,8 @@ public class HelpSelfInfoController {
 
     //修改个人信息操作
     @RequestMapping(value = "/changeLandlordSelfInfo.action", method = POST)
-    public String changeLandlordSelfInfo(HttpSession session, String name, String phone, String email, @RequestParam("icon") MultipartFile file) {
+    public String changeLandlordSelfInfo(HttpSession session, String phone, String email, @RequestParam("icon") MultipartFile file) {
         Landlord landlord = (Landlord) session.getAttribute("landlord");
-        landlord.setName(name);
         landlord.setPhone(phone);
         landlord.setEmail(email);
         String newIcon = FileUtil.uploadFile(file);

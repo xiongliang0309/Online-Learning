@@ -27,9 +27,8 @@ public class TeacherSelfInfoController {
     }
 
     @RequestMapping(value = "/changeAdminSelfInfo.action", method = POST)
-    public String changeAdminSelfInfo(HttpSession session, String name, String phone, String email, @RequestParam("icon") MultipartFile file){
+    public String changeAdminSelfInfo(HttpSession session, String phone, String email, @RequestParam("icon") MultipartFile file){
         Admin admin = (Admin) session.getAttribute("admin");
-        admin.setName(name);
         admin.setPhone(phone);
         admin.setEmail(email);
         String newIcon = FileUtil.uploadFile(file);
@@ -47,6 +46,8 @@ public class TeacherSelfInfoController {
             return "error";
         }
     }
+
+
     //教师修改密码
     @RequestMapping("/teacher_self_change_password")
     public String showAdminSelfChangePasswordPage()
