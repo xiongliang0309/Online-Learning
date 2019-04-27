@@ -7,12 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * AdminService Class
- *
- * @author zhangjianyun
- * @date 2018-9-20
- */
+
 @Service
 public class NoticeService {
     @Autowired

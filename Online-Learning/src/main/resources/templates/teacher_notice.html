@@ -167,7 +167,7 @@
                                         <td th:text="${noticeList.noticedate}"></td>
                                         <td>
                                             <a th:href="@{/teacherShowNoticeDetailInfo(id=${noticeList.id})}" class="btn btn-success btn-xs"><i class="fa fa-folder"></i> 查看详情 </a>
-                                            <a th:href="@{/teacherDeleteNotice(id=${noticeList.id})}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+                                            <a th:href="@{/teacherDeleteNotice(id=${noticeList.id})}" th:if="${noticeList.noticer==session.admin.name}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
                                         </td>
                                     </tr>
                                     </tbody>

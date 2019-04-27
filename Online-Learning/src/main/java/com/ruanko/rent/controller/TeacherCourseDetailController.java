@@ -2,9 +2,10 @@ package com.ruanko.rent.controller;
 
 import com.ruanko.rent.entity.Course;
 import com.ruanko.rent.entity.Leaseholder;
-import com.ruanko.rent.entity.Notice;
-import com.ruanko.rent.service.CourseService;
+import com.ruanko.rent.entity.Chapter;
 import com.ruanko.rent.service.LeaseholderService;
+import com.ruanko.rent.service.CourseService;
+import com.ruanko.rent.service.ChapterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,8 @@ public class TeacherCourseDetailController {
     private CourseService courseService;
     @Autowired
     private LeaseholderService leaseholderService;
+    @Autowired
+    private ChapterService chapterService;
 
     //跳转到Course详情界面
     @RequestMapping("/teacherCourseDetail")
@@ -28,6 +31,8 @@ public class TeacherCourseDetailController {
         return "teacher_course_detail_info";
     }
 
+
+    //花名册
     @RequestMapping("/teacherCourseStudent")
     public String teacherCourseStudent(Model model, String id) {
         Course course = courseService.findCourseById(id);
@@ -38,4 +43,6 @@ public class TeacherCourseDetailController {
 
         return "teacher_studentofcourselist";
     }
+
+
 }

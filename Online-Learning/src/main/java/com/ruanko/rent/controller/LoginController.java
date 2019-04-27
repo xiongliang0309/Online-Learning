@@ -30,7 +30,7 @@ public class LoginController {
     @Autowired
     private LandlordService landlordService;
 
-    @RequestMapping("/login")
+    @RequestMapping(value={"/", "/login"})
     public String showLogin() {
         return "login";
     }

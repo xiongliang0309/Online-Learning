@@ -162,7 +162,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="courseList:${courseList}">
+                                    <tr th:each="courseList:${courseList}" th:if="${courseList.teachername==session.admin.name}">
                                         <td th:text="${courseList.id}"></td>
                                         <td th:text="${courseList.name}"></td>
                                         <td th:text="${courseList.teachername}"></td>

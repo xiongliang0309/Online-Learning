@@ -7,6 +7,8 @@ import com.ruanko.rent.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -66,15 +68,18 @@ public class TeacherAddDataController {
     }
 
     //下载资料
-    @RequestMapping("/teacherDownloadFile")
-    public String downloadFile(Model model, org.apache.catalina.servlet4preview.http.HttpServletRequest request, HttpServletResponse response, String filepath) {
-        if (filepath != null) {
-            String realPath = "C:\\file\\";
-            File file = new File(realPath , filepath);
+    @GetMapping("/teacherDownloadFile")
+    @ResponseBody
+    public String teacherDownloadFile(HttpServletRequest request, HttpServletResponse response,String filepath) {
+        String fileName = filepath; // 文件名
+        if (fileName != null) {
+            //设置文件路径
+            File file = new File("C:"+filepath);
+            System.out.println("C:"+filepath);
+            //File file = new File(realPath , fileName);
             if (file.exists()) {
                 response.setContentType("application/force-download");// 设置强制下载不打开
-                response.addHeader("Content-Disposition",
-                        "attachment;fileName=" +  filepath);// 设置文件名
+                response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名
                 byte[] buffer = new byte[1024];
                 FileInputStream fis = null;
                 BufferedInputStream bis = null;
@@ -87,7 +92,7 @@ public class TeacherAddDataController {
                         os.write(buffer, 0, i);
                         i = bis.read(buffer);
                     }
-                    System.out.println("success");
+                    return "下载成功";
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
@@ -108,9 +113,8 @@ public class TeacherAddDataController {
                 }
             }
         }
-        return null;
-
-        }
+        return "下载失败";
+    }
 
     }
 
