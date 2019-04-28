@@ -161,7 +161,7 @@
                                         <td th:text="${studydataList.filedate}"></td>
                                         <td th:text="${studydataList.filer}"></td>
                                         <td>
-                                            <a th:href="@{/studentDownloadFile(fileid=${studydataList.fileid})}" class="btn btn-success btn-xs"><i class="fa fa-download"></i> 下载 </a>
+                                            <a th:href="@{/studentDownloadFile(fileid=${studydataList.fileid},filepath=${studydataList.filepath})}" class="btn btn-success btn-xs"><i class="fa fa-download"></i> 下载 </a>
                                         </td>
                                     </tr>
                                     </tbody>
