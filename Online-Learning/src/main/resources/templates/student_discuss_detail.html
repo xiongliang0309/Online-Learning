@@ -235,7 +235,7 @@
                                                         style="text-indent: 2em; line-height: 30px"></span>
                                                     <span>-------</span>
                                                     <span th:text="${commentList.commentdate}"></span>
-                                                    <a th:href="@{/studentDeleteComment(commentid=${commentList.commentid},discussid=${discuss.discussid})}" th:if="${(commentList.commenter == session.leaseholder.name)||(discuss.discusser==session.leaseholder.name)}" type="button" class="btn btn-default btn-xs">删除</a>
+                                                    <a th:href="@{/studentDeleteComment(commentid=${commentList.commentid},discussid=${discuss.discussid})}" th:if="${(commentList.commenter == session.leaseholder.name)||(discuss.discusser==session.leaseholder.name)}" onclick="return del()" type="button" class="btn btn-default btn-xs">删除</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -261,6 +261,15 @@
     </div>
 </div>
 
+<script>
+    function del() {
+        if (confirm("您确定要删除吗？")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 <!-- jQuery -->
 <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
 <!-- Bootstrap -->

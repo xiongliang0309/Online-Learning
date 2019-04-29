@@ -68,8 +68,6 @@
                     <div class="menu_section">
                         <h3>作业管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher_add_homework"><i class="fa fa-users"></i> 布置作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-
                             <li><a href="/teacher_check_homework"><i class="fa fa-user"></i> 批改作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
                             <li><a href="/teacher_studydata"><i class="fa fa-laptop"></i> 学习资料<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
@@ -145,7 +143,7 @@
                         <div class="x_panel">
                             <div class="x_title">
                                 <h2>课程详情</h2>
-                                <a th:href="@{/teacherCourseChapter(id=${course.id})}"  style="float: right; margin-top: 4px;"><button type="button" class="btn btn-dark btn-xs"><i class="fa fa-bookmark-o"> </i>课程章节</button></a>
+                                <a th:href="@{/teacherCourseChapter(id=${course.id})}"  style="float: right; margin-top: 4px;"><button type="button" class="btn btn-warning btn-xs"><i class="fa fa-bookmark-o"> </i>课程章节</button></a>
                                 <a th:href="@{/teacherCourseStudent(id=${course.id})}"  style="float: right; margin-top: 4px;"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-pencil"> </i>课程花名册</button></a>
                                 <div class="clearfix"></div>
                             </div>

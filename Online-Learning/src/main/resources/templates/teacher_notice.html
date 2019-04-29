@@ -67,7 +67,6 @@
                     <div class="menu_section">
                         <h3>作业管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher_add_homework"><i class="fa fa-users"></i> 布置作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
                             <li><a href="/teacher_check_homework"><i class="fa fa-user"></i> 批改作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
@@ -167,7 +166,7 @@
                                         <td th:text="${noticeList.noticedate}"></td>
                                         <td>
                                             <a th:href="@{/teacherShowNoticeDetailInfo(id=${noticeList.id})}" class="btn btn-success btn-xs"><i class="fa fa-folder"></i> 查看详情 </a>
-                                            <a th:href="@{/teacherDeleteNotice(id=${noticeList.id})}" th:if="${noticeList.noticer==session.admin.name}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+                                            <a th:href="@{/teacherDeleteNotice(id=${noticeList.id})}" th:if="${noticeList.noticer==session.admin.name}" onclick="return del()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -193,6 +192,15 @@
     </div>
 </div>
 
+<script>
+    function del() {
+        if (confirm("您确定要删除吗？")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 <!-- jQuery -->
 <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
 <!-- Bootstrap -->

@@ -155,7 +155,7 @@
                                         <td th:text="${discussList.discusser}"></td>
                                         <td>
                                             <a th:href="@{/helpDiscussDetail(discussid=${discussList.discussid})}" class="btn btn-info btn-xs"><i class="fa fa-black-tie"></i> 论坛详情 </a>
-                                            <a th:href="@{/helpDeleteDiscuss(discussid=${discussList.discussid})}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+                                            <a th:href="@{/helpDeleteDiscuss(discussid=${discussList.discussid})}" onclick="return del()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -180,6 +180,16 @@
         <!-- /footer content -->
     </div>
 
+
+    <script>
+        function del() {
+            if (confirm("您确定要删除吗？")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
     <!-- jQuery -->
     <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
     <!-- Bootstrap -->

@@ -73,9 +73,6 @@
                     <div class="menu_section">
                         <h3>作业管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher_add_homework"><i class="fa fa-users"></i> 布置作业 <i
-                                    class="fa fa-angle-right" style="float: right"></i> </a></li>
-
                             <li><a href="/teacher_check_homework"><i class="fa fa-user"></i> 批改作业 <i
                                     class="fa fa-angle-right" style="float: right"></i> </a></li>
 
@@ -254,7 +251,7 @@
                                                         style="text-indent: 2em; line-height: 30px"></span>
                                                     <span>-------</span>
                                                     <span th:text="${commentList.commentdate}"></span>
-                                                    <a th:href="@{/teacherDeleteComment(commentid=${commentList.commentid},discussid=${discuss.discussid})}" th:if="${(commentList.commenter == session.admin.name)||(discuss.discusser==session.admin.name)}" type="button" class="btn btn-default btn-xs">删除</a>
+                                                    <a th:href="@{/teacherDeleteComment(commentid=${commentList.commentid},discussid=${discuss.discussid})}" th:if="${(commentList.commenter == session.admin.name)||(discuss.discusser==session.admin.name)}" onclick="return del()" type="button" class="btn btn-default btn-xs">删除</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -280,6 +277,15 @@
 </div>
 </div>
 
+<script>
+    function del() {
+        if (confirm("您确定要删除吗？")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 <!-- jQuery -->
 <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
 <!-- Bootstrap -->

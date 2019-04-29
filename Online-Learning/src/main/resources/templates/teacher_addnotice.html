@@ -68,8 +68,6 @@
                     <div class="menu_section">
                         <h3>作业管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher_add_homework"><i class="fa fa-users"></i> 布置作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-
                             <li><a href="/teacher_check_homework"><i class="fa fa-user"></i> 批改作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
                             <li><a href="/teacher_studydata"><i class="fa fa-laptop"></i> 学习资料<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
@@ -172,7 +170,7 @@
                                         <div class="col-md-6 col-md-offset-3">
                                             <a href="/teacher_notice"><input type="button" class="btn btn-primary" value="返回"></a>
                                             <input type="reset" class="btn btn-primary" value="重置"/>
-                                            <input type="submit" class="btn btn-success" value="发布"/>
+                                            <input type="submit" class="btn btn-success" value="发布" onclick="return check()"/>
                                         </div>
                                     </div>
                                 </form>
@@ -194,6 +192,20 @@
         <!-- /footer content -->
     </div>
 </div>
+
+<script>
+    function check() {
+        var title=document.getElementById('title').value.replace(/(^\s*)|(\s*$)/g, '');
+        var content=document.getElementById('content').value.replace(/(^\s*)|(\s*$)/g, '');
+        if(title==''||title==undefined||title==null||content==''||content==undefined||content==null)
+        {
+            alert("请将信息填写完整！！！");
+            return false;
+        }
+        else
+            return true;
+    }
+</script>
 
 <!-- jQuery -->
 <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
