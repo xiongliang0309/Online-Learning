@@ -142,27 +142,32 @@
                         <div class="x_panel">
                             <div class="x_title">
                                 <h2>学生成绩列表</h2>
+                                <a href="/export_excel" style="float: right; margin-top: 4px;"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i> 导出excel</button></a>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
 
                                 <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">                                    <thead>
                                     <tr>
+                                        <th>作业号</th>
                                         <th>学号</th>
+                                        <th>班级</th>
+                                        <th>姓名</th>
                                         <th>课程号</th>
-                                        <th>课程名</th>
-                                        <th>学生姓名</th>
+                                        <th>章节号</th>
                                         <th>成绩</th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
-                                    <tr th:each="scoreList:${scoreList}">
-                                        <td th:text="${scoreList.stuid}"></td>
-                                        <td th:text="${scoreList.courseid}"></td>
-                                        <td th:text="${scoreList.coursename}"></td>
-                                        <td th:text="${scoreList.stuname}"></td>
-                                        <td th:text="${scoreList.score}"></td>
+                                    <tr th:each="homeworkList:${homeworkList}">
+                                        <td th:text="${homeworkList.homeworkid}"></td>
+                                        <td th:text="${homeworkList.studentid}"></td>
+                                        <td th:text="${homeworkList.classid}"></td>
+                                        <td th:text="${homeworkList.studentname}"></td>
+                                        <td th:text="${homeworkList.kechenid}"></td>
+                                        <td th:text="${homeworkList.chapterid}"></td>
+                                        <td th:text="${homeworkList.score}"></td>
                                     </tr>
                                     </tbody>
                                 </table>

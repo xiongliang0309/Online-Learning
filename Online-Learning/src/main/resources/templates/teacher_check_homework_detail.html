@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>教师首页 </title>
+    <title>教师-批改作业 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -52,36 +52,47 @@
                 </div>
                 <!-- /menu profile quick info -->
 
-                <br />
+                <br/>
 
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <h3>基础功能</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher"><i class="fa fa-home"></i> 系统总览 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/teacher_course"><i class="fa fa-book"></i> 我的课程<i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/teacher_self_info"><i class="fa fa-cogs"></i> 个人信息 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/teacher"><i class="fa fa-home"></i> 系统总览 <i class="fa fa-angle-right"
+                                                                                      style="float: right"></i> </a>
+                            </li>
+                            <li><a href="/teacher_course"><i class="fa fa-book"></i> 我的课程<i class="fa fa-angle-right"
+                                                                                            style="float: right"></i>
+                            </a></li>
+                            <li><a href="/teacher_self_info"><i class="fa fa-cogs"></i> 个人信息 <i
+                                    class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
 
                     <div class="menu_section">
                         <h3>作业管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher_check_homework"><i class="fa fa-user"></i> 批改作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/teacher_check_homework"><i class="fa fa-user"></i> 批改作业 <i
+                                    class="fa fa-angle-right" style="float: right"></i> </a></li>
 
-                            <li><a href="/teacher_studydata"><i class="fa fa-laptop"></i> 学习资料<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+                            <li><a href="/teacher_studydata"><i class="fa fa-laptop"></i> 学习资料<i
+                                    class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
 
                     <div class="menu_section">
                         <h3>学生管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher_update_student"><i class="fa fa-home"></i> 加入学生 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/teacher_update_student"><i class="fa fa-home"></i> 加入学生 <i
+                                    class="fa fa-angle-right" style="float: right"></i> </a></li>
 
-                            <li><a href="/teacher_notice"><i class="fa fa-check"></i> 发布通知<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+                            <li><a href="/teacher_notice"><i class="fa fa-check"></i> 发布通知<i class="fa fa-angle-right"
+                                                                                             style="float: right"></i>
+                            </a></li>
 
-                            <li><a href="/teacher_calculate"><i class="fa fa-list-ul"></i> 统计成绩 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/teacher_calculate"><i class="fa fa-list-ul"></i> 统计成绩 <i
+                                    class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
 
@@ -109,8 +120,9 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img th:src="${session.admin.icon}" alt="" ><span th:text="${session.admin.name}"></span>
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <img th:src="${session.admin.icon}" alt=""><span th:text="${session.admin.name}"></span>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -129,66 +141,65 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-            <!-- top tiles -->
-            <div class="row tile_count">
-                <div class="col-md-3 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-users"></i> 通知数量</span>
-                    <div class="count" th:text="${noticeNum}"></div>
-                    <span class="count_bottom"> 系统中通知数量</span>
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>批改作业</h3>
+                    </div>
                 </div>
-                <div class="col-md-3 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-user"></i> 助教数量</span>
-                    <div class="count" th:text="${landlordNum}"></div>
-                    <span class="count_bottom"> 系统中助教账号数量</span>
-                </div>
-                <div class="col-md-3 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-home"></i> 学生数量</span>
-                    <div class="count" th:text="${leaseholderNum}"></div>
-                    <span class="count_bottom"> 系统中学生数量</span>
-                </div>
-                <div class="col-md-3 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-check"></i> 老师数量</span>
-                    <div class="count" th:text="${adminNum}"></div>
-                    <span class="count_bottom"> 系统中老师数量</span>
-                </div>
-            </div>
-            <!-- /top tiles -->
 
-            <div class="row">
-                <div class="title_left">
-                    <h3>系统通知预览</h3>
-                </div>
-                <div class="col-md-12">
-                    <div class="x_panel">
-                        <div class="x_content">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                </div>
+                <div class="clearfix"></div>
 
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>作业详情</h2>
                                 <div class="clearfix"></div>
+                            </div>
 
-                                <div class="col-md-4 col-sm-4 col-xs-12 profile_details" th:each="noticeList:${noticeList}">
-                                    <div class="well profile_view">
-                                        <div class="col-sm-12">
-                                            <div class="left col-xs-12">
-                                                <h2 th:text="|标题： ${noticeList.title}"></h2>
-                                                <ul class="list-unstyled">
-                                                    <li th:text="| 发布日期: ${noticeList.noticedate}|"></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 bottom text-center">
-                                            <div class="col-xs-12 col-sm-6 emphasis">
-                                                <p class="ratings">
-                                                <h2 th:text="|发布人：${noticeList.noticer}|"></h2>
-                                                </p>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-6 emphasis">
-                                                <a th:href="@{/teacherShowNoticeDetailInfo(id=${noticeList.id})}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i> 查看详情</button></a>
+                            <div class="x_content">
+
+                                <div class="col-md-10 col-md-offset-1 ">
+
+                                    <ul class="stats-overview">
+                                        <li>
+                                            <span class="name"> 学号-姓名 </span>
+                                            <span class="value text-success" th:text="${homework.studentid}+'-'+${homework.studentname}"></span>
+                                        </li>
+                                        <li>
+                                            <span class="name"> 课程号 </span>
+                                            <span class="value text-success" th:text="${homework.kechenid}"></span>
+                                        </li>
+                                        <li>
+                                            <span class="name"> 章节号 </span>
+                                            <span class="value text-success" th:text="${homework.chapterid}"></span>
+                                        </li>
+                                    </ul>
+                                    <br/>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="x_panel">
+                                                <textarea class="col-md-12" name="answercontent" id="answercontent"  rows="5" th:text="${homework.answercontent}" readonly></textarea>
+                                                <form class="form-horizontal form-label-left" novalidate th:action="@{/teacherAddScore.action}" method="POST">
+                                                    <div class="form-group">
+                                                        <label for="score">评分</label>
+                                                        <input class="form-control" type="text" placeholder="评分" id="score" name="score"/>
+                                                    </div>
+                                                    <div class="form-group" style="display: none">
+                                                        <label for="homeworkid">id</label>
+                                                        <input class="form-control" type="text" placeholder="评分" id="homeworkid" name="homeworkid" th:value="${homework.homeworkid}" />
+                                                    </div>
+                                                    <div class="text-right">
+                                                        <button class="btn btn-primary" type="submit" onclick="return check1()">评分</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
 
                             </div>
                         </div>
@@ -197,19 +208,29 @@
             </div>
 
         </div>
-        <!-- /page content -->
-
-        <!-- footer content -->
-        <footer>
-            <div class="pull-right">
-                高校网络教学辅助平台 - 南昌航空大学
-            </div>
-            <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
     </div>
+    <!-- /page content -->
+
+    <!-- footer content -->
+    <footer>
+        <div class="pull-right">
+            高校网络教学辅助平台 - 南昌航空大学
+        </div>
+        <div class="clearfix"></div>
+    </footer>
+    <!-- /footer content -->
+</div>
 </div>
 
+<script>
+    function del() {
+        if (confirm("您确定要删除吗？")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 <!-- jQuery -->
 <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
 <!-- Bootstrap -->

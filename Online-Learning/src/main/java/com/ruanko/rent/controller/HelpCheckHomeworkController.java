@@ -1,12 +1,15 @@
 package com.ruanko.rent.controller;
 
+import com.ruanko.rent.entity.Homework;
 import com.ruanko.rent.entity.House;
 import com.ruanko.rent.entity.Landlord;
+import com.ruanko.rent.service.HomeworkService;
 import com.ruanko.rent.service.HouseService;
 import com.ruanko.rent.service.LandlordService;
 import com.ruanko.rent.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,51 +18,47 @@ import javax.servlet.http.HttpSession;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public class HelpCheckHomeworkController {
     @Autowired
-    private LandlordService landlordService;
-    @Autowired
-    private HouseService houseService;
+    private HomeworkService homeworkService;
+
     @Autowired
     private House house;
 
     private Date date = new Date();
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    //跳转到发布房屋界面
     @RequestMapping("/help_check_homework")
-    public String showLandlordHousePublish() {
+    public String teacherCheckHomework(Model model) {
+        List<Homework> homeworkList = homeworkService.getHomeworkList();
+        model.addAttribute("homeworkList", homeworkList);
         return "help_check_homework";
     }
 
-    //发布房屋
-    @RequestMapping(value = "/landlordPublishHouse.action", method = POST)
-    public String landlordPublishHouse(HttpSession session, String name, String location, String category, String area, String floor, int price, @RequestParam("picture") MultipartFile file) {
-        Landlord landlord = (Landlord) session.getAttribute("landlord");
-        house.setName(name);
-        house.setLocation(location);
-        house.setCategory(category);
-        house.setArea(area);
-        house.setFloor(floor);
-        house.setPrice(price);
-        house.setLandlord(landlord.getId());
-        house.setIslease(true);
-        house.setPublishdate(sdf.format(date));
+    //批改作业
+    @RequestMapping("/helpCheckHomework")
+    public String teacherDiscussDetail(Model model, String homeworkid) {
+        Homework homework = homeworkService.findHomeworkById(homeworkid);
+        model.addAttribute("homework", homework);
+        return "help_check_homework_detail";
+    }
 
-        String newPicture = FileUtil.uploadFile(file);
-        if (newPicture != null) {
-            house.setPicture(newPicture);
-        }
+//评分
+    @RequestMapping(value="/helpAddScore.action", method = POST)
+    public String teacherAddScore(HttpSession session, String score, String homeworkid){
+        Homework homework = homeworkService.findHomeworkById(homeworkid);
+        homework.setScore(score);
 
         //保存到数据库
-        try {
-            houseService.save(house);
-            return "redirect:/help";
-        } catch (Exception e) {
+        try{
+            homeworkService.edit(homework);
+            return "redirect:/help_check_homework";
+        }catch(Exception e) {
             System.out.print(e);
             return "error";
         }

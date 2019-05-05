@@ -17,8 +17,8 @@ public class ChapterService {
         return chapterDao.getAll();
     }
 
-    public Chapter findChapterById(String chapterid){
-        return  chapterDao.getOne(chapterid);
+    public Chapter findChapterById(String chapterid,String kechenid){
+        return  chapterDao.getOne(chapterid,kechenid);
     }
 
     public void save(Chapter chapter) {

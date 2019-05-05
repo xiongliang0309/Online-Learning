@@ -1,5 +1,6 @@
 package com.ruanko.rent.controller;
 
+import com.ruanko.rent.entity.Admin;
 import com.ruanko.rent.entity.Course;
 import com.ruanko.rent.entity.Chapter;
 import com.ruanko.rent.service.CourseService;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -59,6 +61,7 @@ public class TeacherChapterController {
         chapter.setChaptername(chaptername);
         chapter.setKechenid(kechenid);
 
+
         //保存到数据库
         try{
             chapterService.save(chapter);
@@ -68,4 +71,29 @@ public class TeacherChapterController {
             return "error";
         }
     }
+
+    //跳转到编辑章节
+    @RequestMapping("/teacherEditChapter")
+    public String teacherEditChapter(Model model, String  kechenid,String chapterid) {
+       Chapter chapter=chapterService.findChapterById(chapterid,kechenid);
+        model.addAttribute("chapter", chapter);
+        return "teacher_edit_chapter";
+    }
+
+    @RequestMapping(value = "/changeChapterInfo.action", method = POST)
+    public String changeChapterInfo(HttpSession session,String chaptername, String isupload,String kechenid){
+        Chapter chapter = (Chapter) session.getAttribute("chapter");
+        chapter.setChaptername(chaptername);
+
+        //保存到数据库
+        try{
+            chapterService.save(chapter);
+      //      session.setAttribute("chapter", chapter);
+            return "redirect:/teacherCourseChapter?id="+kechenid;
+        }catch(Exception e) {
+            System.out.print(e);
+            return "error";
+        }
+    }
+
 }

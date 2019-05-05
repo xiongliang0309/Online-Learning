@@ -144,28 +144,30 @@
                                 <h2>批改学生作业</h2>
                                 <div class="clearfix"></div>
                             </div>
+
                             <div class="x_content">
 
                                 <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">                                    <thead>
-                                    <tr>
-                                        <th>账号</th>
-                                        <th>姓名</th>
-                                        <th>电话</th>
-                                        <th>邮箱</th>
-                                        <th>注册日期</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
+                                <tr>
+                                    <th>学号</th>
+                                    <th>学生姓名</th>
+                                    <th>课程号</th>
+                                    <th>章节号</th>
+                                    <th>成绩</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
 
                                     <tbody>
-                                    <tr th:each="landlordList:${landlordList}">
-                                        <td th:text="${landlordList.id}"></td>
-                                        <td th:text="${landlordList.name}"></td>
-                                        <td th:text="${landlordList.phone}"></td>
-                                        <td th:text="${landlordList.email}"></td>
-                                        <td th:text="${landlordList.registerdate}"></td>
-                                        <td><a th:href="@{/adminChangeLandlordInfo(id=${landlordList.id})}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>编辑 </a>
-                                        <a th:href="@{/adminDeleteLandlordInfo(id=${landlordList.id})}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+                                    <tr th:each="homeworkList:${homeworkList}">
+                                        <td th:text="${homeworkList.studentid}"></td>
+                                        <td th:text="${homeworkList.studentname}"></td>
+                                        <td th:text="${homeworkList.kechenid}"></td>
+                                        <td th:text="${homeworkList.chapterid}"></td>
+                                        <td th:text="${homeworkList.score}"></td>
+                                        <td>
+                                            <a th:href="@{/studentDownloadHomework(homeworkid=${homeworkList.homeworkid},answerfile=${homeworkList.answerfile})}" class="btn btn-success btn-xs"><i class="fa fa-download"></i> 下载答题卡 </a>
+                                            <a th:href="@{/teacherCheckHomework(homeworkid=${homeworkList.homeworkid})}" class="btn btn-info btn-xs"><i class="fa fa-check"></i> 批改作业 </a>
                                         </td>
                                     </tr>
                                     </tbody>

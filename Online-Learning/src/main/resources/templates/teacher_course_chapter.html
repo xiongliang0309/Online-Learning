@@ -176,7 +176,8 @@
                                         <td th:text="${chapterList.chapterid}"></td>
                                         <td th:text="${chapterList.chaptername}"></td>
                                         <td>
-                                            <a th:href="@{/teacherAddHomework(chapterid=${chapterList.chapterid},kechenid=${chapterList.kechenid})}" class="btn btn-info btn-xs"><i class="fa fa-black-tie"></i> 布置作业 </a>
+                                            <a th:href="@{/teacherEditChapter(chapterid=${chapterList.chapterid},kechenid=${chapterList.kechenid})}"   class="btn btn-info btn-xs"><i class="fa fa-black-tie"></i> 编辑 </a>
+                                            <a th:href="@{/teacherAddHomework(chapterid=${chapterList.chapterid},kechenid=${chapterList.kechenid})}" class="btn btn-warning btn-xs"><i class="fa fa-black-tie"></i> 布置作业 </a>
                                             <a th:href="@{/teacherDeleteChapter(chapterid=${chapterList.chapterid},kechenid=${chapterList.kechenid})}" onclick="return del()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
                                         </td>
                                     </tr>

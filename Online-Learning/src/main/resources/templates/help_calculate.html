@@ -120,63 +120,52 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>成绩管理</h3>
+                        <h3>学生成绩统计</h3>
                     </div>
-                </div>
 
+                </div>
                 <div class="clearfix"></div>
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
                                 <h2>学生成绩列表</h2>
+                                <a href="/export_excel1" style="float: right; margin-top: 4px;"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i> 导出excel</button></a>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
 
-                                <!-- start project list -->
                                 <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">                                    <thead>
-                                    <tr>
-                                        <th>订单号</th>
-                                        <th>租户账号</th>
-                                        <th>房屋号</th>
-                                        <th>下单时间</th>
-                                        <th>租用时长</th>
-                                        <th>总租金</th>
-                                        <th>订单状态</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
+                                <tr>
+                                    <th>作业号</th>
+                                    <th>学号</th>
+                                    <th>班级</th>
+                                    <th>姓名</th>
+                                    <th>课程号</th>
+                                    <th>章节号</th>
+                                    <th>成绩</th>
+                                </tr>
+                                </thead>
+
                                     <tbody>
-                                    <tr th:each="orderList:${orderList}" th:if="${orderList.landlord == session.landlord.id}">
-                                        <td th:text="${orderList.id}"></td>
-                                        <td th:text="${orderList.leaseholder}"></td>
-                                        <td th:text="${orderList.house}"></td>
-                                        <td th:text="${orderList.orderdate}"></td>
-                                        <td th:text="${orderList.duration}"></td>
-                                        <td th:text="${orderList.price}"></td>
-                                        <td>
-                                            <button th:if="${orderList.state == true}" type="button" class="btn btn-success btn-xs" disabled>房东已接单</button>
-                                            <button th:if="${orderList.state == false}" type="button" class="btn btn-dark btn-xs" disabled>房东未接单</button>
-                                        </td>
-                                        <td>
-                                            <a th:href="@{/landlordShowOrderInfo(id=${orderList.id})}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看详情 </a>
-                                            <a th:href="@{/landlordReceiveOrderInfo(id=${orderList.id})}" th:if="${orderList.state == false}" class="btn btn-success btn-xs"><i class="fa fa-check"></i> 接受订单 </a>
-                                            <a th:href="@{/landlordDeleteOrder(id=${orderList.id})}" th:if="${orderList.state == false}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> 取消订单 </a>
-                                        </td>
+                                    <tr th:each="homeworkList:${homeworkList}">
+                                        <td th:text="${homeworkList.homeworkid}"></td>
+                                        <td th:text="${homeworkList.studentid}"></td>
+                                        <td th:text="${homeworkList.classid}"></td>
+                                        <td th:text="${homeworkList.studentname}"></td>
+                                        <td th:text="${homeworkList.kechenid}"></td>
+                                        <td th:text="${homeworkList.chapterid}"></td>
+                                        <td th:text="${homeworkList.score}"></td>
                                     </tr>
                                     </tbody>
                                 </table>
-                                <!-- end project list -->
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- /page content -->
+        </div>        <!-- /page content -->
 
         <!-- footer content -->
         <footer>

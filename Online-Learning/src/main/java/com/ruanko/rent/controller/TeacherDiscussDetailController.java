@@ -32,7 +32,7 @@ public class TeacherDiscussDetailController {
 
 
 
-    //跳转到Notice详情界面
+    //跳转到Discuss详情界面
     @RequestMapping("/teacherDiscussDetail")
     public String teacherDiscussDetail(Model model, String discussid) {
         Discuss discuss = discussService.findDiscussById(discussid);

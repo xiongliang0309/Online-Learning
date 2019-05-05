@@ -13,23 +13,25 @@ public interface ChapterDao {
     @Results({
             @Result(property = "chapterid",  column = "chapterid"),
             @Result(property = "chaptername", column = "chaptername"),
-            @Result(property = "kechenid", column = "kechenid")
+            @Result(property = "kechenid", column = "kechenid"),
+            @Result(property = "isupload", column = "isupload")
     })
     List<Chapter> getAll();
 
-    @Select("SELECT * FROM chapter WHERE chapterid = #{chapterid}")
+    @Select("SELECT * FROM chapter WHERE chapterid = #{chapterid} and kechenid= #{kechenid}")
     @Results({
             @Result(property = "chapterid",  column = "chapterid"),
             @Result(property = "chaptername", column = "chaptername"),
-            @Result(property = "kechenid", column = "kechenid")
+            @Result(property = "kechenid", column = "kechenid"),
+            @Result(property = "isupload", column = "isupload")
 
     })
-    Chapter getOne(String chapterid);
+    Chapter getOne(String chapterid,String kechenid);
 
-    @Insert("INSERT INTO chapter(chapterid, chaptername, kechenid) VALUES(#{chapterid}, #{chaptername}, #{kechenid})")
+    @Insert("INSERT INTO chapter(chapterid, chaptername, kechenid,isupload) VALUES(#{chapterid}, #{chaptername}, #{kechenid}, #{isupload})")
     void insert(Chapter chapter);
 
-    @Update("UPDATE chapter SET chapterid=#{chapterid}, chaptername = #{chaptername}, kechenid = #{kechendi}")
+    @Update("UPDATE chapter SET chapterid=#{chapterid}, chaptername = #{chaptername}, kechenid = #{kechendi}, isupload = #{isupload}")
     void update(Chapter chapter);
 
     @Delete("DELETE FROM chapter WHERE chapterid = #{chapterid} and kechenid=#{kechenid}")

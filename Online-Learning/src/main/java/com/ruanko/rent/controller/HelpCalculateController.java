@@ -1,77 +1,76 @@
 package com.ruanko.rent.controller;
 
+import com.ruanko.rent.entity.Homework;
 import com.ruanko.rent.entity.House;
 import com.ruanko.rent.entity.Leaseholder;
 import com.ruanko.rent.entity.Order;
+import com.ruanko.rent.service.HomeworkService;
 import com.ruanko.rent.service.HouseService;
 import com.ruanko.rent.service.LeaseholderService;
 import com.ruanko.rent.service.OrderService;
+import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
 public class HelpCalculateController {
-    @Autowired
-    private OrderService orderService;
-    @Autowired
-    private HouseService houseService;
-    @Autowired
-    private LeaseholderService leaseholderService;
 
-    //跳转到房东查看订单界面
+    @Autowired
+    private HomeworkService homeworkService;
+
     @RequestMapping("/help_calculate")
-    public String showLandlordOrderInfoPage(Model model){
-        List<Order> orderList = orderService.getOrderList();
-        model.addAttribute("orderList", orderList);
+    public String StudentScoreList(Model model) {
+        List<Homework> homeworkList = homeworkService.getHomeworkList();
+        model.addAttribute("homeworkList", homeworkList);
         return "help_calculate";
     }
 
-    //跳转到房东查看订单详情界面
-    @RequestMapping("/landlordShowOrderInfo")
-    public String showLandlordOrderDetailInfoPage(Model model, int id){
-        //根据id查询订单并添加到model
-        Order order = orderService.findOrderById(id);
-        model.addAttribute("order", order);
-        //查询订单房屋并添加到model
-        House house = houseService.findHouseById(order.getHouse());
-        model.addAttribute("house", house);
-        //查询租户信息并添加到model
-        Leaseholder leaseholder = leaseholderService.findLeaseholderById(order.getLeaseholder());
-        model.addAttribute("leaseholder", leaseholder);
-        //跳转到订单详情界面
-        return "landlord_order_detail_info";
-    }
 
-    //房东接受订单
-    @RequestMapping("/landlordReceiveOrderInfo")
-    public String landlordReceiveOrderInfo(int id){
-        Order order = orderService.findOrderById(id);
-        order.setState(true);
-        orderService.edit(order);
-        return "redirect:/help_calculate";
-    }
+    @RequestMapping("/export_excel1")
+    public void downloadClassmate(HttpServletResponse response) throws IOException {
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet("信息表");
 
-    //删除订单操作
-    @RequestMapping(value = {"/landlordDeleteOrder", "/landlordDetailDeleteOrder"})
-    public String landlordDeleteOrder(int id){
-        //在数据库中查询被删除订单的房屋id并删除订单
-        Order order = orderService.findOrderById(id);
-        //判断订单状态，如果房东已经确认订单，则无法删除
-        if(order.isState())
-            return "error";
-        //否则删除订单
-        orderService.delete(id);
+        List<Homework> homeworkList = homeworkService.getHomeworkList();
+        String fileName = "scoreinf"  + ".xls";//设置要导出的文件的名字
+        //新增数据行，并且设置单元格数据
 
-        //将被租用房屋的状态设为可租用,并存入数据库
-        House house = houseService.findHouseById(order.getHouse());
-        house.setIslease(true);
-        houseService.edit(house);
+        int rowNum = 1;
 
-        //删除成功，重定向到订单信息页面
-        return "redirect:/help_calculate";
+        String[] headers = { "作业号", "学号", "姓名", "班级", "课程号", "章节号", "成绩"};
+        //headers表示excel表中第一行的表头
+
+        HSSFRow row = sheet.createRow(0);
+        //在excel表中添加表头
+
+        for(int i=0;i<headers.length;i++){
+            HSSFCell cell = row.createCell(i);
+            HSSFRichTextString text = new HSSFRichTextString(headers[i]);
+            cell.setCellValue(text);
+        }
+
+        //在表中存放查询到的数据放入对应的列
+        for (Homework homework : homeworkList) {
+            HSSFRow row1 = sheet.createRow(rowNum);
+            row1.createCell(0).setCellValue(homework.getHomeworkid());
+            row1.createCell(1).setCellValue(homework.getStudentid());
+            row1.createCell(2).setCellValue(homework.getStudentname());
+            row1.createCell(3).setCellValue(homework.getClassid());
+            row1.createCell(4).setCellValue(homework.getKechenid());
+            row1.createCell(5).setCellValue(homework.getChapterid());
+            row1.createCell(6).setCellValue(homework.getScore());
+            rowNum++;
+        }
+
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-disposition", "attachment;filename=" + fileName);
+        response.flushBuffer();
+        workbook.write(response.getOutputStream());
     }
 }

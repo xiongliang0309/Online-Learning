@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>学生—资料 </title>
+    <title>学生—作业 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -75,10 +75,8 @@
                     <div class="menu_section">
                         <h3>作业管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/student_homework"><i class="fa fa-home"></i> 提交作业<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+                            <li><a href="/student_homework"><i class="fa fa-home"></i> 我的作业<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
                             <li><a href="/student_data"><i class="fa fa-folder-open"></i> 下载资料 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/student_score"><i class="fa fa-folder-open"></i> 查看成绩<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
-
                         </ul>
                     </div>
 
@@ -129,7 +127,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>成绩统计</h3>
+                        <h3>我的作业管理</h3>
                     </div>
 
                 </div>
@@ -139,34 +137,127 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>我的成绩</h2>
+                                <h2>我的作业</h2>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="x_content">
 
-                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">                                    <thead>
-                                <tr>
-                                    <th>学号</th>
-                                    <th>课程号</th>
-                                    <th>课程名</th>
-                                    <th>学生姓名</th>
-                                    <th>成绩</th>
-                                </tr>
-                                </thead>
-                                    <tbody>
-                                    <tr th:each="scoreList:${scoreList}">
-                                        <td th:text="${scoreList.stuid}"></td>
-                                        <td th:text="${scoreList.courseid}"></td>
-                                        <td th:text="${scoreList.coursename}"></td>
-                                        <td th:text="${scoreList.stuname}"></td>
-                                        <td th:text="${scoreList.score}"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <!--选择题-->
+                            <div class="x_content" >
+                                <h2>一：选择题</h2>
+                                <hr>
+                                <div class="col-md-10 col-md-offset-1" th:each="choiceList:${choiceList}" th:if="${choiceList.kechenid==chapter.kechenid&&choiceList.chapterid==chapter.chapterid}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="x_panel">
+                                                <div >
+                                                    <div th:text="'题干：'+${choiceList.choicetitle}" style="text-indent: 2em; line-height: 30px"></div>
+                                                    <div th:text="'A:'+${choiceList.choicea}" style="text-indent: 2em; line-height: 30px"></div>
+                                                    <div th:text="'B:'+${choiceList.choiceb}" style="text-indent: 2em; line-height: 30px"></div>
+                                                    <div th:text="'C:'+${choiceList.choicec}" style="text-indent: 2em; line-height: 30px"></div>
+                                                    <div th:text="'D:'+${choiceList.choiced}" style="text-indent: 2em; line-height: 30px"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!--填空题-->
+                            <div class="x_content" >
+                                <h2>二：填空题</h2>
+                                <hr>
+                                <div class="col-md-10 col-md-offset-1" th:each="fillList:${fillList}" th:if="${fillList.kechenid==chapter.kechenid&&fillList.chapterid==chapter.chapterid}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="x_panel">
+                                                <div >
+                                                    <div th:text="'题干：'+${fillList.fillcontent}" style="text-indent: 2em; line-height: 30px"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--填空题-->
+                            <div class="x_content" >
+                                <h2>三：设计题</h2>
+                                <hr>
+                                <div class="col-md-10 col-md-offset-1" th:each="programList:${programList}" th:if="${programList.kechenid==chapter.kechenid&&programList.chapterid==chapter.chapterid}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="x_panel">
+                                                <div >
+                                                    <div th:text="'题干：'+${programList.programcontent}" style="text-indent: 2em; line-height: 30px"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>提交作业</h2>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="x_content">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="x_panel">
+                                                <div class="col-md-12 col-sm-12 col-xs-12 profile_details">
+                                                    <div class="col-md-12">
+                                                        <form class="form-horizontal form-label-left" novalidate  enctype="multipart/form-data"  th:action="@{/studentAddHomework.action}" method="POST">
+                                                            <div class="item form-group">
+                                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                    <textarea  id="answercontent" name="answercontent" class="form-control col-md-7 col-xs-12" rows="5" placeholder="将答案填在此处。。。。"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="item form-group" style="display: none">
+                                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                    <input type="text" class="form-control col-md-7 col-xs-12" id="chapterid" name="chapterid" th:value="${chapter.chapterid}"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="item form-group" style="display: none">
+                                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                    <input type="text" class="form-control col-md-7 col-xs-12" id="kechenid" name="kechenid" th:value="${chapter.kechenid}"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="item form-group">
+                                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                    <input type="file" class="form-control col-md-7 col-xs-12" id="answerfile" name="answerfile"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-2 col-md-offset-10">
+                                                                    <input type="submit" class="btn btn-sm btn-dark" value="提交作业"/>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
         <!-- /page content -->
