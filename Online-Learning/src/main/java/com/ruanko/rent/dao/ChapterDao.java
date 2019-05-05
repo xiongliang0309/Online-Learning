@@ -31,7 +31,7 @@ public interface ChapterDao {
     @Insert("INSERT INTO chapter(chapterid, chaptername, kechenid,isupload) VALUES(#{chapterid}, #{chaptername}, #{kechenid}, #{isupload})")
     void insert(Chapter chapter);
 
-    @Update("UPDATE chapter SET chapterid=#{chapterid}, chaptername = #{chaptername}, kechenid = #{kechendi}, isupload = #{isupload}")
+    @Update("UPDATE chapter SET chapterid=#{chapterid}, chaptername = #{chaptername}, kechenid = #{kechenid}, isupload = #{isupload} WHERE chapterid = #{chapterid} and kechenid=#{kechenid}")
     void update(Chapter chapter);
 
     @Delete("DELETE FROM chapter WHERE chapterid = #{chapterid} and kechenid=#{kechenid}")

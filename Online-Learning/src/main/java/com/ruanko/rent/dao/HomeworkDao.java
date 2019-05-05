@@ -10,7 +10,6 @@ import java.util.List;
 public interface HomeworkDao {
     @Select("SELECT * FROM homework")
     @Results({
-            @Result(property = "homeworkid",  column = "homeworkid"),
             @Result(property = "studentid", column = "studentid"),
             @Result(property = "studentname", column = "studentname"),
             @Result(property = "chapterid", column = "chapterid"),
@@ -18,14 +17,14 @@ public interface HomeworkDao {
             @Result(property = "answercontent", column = "answercontent"),
             @Result(property = "answerfile", column = "answerfile"),
             @Result(property = "score", column = "score"),
-            @Result(property = "classid", column = "classid")
+            @Result(property = "classid", column = "classid"),
+            @Result(property = "commitdate", column = "commitdate")
 
     })
     List<Homework> getAll();
 
-    @Select("SELECT * FROM homework WHERE homeworkid = #{homework}")
+    @Select("SELECT * FROM homework WHERE chapterid = #{chapterid} and kechenid=#{kechenid} and studentid=#{studentid}")
     @Results({
-            @Result(property = "homeworkid",  column = "homeworkid"),
             @Result(property = "studentid", column = "studentid"),
             @Result(property = "studentname", column = "studentname"),
             @Result(property = "chapterid", column = "chapterid"),
@@ -33,16 +32,18 @@ public interface HomeworkDao {
             @Result(property = "answercontent", column = "answercontent"),
             @Result(property = "answerfile", column = "answerfile"),
             @Result(property = "score", column = "score"),
-            @Result(property = "classid", column = "classid")
+            @Result(property = "classid", column = "classid"),
+            @Result(property = "commitdate", column = "commitdate")
     })
-    Homework getOne(String homeworkid);
+    Homework getOne(String chapterid,String kechenid,String studentid);
 
-    @Insert("INSERT INTO homework(homeworkid, studentid, studentname, chapterid, kechenid, answercontent, answerfile,score,classid) VALUES(#{homeworkid}, #{studentid}, #{studentname}, #{chapterid}, #{kechenid}, #{answercontent},#{answerfile},#{score},#{classid})")
+
+    @Insert("INSERT INTO homework(studentid, studentname, chapterid, kechenid, answercontent, answerfile,score,classid,commitdate) VALUES(#{studentid}, #{studentname}, #{chapterid}, #{kechenid}, #{answercontent},#{answerfile},#{score},#{classid},#{commitdate}) ON DUPLICATE KEY UPDATE  answercontent = #{answercontent}, answerfile=#{answerfile}, score=#{score}, commitdate=#{commitdate}")
     void insert(Homework homework);
 
-    @Update("UPDATE homework SET homeworkid=#{homeworkid}, studentid = #{studentid}, studentname = #{studentname}, chapterid = #{chapterid}, kechenid = #{kechenid}, answercontent = #{answercontent}, answerfile=#{answerfile}, score=#{score}, classid=#{classid} WHERE homeworkid = #{homeworkid}")
+    @Update("UPDATE homework SET  studentid = #{studentid}, studentname = #{studentname}, chapterid = #{chapterid}, kechenid = #{kechenid}, answercontent = #{answercontent}, answerfile=#{answerfile}, score=#{score}, classid=#{classid}, commitdate=#{commitdate} WHERE chapterid = #{chapterid} and kechenid=#{kechenid} and studentid=#{studentid}")
     void update(Homework homework);
 
-    @Delete("DELETE FROM homework WHERE homeworkid = #{homeworkid}")
-    void delete(String homeworkid);
+    @Delete("DELETE FROM homework WHERE chapterid = #{chapterid} and kechenid = #{kechenid} and studentid = #{studentid}")
+    void delete(String chapterid,String kechenid,String studentid);
 }

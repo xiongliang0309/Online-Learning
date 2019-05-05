@@ -148,6 +148,7 @@
                                     <th>学生姓名</th>
                                     <th>课程号</th>
                                     <th>章节号</th>
+                                    <th>提交时间</th>
                                     <th>成绩</th>
                                     <th>操作</th>
                                 </tr>
@@ -159,9 +160,10 @@
                                         <td th:text="${homeworkList.studentname}"></td>
                                         <td th:text="${homeworkList.kechenid}"></td>
                                         <td th:text="${homeworkList.chapterid}"></td>
+                                        <td th:text="${homeworkList.commitdate}"></td>
                                         <td th:text="${homeworkList.score}"></td>
                                         <td>
-                                            <a th:href="@{/studentDownloadHomework(homeworkid=${homeworkList.homeworkid},answerfile=${homeworkList.answerfile})}" class="btn btn-success btn-xs"><i class="fa fa-download"></i> 下载我的作业 </a>
+                                            <a th:href="@{/studentDownloadHomework(chapterid=${homeworkList.chapterid},kechenid=${homeworkList.kechenid},studentid=${homeworkList.studentid},answerfile=${homeworkList.answerfile})}" class="btn btn-success btn-xs"><i class="fa fa-download"></i> 下载我的作业 </a>
                                         </td>
                                     </tr>
                                     </tbody>

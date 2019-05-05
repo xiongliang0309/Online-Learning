@@ -7,7 +7,7 @@ public class Chapter {
     private String chapterid;
     private String chaptername;
     private String kechenid;
-    private String isupload;
+    private Boolean isupload;
 
     public Chapter() {
         super();
@@ -37,11 +37,11 @@ public class Chapter {
         this.kechenid = kechenid;
     }
 
-    public String getIsupload() {
+    public Boolean getIsupload() {
         return isupload;
     }
 
-    public void setIsupload(String isupload) {
+    public void setIsupload(Boolean isupload) {
         this.isupload = isupload;
     }
 

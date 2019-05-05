@@ -155,8 +155,8 @@
                                         <td th:text="${homeworkList.chapterid}"></td>
                                         <td th:text="${homeworkList.score}"></td>
                                         <td>
-                                            <a th:href="@{/studentDownloadHomework(homeworkid=${homeworkList.homeworkid},answerfile=${homeworkList.answerfile})}" class="btn btn-success btn-xs"><i class="fa fa-download"></i> 下载答题卡 </a>
-                                            <a th:href="@{/helpCheckHomework(homeworkid=${homeworkList.homeworkid})}" class="btn btn-info btn-xs"><i class="fa fa-check"></i> 批改作业 </a>
+                                            <a th:href="@{/studentDownloadHomework(chapterid=${homeworkList.chapterid},kechenid=${homeworkList.kechenid},studentid=${homeworkList.studentid},answerfile=${homeworkList.answerfile})}" class="btn btn-success btn-xs"><i class="fa fa-download"></i> 下载答题卡 </a>
+                                            <a th:href="@{/helpCheckHomework(chapterid=${homeworkList.chapterid},kechenid=${homeworkList.kechenid},studentid=${homeworkList.studentid},)}" class="btn btn-info btn-xs"><i class="fa fa-check"></i> 批改作业 </a>
                                         </td>
                                     </tr>
                                     </tbody>

@@ -42,16 +42,16 @@ public class HelpCheckHomeworkController {
 
     //批改作业
     @RequestMapping("/helpCheckHomework")
-    public String teacherDiscussDetail(Model model, String homeworkid) {
-        Homework homework = homeworkService.findHomeworkById(homeworkid);
+    public String teacherDiscussDetail(Model model, String chapterid,String kechenid,String studentid) {
+        Homework homework = homeworkService.findHomeworkById(chapterid,kechenid,studentid);
         model.addAttribute("homework", homework);
         return "help_check_homework_detail";
     }
 
 //评分
     @RequestMapping(value="/helpAddScore.action", method = POST)
-    public String teacherAddScore(HttpSession session, String score, String homeworkid){
-        Homework homework = homeworkService.findHomeworkById(homeworkid);
+    public String teacherAddScore(HttpSession session, String score, String chapterid,String kechenid,String studentid){
+        Homework homework = homeworkService.findHomeworkById(chapterid,kechenid,studentid);
         homework.setScore(score);
 
         //保存到数据库

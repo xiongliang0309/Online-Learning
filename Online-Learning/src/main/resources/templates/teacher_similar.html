@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>教师-修改章节 </title>
+    <title>教师-作业查重 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -72,6 +72,9 @@
                             <li><a href="/teacher_check_homework"><i class="fa fa-user"></i> 批改作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
                             <li><a href="/teacher_studydata"><i class="fa fa-laptop"></i> 学习资料<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+
+                            <li><a href="/teacher_similar"><i class="fa fa-adjust"></i> 作业查重<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+
                         </ul>
                     </div>
 
@@ -133,7 +136,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>课程章节</h3>
+                        <h3>作业查重</h3>
                     </div>
 
                 </div>
@@ -144,54 +147,40 @@
                         <div class="x_panel">
                             <div class="x_content">
 
-                                <form class="form-horizontal form-label-left" novalidate enctype="multipart/form-data" th:action="@{/changeChapterInfo.action}" method="POST">
+                                <form class="form-horizontal form-label-left" novalidate enctype="multipart/form-data" th:action="@{/teacherCheckSimilar.action}" method="POST">
 
                                     <div class="x_title">
-                                        <h2>章节信息</h2>
+                                        <h2>作业查重</h2>
                                         <div class="clearfix"></div>
                                     </div>
 
                                     <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">课程号
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">作业1
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control col-md-7 col-xs-12" id="kechenid" name="kechenid" disabled="disabled" th:value="${chapter.kechenid}"/>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">章节号
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="optional form-control col-md-7 col-xs-12" id="chapterid" name="chapterid" disabled="disabled" th:value="${chapter.chapterid}"/>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">章节名
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control col-md-7 col-xs-12" id="name" name="name"  th:value="${chapter.chaptername}"/>
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">是否可提交
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select class="selectpicker show-tick form-control col-md-7 col-xs-12" name="isupload" id="isupload">
-                                                <option value="true">可以</option>
-                                                <option value="false">不可以</option>
+                                            <select class="selectpicker show-tick form-control" name="homework1" id="homework1" >
+                                                <option th:value="${homeworkList.answercontent}" th:text="${homeworkList.homeworkid}" th:each="homeworkList:${homeworkList}"></option>
                                             </select>
                                         </div>
                                     </div>
-
-
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">作业2
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="selectpicker show-tick form-control" name="homework2" id="homework2" >
+                                                <option th:value="${homeworkList.answercontent}" th:text="${homeworkList.homeworkid}" th:each="homeworkList:${homeworkList}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-3">
-                                            <input type="reset" class="btn btn-primary" value="重置"/>
-                                            <input type="submit" class="btn btn-success" value="保存"/>
+                                            <input type="submit" class="btn btn-success" value="查重"/>
                                         </div>
                                     </div>
                                 </form>
+                                <br>
+                                <span class="col-md-6 col-md-offset-3" style="color:#498dff;" th:text="'查重率为：'+${session.result}"></span>
                             </div>
                         </div>
                     </div>

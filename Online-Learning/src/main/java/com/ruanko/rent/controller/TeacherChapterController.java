@@ -72,28 +72,44 @@ public class TeacherChapterController {
         }
     }
 
-    //跳转到编辑章节
-    @RequestMapping("/teacherEditChapter")
-    public String teacherEditChapter(Model model, String  kechenid,String chapterid) {
+    //设为不可提交
+   @RequestMapping("/teacherEditChapterFalse")
+    public String teacherEditChapterFalse(Model model, String  kechenid,String chapterid) {
        Chapter chapter=chapterService.findChapterById(chapterid,kechenid);
         model.addAttribute("chapter", chapter);
-        return "teacher_edit_chapter";
-    }
-
-    @RequestMapping(value = "/changeChapterInfo.action", method = POST)
-    public String changeChapterInfo(HttpSession session,String chaptername, String isupload,String kechenid){
-        Chapter chapter = (Chapter) session.getAttribute("chapter");
-        chapter.setChaptername(chaptername);
-
+        chapter.setKechenid(kechenid);
+        chapter.setChapterid(chapterid);
+        chapter.setIsupload(false);
         //保存到数据库
         try{
-            chapterService.save(chapter);
-      //      session.setAttribute("chapter", chapter);
+             chapterService.edit(chapter);
+            //      session.setAttribute("chapter", chapter);
             return "redirect:/teacherCourseChapter?id="+kechenid;
         }catch(Exception e) {
             System.out.print(e);
             return "error";
         }
+
+    }
+
+    //设为可以提交
+    @RequestMapping("/teacherEditChapterTrue")
+    public String teacherEditChapterTrue(Model model, String  kechenid,String chapterid) {
+        Chapter chapter=chapterService.findChapterById(chapterid,kechenid);
+        model.addAttribute("chapter", chapter);
+        chapter.setKechenid(kechenid);
+        chapter.setChapterid(chapterid);
+        chapter.setIsupload(true);
+        //保存到数据库
+        try{
+            chapterService.edit(chapter);
+            //      session.setAttribute("chapter", chapter);
+            return "redirect:/teacherCourseChapter?id="+kechenid;
+        }catch(Exception e) {
+            System.out.print(e);
+            return "error";
+        }
+
     }
 
 }

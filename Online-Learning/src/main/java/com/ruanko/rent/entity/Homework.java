@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Homework {
-    private String homeworkid;
     private String studentid;
     private String studentname;
     private String chapterid;
@@ -13,6 +12,7 @@ public class Homework {
     private String answerfile;
     private String score;
     private String classid;
+    private String commitdate;
 
 
 
@@ -21,13 +21,6 @@ public class Homework {
         super();
     }
 
-    public String getHomeworkid() {
-        return homeworkid;
-    }
-
-    public void setHomeworkid(String homeworkid) {
-        this.homeworkid = homeworkid;
-    }
 
     public String getStudentid() {
         return studentid;
@@ -93,10 +86,17 @@ public class Homework {
         this.classid = classid;
     }
 
+    public String getCommitdate() {
+        return commitdate;
+    }
+
+    public void setCommitdate(String commitdate) {
+        this.commitdate = commitdate;
+    }
+
     @Override
     public String toString() {
         return "Homework{" +
-                "homeworkid='" + homeworkid + '\'' +
                 ", studentid='" + studentid + '\'' +
                 ", studentname='" + studentname + '\'' +
                 ", chapterid='" + chapterid + '\'' +
@@ -105,6 +105,7 @@ public class Homework {
                 ", answerfile='" + answerfile + '\'' +
                 ", score='" + score + '\'' +
                 ", classid='" + classid + '\'' +
+                ", commitdate='" + commitdate + '\'' +
                 '}';
     }
 }

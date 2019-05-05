@@ -29,8 +29,8 @@ public class TeacherCheckHomeworkController {
 
    //批改作业
    @RequestMapping("/teacherCheckHomework")
-   public String teacherDiscussDetail(Model model, String homeworkid) {
-       Homework homework = homeworkService.findHomeworkById(homeworkid);
+   public String teacherDiscussDetail(Model model, String chapterid,String kechenid,String studentid) {
+       Homework homework = homeworkService.findHomeworkById(chapterid,kechenid,studentid);
        model.addAttribute("homework", homework);
        return "teacher_check_homework_detail";
    }

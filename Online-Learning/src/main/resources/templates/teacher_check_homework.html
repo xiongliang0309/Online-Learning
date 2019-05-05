@@ -70,6 +70,9 @@
                             <li><a href="/teacher_check_homework"><i class="fa fa-user"></i> 批改作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
                             <li><a href="/teacher_studydata"><i class="fa fa-laptop"></i> 学习资料<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+
+                            <li><a href="/teacher_similar"><i class="fa fa-adjust"></i> 作业查重<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+
                         </ul>
                     </div>
 
@@ -166,8 +169,8 @@
                                         <td th:text="${homeworkList.chapterid}"></td>
                                         <td th:text="${homeworkList.score}"></td>
                                         <td>
-                                            <a th:href="@{/studentDownloadHomework(homeworkid=${homeworkList.homeworkid},answerfile=${homeworkList.answerfile})}" class="btn btn-success btn-xs"><i class="fa fa-download"></i> 下载答题卡 </a>
-                                            <a th:href="@{/teacherCheckHomework(homeworkid=${homeworkList.homeworkid})}" class="btn btn-info btn-xs"><i class="fa fa-check"></i> 批改作业 </a>
+                                            <a th:href="@{/studentDownloadHomework(chapterid=${homeworkList.chapterid},kechenid=${homeworkList.kechenid},studentid=${homeworkList.studentid},answerfile=${homeworkList.answerfile})}" class="btn btn-success btn-xs"><i class="fa fa-download"></i> 下载答题卡 </a>
+                                            <a th:href="@{/teacherCheckHomework(chapterid=${homeworkList.chapterid},kechenid=${homeworkList.kechenid},studentid=${homeworkList.studentid})}" class="btn btn-info btn-xs"><i class="fa fa-check"></i> 批改作业 </a>
                                         </td>
                                     </tr>
                                     </tbody>

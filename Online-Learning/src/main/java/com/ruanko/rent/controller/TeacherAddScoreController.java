@@ -28,8 +28,8 @@ public class TeacherAddScoreController {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     @RequestMapping(value="/teacherAddScore.action", method = POST)
-    public String teacherAddScore(HttpSession session, String score, String homeworkid){
-        Homework homework = homeworkService.findHomeworkById(homeworkid);
+    public String teacherAddScore(HttpSession session, String score, String chapterid,String kechenid,String studentid){
+        Homework homework = homeworkService.findHomeworkById(chapterid,kechenid,studentid);
         homework.setScore(score);
 
         //保存到数据库

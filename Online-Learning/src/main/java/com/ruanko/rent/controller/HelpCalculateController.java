@@ -43,7 +43,7 @@ public class HelpCalculateController {
 
         int rowNum = 1;
 
-        String[] headers = { "作业号", "学号", "姓名", "班级", "课程号", "章节号", "成绩"};
+        String[] headers = {"学号", "姓名", "班级", "课程号", "章节号", "成绩"};
         //headers表示excel表中第一行的表头
 
         HSSFRow row = sheet.createRow(0);
@@ -58,13 +58,13 @@ public class HelpCalculateController {
         //在表中存放查询到的数据放入对应的列
         for (Homework homework : homeworkList) {
             HSSFRow row1 = sheet.createRow(rowNum);
-            row1.createCell(0).setCellValue(homework.getHomeworkid());
-            row1.createCell(1).setCellValue(homework.getStudentid());
-            row1.createCell(2).setCellValue(homework.getStudentname());
-            row1.createCell(3).setCellValue(homework.getClassid());
-            row1.createCell(4).setCellValue(homework.getKechenid());
-            row1.createCell(5).setCellValue(homework.getChapterid());
-            row1.createCell(6).setCellValue(homework.getScore());
+
+            row1.createCell(0).setCellValue(homework.getStudentid());
+            row1.createCell(1).setCellValue(homework.getStudentname());
+            row1.createCell(2).setCellValue(homework.getClassid());
+            row1.createCell(3).setCellValue(homework.getKechenid());
+            row1.createCell(4).setCellValue(homework.getChapterid());
+            row1.createCell(5).setCellValue(homework.getScore());
             rowNum++;
         }
 

@@ -241,7 +241,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="col-md-2 col-md-offset-10">
-                                                                    <input type="submit" class="btn btn-sm btn-dark" value="提交作业"/>
+                                                                    <input type="submit" class="btn btn-sm btn-dark" value="提交作业" onclick="return check()"/>
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -273,6 +273,20 @@
     </div>
 </div>
 
+<script>
+    function check() {
+    var answercontent=document.getElementById('answercontent').value.replace(/(^\s*)|(\s*$)/g, '');
+    var answerfile=document.getElementById('answerfile').value.replace(/(^\s*)|(\s*$)/g, '');
+
+    if(answercontent==''||answercontent==undefined||answercontent==null||answerfile==''||answerfile==undefined||answerfile==null)
+    {
+    alert("请将信息填写完整！！！");
+    return false;
+    }
+    else
+    return true;
+    }
+</script>
 <!-- jQuery -->
 <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
 <!-- Bootstrap -->

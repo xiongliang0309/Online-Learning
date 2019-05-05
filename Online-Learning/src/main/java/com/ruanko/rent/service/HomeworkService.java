@@ -19,19 +19,20 @@ public class HomeworkService {
         return homeworkDao.getAll();
     }
 
-    public Homework findHomeworkById(String homeworkid){
-        return  homeworkDao.getOne(homeworkid);
+    public Homework findHomeworkById(String chapterid,String kechenid,String studentid){
+        return  homeworkDao.getOne(chapterid,kechenid,studentid);
     }
 
     public void save(Homework homework) {
         homeworkDao.insert(homework);
     }
 
+
     public void edit(Homework homework){
         homeworkDao.update(homework);
     }
 
-    public void delete(String homeworkid) {
-        homeworkDao.delete(homeworkid);
+    public void delete(String chapterid,String kechenid,String studentid) {
+        homeworkDao.delete(chapterid,kechenid,studentid);
     }
 }

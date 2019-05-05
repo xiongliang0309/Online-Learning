@@ -33,6 +33,7 @@ public class StudentChapterHomeworkController {
     @Autowired
     private Homework homework;
 
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     //跳转到homework详情界面
     @RequestMapping("/studentChapterHomework")
@@ -59,11 +60,9 @@ public class StudentChapterHomeworkController {
         homework.setClassid(leaseholder.getClassid());
         homework.setChapterid(chapterid);
         homework.setKechenid(kechenid);
+        homework.setCommitdate(sdf.format(new Date()));
         String newPath = FileUtil.uploadFile(file);
-        if(newPath != null){
-            homework.setAnswerfile(newPath);
-        }
-
+        homework.setAnswerfile(newPath);
 
         //保存到数据库
         try{

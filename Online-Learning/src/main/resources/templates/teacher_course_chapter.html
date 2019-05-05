@@ -70,6 +70,9 @@
                             <li><a href="/teacher_check_homework"><i class="fa fa-user"></i> 批改作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
                             <li><a href="/teacher_studydata"><i class="fa fa-laptop"></i> 学习资料<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+
+                            <li><a href="/teacher_similar"><i class="fa fa-adjust"></i> 作业查重<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+
                         </ul>
                     </div>
 
@@ -176,7 +179,8 @@
                                         <td th:text="${chapterList.chapterid}"></td>
                                         <td th:text="${chapterList.chaptername}"></td>
                                         <td>
-                                            <a th:href="@{/teacherEditChapter(chapterid=${chapterList.chapterid},kechenid=${chapterList.kechenid})}"   class="btn btn-info btn-xs"><i class="fa fa-black-tie"></i> 编辑 </a>
+                                            <a th:href="@{/teacherEditChapterFalse(chapterid=${chapterList.chapterid},kechenid=${chapterList.kechenid})}" th:if="${chapterList.isupload==true}"   class="btn btn-success btn-xs"><i class="fa fa-black-tie"></i> 设为不可提交 </a>
+                                            <a th:href="@{/teacherEditChapterTrue(chapterid=${chapterList.chapterid},kechenid=${chapterList.kechenid})}" th:if="${chapterList.isupload==false}"   class="btn btn-dark btn-xs"><i class="fa fa-black-tie"></i> 设为可以提交 </a>
                                             <a th:href="@{/teacherAddHomework(chapterid=${chapterList.chapterid},kechenid=${chapterList.kechenid})}" class="btn btn-warning btn-xs"><i class="fa fa-black-tie"></i> 布置作业 </a>
                                             <a th:href="@{/teacherDeleteChapter(chapterid=${chapterList.chapterid},kechenid=${chapterList.kechenid})}" onclick="return del()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
                                         </td>
