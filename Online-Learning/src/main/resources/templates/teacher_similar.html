@@ -159,7 +159,7 @@
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <select class="selectpicker show-tick form-control" name="homework1" id="homework1" >
-                                                <option th:value="${homeworkList.answercontent}" th:text="${homeworkList.homeworkid}" th:each="homeworkList:${homeworkList}"></option>
+                                                <option th:value="${homeworkList.answercontent}" th:text="${homeworkList.studentname}+'~'+${homeworkList.kechenid}+'~'+${homeworkList.chapterid}" th:each="homeworkList:${homeworkList}"></option>
                                             </select>
                                         </div>
                                     </div>
@@ -168,7 +168,7 @@
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <select class="selectpicker show-tick form-control" name="homework2" id="homework2" >
-                                                <option th:value="${homeworkList.answercontent}" th:text="${homeworkList.homeworkid}" th:each="homeworkList:${homeworkList}"></option>
+                                                <option th:value="${homeworkList.answercontent}" th:text="${homeworkList.studentname}+'~'+${homeworkList.kechenid}+'~'+${homeworkList.chapterid}" th:each="homeworkList:${homeworkList}"></option>
                                             </select>
                                         </div>
                                     </div>
