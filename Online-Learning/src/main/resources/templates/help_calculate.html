@@ -138,7 +138,6 @@
 
                                 <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">                                    <thead>
                                 <tr>
-                                    <th>作业号</th>
                                     <th>学号</th>
                                     <th>班级</th>
                                     <th>姓名</th>
@@ -150,7 +149,6 @@
 
                                     <tbody>
                                     <tr th:each="homeworkList:${homeworkList}">
-                                        <td th:text="${homeworkList.homeworkid}"></td>
                                         <td th:text="${homeworkList.studentid}"></td>
                                         <td th:text="${homeworkList.classid}"></td>
                                         <td th:text="${homeworkList.studentname}"></td>
