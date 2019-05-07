@@ -14,26 +14,29 @@ public interface ChapterDao {
             @Result(property = "chapterid",  column = "chapterid"),
             @Result(property = "chaptername", column = "chaptername"),
             @Result(property = "kechenid", column = "kechenid"),
-            @Result(property = "isupload", column = "isupload")
+            @Result(property = "isupload", column = "isupload"),
+            @Result(property = "teachername", column = "teachername")
     })
     List<Chapter> getAll();
 
-    @Select("SELECT * FROM chapter WHERE chapterid = #{chapterid} and kechenid= #{kechenid}")
+    @Select("SELECT * FROM chapter WHERE chapterid = #{chapterid}")
     @Results({
             @Result(property = "chapterid",  column = "chapterid"),
             @Result(property = "chaptername", column = "chaptername"),
             @Result(property = "kechenid", column = "kechenid"),
-            @Result(property = "isupload", column = "isupload")
+            @Result(property = "isupload", column = "isupload"),
+            @Result(property = "teachername", column = "teachername")
+
 
     })
-    Chapter getOne(String chapterid,String kechenid);
+    Chapter getOne(String chapterid);
 
-    @Insert("INSERT INTO chapter(chapterid, chaptername, kechenid,isupload) VALUES(#{chapterid}, #{chaptername}, #{kechenid}, #{isupload})")
+    @Insert("INSERT INTO chapter(chapterid, chaptername, kechenid,isupload,teachername) VALUES(#{chapterid}, #{chaptername}, #{kechenid}, #{isupload}, #{teachername})")
     void insert(Chapter chapter);
 
-    @Update("UPDATE chapter SET chapterid=#{chapterid}, chaptername = #{chaptername}, kechenid = #{kechenid}, isupload = #{isupload} WHERE chapterid = #{chapterid} and kechenid=#{kechenid}")
+    @Update("UPDATE chapter SET chapterid=#{chapterid}, chaptername = #{chaptername}, kechenid = #{kechenid}, isupload = #{isupload}, teachername = #{teachername} WHERE chapterid = #{chapterid}")
     void update(Chapter chapter);
 
-    @Delete("DELETE FROM chapter WHERE chapterid = #{chapterid} and kechenid=#{kechenid}")
-    void delete(String chapterid,String kechenid);
+    @Delete("DELETE FROM chapter WHERE chapterid = #{chapterid}")
+    void delete(String chapterid);
 }

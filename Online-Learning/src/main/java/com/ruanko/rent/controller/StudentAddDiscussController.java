@@ -21,21 +21,15 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public class StudentAddDiscussController {
-    @Autowired
-    private LeaseholderService leaseholderService;
+
     @Autowired
     private DiscussService discussService;
     @Autowired
     private Discuss discuss;
 
-    private Date date = new Date();
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    @RequestMapping("/student_adddiscuss")
-    public String showTeacherAddDiscuss() {
-        return "student_adddiscuss";
-    }
-
+    //学生发布论坛
     @RequestMapping(value="/studentAddDiscuss.action", method = POST)
     public String teacherAddDiscuss(HttpSession session, String discusstitle, String discusscontent){
         Leaseholder leaseholder = (Leaseholder) session.getAttribute("leaseholder");

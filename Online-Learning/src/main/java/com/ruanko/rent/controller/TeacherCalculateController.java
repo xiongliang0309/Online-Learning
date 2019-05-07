@@ -10,14 +10,9 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.hssf.usermodel.*;
-import java.util.*;
-import org.apache.poi.hssf.util.HSSFColor;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 
@@ -27,6 +22,7 @@ public class TeacherCalculateController {
     @Autowired
     private HomeworkService homeworkService;
 
+    //统计成绩
     @RequestMapping("/teacher_calculate")
     public String showStudentScoreList(Model model) {
         List<Homework> homeworkList = homeworkService.getHomeworkList();
@@ -34,7 +30,7 @@ public class TeacherCalculateController {
         return "teacher_calculate";
     }
 
-
+//导出excel
     @RequestMapping("/export_excel")
     public void downloadAllClassmate(HttpServletResponse response) throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();

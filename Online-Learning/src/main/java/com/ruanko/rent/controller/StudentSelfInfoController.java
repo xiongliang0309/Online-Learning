@@ -18,7 +18,7 @@ public class StudentSelfInfoController {
     @Autowired
     private LeaseholderService leaseholderService;
 
-    //跳转到租户个人信息页面
+    //跳转到学生个人信息页面
     @RequestMapping("/student_self_info")
     public String showLeaseholderSelfInfoPage()
     {

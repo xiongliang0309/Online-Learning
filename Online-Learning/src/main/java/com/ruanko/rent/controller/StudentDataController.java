@@ -1,12 +1,7 @@
 package com.ruanko.rent.controller;
 
-import com.ruanko.rent.entity.House;
-import com.ruanko.rent.entity.Landlord;
-import com.ruanko.rent.entity.Order;
+
 import com.ruanko.rent.entity.Studydata;
-import com.ruanko.rent.service.HouseService;
-import com.ruanko.rent.service.LandlordService;
-import com.ruanko.rent.service.OrderService;
 import com.ruanko.rent.service.StudydataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +32,7 @@ public class StudentDataController {
     //下载学习资料
     @GetMapping("/studentDownloadFile")
     @ResponseBody
-    public String teacherDownloadFile(HttpServletRequest request, HttpServletResponse response, String filepath) {
+    public String teacherDownloadFile(HttpServletResponse response, String filepath) {
         String fileName = filepath; // 文件名
         if (fileName != null) {
             //设置文件路径

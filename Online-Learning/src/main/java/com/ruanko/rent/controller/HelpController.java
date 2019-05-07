@@ -1,7 +1,6 @@
 package com.ruanko.rent.controller;
 
 import com.ruanko.rent.entity.Notice;
-import com.ruanko.rent.service.HouseService;
 import com.ruanko.rent.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +11,7 @@ import java.util.List;
 
 @Controller
 public class HelpController {
-    @Autowired
-    private HouseService houseService;
+
     @Autowired
     private NoticeService noticeService;
 
@@ -25,7 +23,7 @@ public class HelpController {
         return "help";
     }
 
-    //跳转到landlord_help页面
+    //跳转到help_help页面
     @RequestMapping("/help_help")
     public String showLandlordHelpPage() {
         return "help_help";

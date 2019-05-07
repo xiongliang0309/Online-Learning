@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>教师-课程详情 </title>
+    <title>教师—kechen </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -17,13 +17,12 @@
     <link th:href="@{/vendors/nprogress/nprogress.css}" rel="stylesheet">
     <!-- iCheck -->
     <link th:href="@{/vendors/iCheck/skins/flat/green.css}" rel="stylesheet">
-
-    <!-- bootstrap-progressbar -->
-    <link th:href="@{/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet">
-    <!-- JQVMap -->
-    <link th:href="@{/vendors/jqvmap/dist/jqvmap.min.css}" rel="stylesheet"/>
-    <!-- bootstrap-daterangepicker -->
-    <link th:href="@{/vendors/bootstrap-daterangepicker/daterangepicker.css}" rel="stylesheet">
+    <!-- Datatables -->
+    <link th:href="@{/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link th:href="@{/build/css/custom.min.css}" rel="stylesheet">
@@ -60,8 +59,14 @@
                         <h3>基础功能</h3>
                         <ul class="nav side-menu">
                             <li><a href="/teacher"><i class="fa fa-home"></i> 系统总览 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/teacher_course"><i class="fa fa-book"></i> 我的课程<i class="fa fa-angle-right" style="float: right"></i> </a></li>
                             <li><a href="/teacher_self_info"><i class="fa fa-cogs"></i> 个人信息 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="menu_section">
+                        <h3>课程管理</h3>
+                        <ul class="nav side-menu">
+                            <li><a href="/teacher_kechen"><i class="fa fa-book"></i> 我的课程 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
 
@@ -80,7 +85,6 @@
                     <div class="menu_section">
                         <h3>学生管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher_update_student"><i class="fa fa-home"></i> 加入学生 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
                             <li><a href="/teacher_notice"><i class="fa fa-check"></i> 发布通知<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
 
@@ -135,7 +139,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>我的课程</h3>
+                        <h3>课程管理</h3>
                     </div>
                 </div>
 
@@ -145,43 +149,69 @@
                     <div class="col-md-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>课程详情</h2>
-                                <a th:href="@{/teacherCourseChapter(id=${course.id})}"  style="float: right; margin-top: 4px;"><button type="button" class="btn btn-warning btn-xs"><i class="fa fa-bookmark-o"> </i>课程章节</button></a>
-                                <a th:href="@{/teacherCourseStudent(id=${course.id})}"  style="float: right; margin-top: 4px;"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-pencil"> </i>课程花名册</button></a>
-                                <div class="clearfix"></div>
-                            </div>
-
-                            <div class="x_content">
-
-                                <div class="col-md-10 col-md-offset-1 ">
-
-                                    <ul class="stats-overview">
-                                        <li>
-                                            <span class="name"> 课程号 </span>
-                                            <span class="value text-success" th:text="${course.id}"></span>
-                                        </li>
-                                        <li>
-                                            <span class="name"> 课程名字 </span>
-                                            <span class="value text-success" th:text="${course.name}"></span>
-                                        </li>
-                                        <li>
-                                            <span class="name"> 上课班级 </span>
-                                            <span class="value text-success" th:text="${course.classid}"></span>
-                                        </li>
-                                    </ul>
-                                    <br />
-                                    <div>
-                                        <h2 style="text-align: center" th:text="课程介绍"></h2>
-                                        <div th:text="${course.intro}" style="text-indent: 2em; line-height: 30px"></div>
-                                    </div>
-                                    <br>
-
-                                    <div class="col-md-offset-10" style="text-align: center">
-                                        <p th:text="${course.teachername}"></p>
-                                        <p th:text="${course.coursedate}"></p>
+                                <h2>新建课程</h2>
+                                <a data-toggle="modal" data-target="#addkechen" href="" style="float: right; margin-top: 4px;"><button class="btn btn-primary btn-xs"><i class="fa fa-check"> </i> 开设课程</button></a>
+                                <!--开设课程开始-->
+                                <div id="addkechen" class="modal fade">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <button class="close" data-dismiss="modal">
+                                                    <span>&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-title">
+                                                <h3 class="text-center">开设课程</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-group" th:action="@{/teacherAddKechen.action}" method="POST">
+                                                    <div class="form-group">
+                                                        <label for="kechenid">选择课程</label>
+                                                        <select class="selectpicker show-tick form-control" name="kechenid" id="kechenid" >
+                                                            <option th:value="${kechenList.kechenid}" th:text="${kechenList.kechenname}" th:each="kechenList:${kechenList}"></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="text-right">
+                                                        <button class="btn btn-primary" type="submit">开设</button>
+                                                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <!--开设课程结束-->
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
 
+                                <!-- start project list -->
+                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">
+                                    <thead>
+                                    <tr class="success">
+                                        <th>课程号</th>
+                                        <th>课程名</th>
+                                        <th>学分</th>
+                                        <th>教师</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="addkechenList:${addkechenList}" th:if="${addkechenList.teachername==session.admin.name}">
+                                        <td th:text="${addkechenList.kechenid}"></td>
+                                        <td th:text="${addkechenList.kechenname}"></td>
+                                        <td th:text="${addkechenList.xuefen}"></td>
+                                        <td th:text="${addkechenList.teachername}"></td>
+                                        <td>
+                                            <a th:href="@{/teacherKechenHomework(addkechenid=${addkechenList.addkechenid})}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 课程作业 </a>
+                                            <a th:href="@{/teacherKechenDetail(addkechenid=${addkechenList.addkechenid})}" class="btn btn-primary btn-xs"><i class="fa fa-book"></i> 课程详情 </a>
+                                            <a th:href="@{/teacherDeleteKechen(addkechenid=${addkechenList.addkechenid})}" onclick="return del()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!-- end project list -->
 
                             </div>
                         </div>
@@ -202,6 +232,16 @@
     </div>
 </div>
 
+
+<script>
+    function del() {
+        if (confirm("您确定要删除吗？")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 <!-- jQuery -->
 <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
 <!-- Bootstrap -->
@@ -210,35 +250,24 @@
 <script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
 <!-- NProgress -->
 <script th:src="@{/vendors/nprogress/nprogress.js}"></script>
-<!-- Chart.js -->
-<script th:src="@{/vendors/Chart.js/dist/Chart.min.js}"></script>
-<!-- gauge.js -->
-<script th:src="@{/vendors/gauge.js/dist/gauge.min.js}"></script>
-<!-- bootstrap-progressbar -->
-<script th:src="@{/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
 <!-- iCheck -->
 <script th:src="@{/vendors/iCheck/icheck.min.js}"></script>
-<!-- Skycons -->
-<script th:src="@{/vendors/skycons/skycons.js}"></script>
-<!-- Flot -->
-<script th:src="@{/vendors/Flot/jquery.flot.js}"></script>
-<script th:src="@{/vendors/Flot/jquery.flot.pie.js}"></script>
-<script th:src="@{/vendors/Flot/jquery.flot.time.js}"></script>
-<script th:src="@{/vendors/Flot/jquery.flot.stack.js}"></script>
-<script th:src="@{/vendors/Flot/jquery.flot.resize.js}"></script>
-<!-- Flot plugins -->
-<script th:src="@{/vendors/flot.orderbars/js/jquery.flot.orderBars.js}"></script>
-<script th:src="@{/vendors/flot-spline/js/jquery.flot.spline.min.js}"></script>
-<script th:src="@{/vendors/flot.curvedlines/curvedLines.js}"></script>
-<!-- DateJS -->
-<script th:src="@{/vendors/DateJS/build/date.js}"></script>
-<!-- JQVMap -->
-<script th:src="@{/vendors/jqvmap/dist/jquery.vmap.js}"></script>
-<script th:src="@{/vendors/jqvmap/dist/maps/jquery.vmap.world.js}"></script>
-<script th:src="@{/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js}"></script>
-<!-- bootstrap-daterangepicker -->
-<script th:src="@{/vendors/moment/min/moment.min.js}"></script>
-<script th:src="@{/vendors/bootstrap-daterangepicker/daterangepicker.js}"></script>
+<!-- Datatables -->
+<script th:src="@{/vendors/datatables.net/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-buttons/js/dataTables.buttons.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-buttons/js/buttons.flash.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-buttons/js/buttons.html5.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-buttons/js/buttons.print.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-responsive/js/dataTables.responsive.min.js}"></script>
+<script th:src="@{/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js}"></script>
+<script th:src="@{/vendors/datatables.net-scroller/js/dataTables.scroller.min.js}"></script>
+<script th:src="@{/vendors/jszip/dist/jszip.min.js}"></script>
+<script th:src="@{/vendors/pdfmake/build/pdfmake.min.js}"></script>
+<script th:src="@{/vendors/pdfmake/build/vfs_fonts.js}"></script>
 
 <!-- Custom Theme Scripts -->
 <script th:src="@{/build/js/custom.min.js}"></script>

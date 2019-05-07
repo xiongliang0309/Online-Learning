@@ -5,31 +5,24 @@ import com.ruanko.rent.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpSession;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public class HelpAddDiscussController {
-    @Autowired
-    private LandlordService landlordService;
+
     @Autowired
     private DiscussService discussService;
     @Autowired
     private Discuss discuss;
 
-    private Date date = new Date();
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    @RequestMapping("/help_adddiscuss")
-    public String showTeacherAddDiscuss() {
-        return "help_adddiscuss";
-    }
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+
+    //助教发布论坛
     @RequestMapping(value="/helpAddDiscuss.action", method = POST)
     public String teacherAddDiscuss(HttpSession session, String discusstitle, String discusscontent){
         Landlord landlord = (Landlord) session.getAttribute("landlord");

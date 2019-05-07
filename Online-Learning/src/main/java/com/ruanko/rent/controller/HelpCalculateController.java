@@ -1,19 +1,12 @@
 package com.ruanko.rent.controller;
 
 import com.ruanko.rent.entity.Homework;
-import com.ruanko.rent.entity.House;
-import com.ruanko.rent.entity.Leaseholder;
-import com.ruanko.rent.entity.Order;
 import com.ruanko.rent.service.HomeworkService;
-import com.ruanko.rent.service.HouseService;
-import com.ruanko.rent.service.LeaseholderService;
-import com.ruanko.rent.service.OrderService;
 import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
@@ -24,6 +17,7 @@ public class HelpCalculateController {
     @Autowired
     private HomeworkService homeworkService;
 
+    //助教统计成绩
     @RequestMapping("/help_calculate")
     public String StudentScoreList(Model model) {
         List<Homework> homeworkList = homeworkService.getHomeworkList();
@@ -31,7 +25,7 @@ public class HelpCalculateController {
         return "help_calculate";
     }
 
-
+    //导出excel
     @RequestMapping("/export_excel1")
     public void downloadClassmate(HttpServletResponse response) throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();

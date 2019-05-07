@@ -1,9 +1,7 @@
 package com.ruanko.rent.controller;
 
 import com.ruanko.rent.entity.Homework;
-import com.ruanko.rent.entity.Notice;
 import com.ruanko.rent.service.HomeworkService;
-import com.ruanko.rent.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +32,7 @@ public class StudentHomeworkController {
     //下载作业
     @GetMapping("/studentDownloadHomework")
     @ResponseBody
-    public String studentDownloadHomework(HttpServletRequest request, HttpServletResponse response, String answerfile) {
+    public String studentDownloadHomework( HttpServletResponse response, String answerfile) {
         String fileName = answerfile; // 文件名
         if (fileName != null) {
             //设置文件路径

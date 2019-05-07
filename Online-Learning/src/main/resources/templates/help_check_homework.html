@@ -17,13 +17,12 @@
     <link th:href="@{/vendors/nprogress/nprogress.css}" rel="stylesheet">
     <!-- iCheck -->
     <link th:href="@{/vendors/iCheck/skins/flat/green.css}" rel="stylesheet">
-
-    <!-- bootstrap-progressbar -->
-    <link th:href="@{/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet">
-    <!-- JQVMap -->
-    <link th:href="@{/vendors/jqvmap/dist/jqvmap.min.css}" rel="stylesheet"/>
-    <!-- bootstrap-daterangepicker -->
-    <link th:href="@{/vendors/bootstrap-daterangepicker/daterangepicker.css}" rel="stylesheet">
+    <!-- Datatables -->
+    <link th:href="@{/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link th:href="@{/build/css/custom.min.css}" rel="stylesheet">
@@ -136,8 +135,9 @@
 
                             <div class="x_content">
 
-                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">                                    <thead>
-                                <tr>
+                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">
+                                    <thead>
+                                <tr class="success">
                                     <th>学号</th>
                                     <th>学生姓名</th>
                                     <th>课程号</th>
@@ -156,7 +156,7 @@
                                         <td th:text="${homeworkList.score}"></td>
                                         <td>
                                             <a th:href="@{/studentDownloadHomework(chapterid=${homeworkList.chapterid},kechenid=${homeworkList.kechenid},studentid=${homeworkList.studentid},answerfile=${homeworkList.answerfile})}" class="btn btn-success btn-xs"><i class="fa fa-download"></i> 下载答题卡 </a>
-                                            <a th:href="@{/helpCheckHomework(chapterid=${homeworkList.chapterid},kechenid=${homeworkList.kechenid},studentid=${homeworkList.studentid},)}" class="btn btn-info btn-xs"><i class="fa fa-check"></i> 批改作业 </a>
+                                            <a th:href="@{/helpCheckHomework(chapterid=${homeworkList.chapterid},kechenid=${homeworkList.kechenid},studentid=${homeworkList.studentid})}" class="btn btn-info btn-xs"><i class="fa fa-check"></i> 批改作业 </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -187,38 +187,29 @@
     <script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
     <!-- NProgress -->
     <script th:src="@{/vendors/nprogress/nprogress.js}"></script>
-    <!-- Chart.js -->
-    <script th:src="@{/vendors/Chart.js/dist/Chart.min.js}"></script>
-    <!-- gauge.js -->
-    <script th:src="@{/vendors/gauge.js/dist/gauge.min.js}"></script>
-    <!-- bootstrap-progressbar -->
-    <script th:src="@{/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
     <!-- iCheck -->
     <script th:src="@{/vendors/iCheck/icheck.min.js}"></script>
-    <!-- Skycons -->
-    <script th:src="@{/vendors/skycons/skycons.js}"></script>
-    <!-- Flot -->
-    <script th:src="@{/vendors/Flot/jquery.flot.js}"></script>
-    <script th:src="@{/vendors/Flot/jquery.flot.pie.js}"></script>
-    <script th:src="@{/vendors/Flot/jquery.flot.time.js}"></script>
-    <script th:src="@{/vendors/Flot/jquery.flot.stack.js}"></script>
-    <script th:src="@{/vendors/Flot/jquery.flot.resize.js}"></script>
-    <!-- Flot plugins -->
-    <script th:src="@{/vendors/flot.orderbars/js/jquery.flot.orderBars.js}"></script>
-    <script th:src="@{/vendors/flot-spline/js/jquery.flot.spline.min.js}"></script>
-    <script th:src="@{/vendors/flot.curvedlines/curvedLines.js}"></script>
-    <!-- DateJS -->
-    <script th:src="@{/vendors/DateJS/build/date.js}"></script>
-    <!-- JQVMap -->
-    <script th:src="@{/vendors/jqvmap/dist/jquery.vmap.js}"></script>
-    <script th:src="@{/vendors/jqvmap/dist/maps/jquery.vmap.world.js}"></script>
-    <script th:src="@{/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js}"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script th:src="@{/vendors/moment/min/moment.min.js}"></script>
-    <script th:src="@{/vendors/bootstrap-daterangepicker/daterangepicker.js}"></script>
+    <!-- Datatables -->
+    <script th:src="@{/vendors/datatables.net/js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons/js/dataTables.buttons.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons/js/buttons.flash.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons/js/buttons.html5.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons/js/buttons.print.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-responsive/js/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js}"></script>
+    <script th:src="@{/vendors/datatables.net-scroller/js/dataTables.scroller.min.js}"></script>
+    <script th:src="@{/vendors/jszip/dist/jszip.min.js}"></script>
+    <script th:src="@{/vendors/pdfmake/build/pdfmake.min.js}"></script>
+    <script th:src="@{/vendors/pdfmake/build/vfs_fonts.js}"></script>
 
     <!-- Custom Theme Scripts -->
     <script th:src="@{/build/js/custom.min.js}"></script>
 
 </body>
 </html>
+
+

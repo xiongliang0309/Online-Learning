@@ -2,7 +2,6 @@ package com.ruanko.rent.controller;
 
 import com.ruanko.rent.entity.Course;
 import com.ruanko.rent.entity.Admin;
-import com.ruanko.rent.service.AdminService;
 import com.ruanko.rent.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +16,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public class TeacherAddCourseController {
-    @Autowired
-    private AdminService adminService;
+
     @Autowired
     private CourseService courseService;
     @Autowired
@@ -32,10 +30,10 @@ public class TeacherAddCourseController {
         return "teacher_addcourse";
     }
 
+    //教师添加我的课程
     @RequestMapping(value="/addCourse.action", method = POST)
-    public String teacherAddCourse(HttpSession session, String name,String classid,String intro){
+    public String teacherAddCourse(HttpSession session,String classid,String intro){
         Admin admin = (Admin) session.getAttribute("admin");
-        course.setName(name);
         course.setTeachername(admin.getName());
         course.setClassid(classid);
         course.setIntro(intro);

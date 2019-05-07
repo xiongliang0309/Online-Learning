@@ -1,38 +1,24 @@
 package com.ruanko.rent.controller;
 
 import com.ruanko.rent.entity.Homework;
-import com.ruanko.rent.entity.House;
-import com.ruanko.rent.entity.Landlord;
 import com.ruanko.rent.service.HomeworkService;
-import com.ruanko.rent.service.HouseService;
-import com.ruanko.rent.service.LandlordService;
-import com.ruanko.rent.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpSession;
-
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public class HelpCheckHomeworkController {
+
     @Autowired
     private HomeworkService homeworkService;
 
-    @Autowired
-    private House house;
 
-    private Date date = new Date();
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
+    //显示作业
     @RequestMapping("/help_check_homework")
     public String teacherCheckHomework(Model model) {
         List<Homework> homeworkList = homeworkService.getHomeworkList();
@@ -48,9 +34,9 @@ public class HelpCheckHomeworkController {
         return "help_check_homework_detail";
     }
 
-//评分
+    //评分
     @RequestMapping(value="/helpAddScore.action", method = POST)
-    public String teacherAddScore(HttpSession session, String score, String chapterid,String kechenid,String studentid){
+    public String teacherAddScore(String score, String chapterid,String kechenid,String studentid){
         Homework homework = homeworkService.findHomeworkById(chapterid,kechenid,studentid);
         homework.setScore(score);
 

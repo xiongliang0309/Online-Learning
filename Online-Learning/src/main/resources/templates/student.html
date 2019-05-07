@@ -139,7 +139,7 @@
 
                                 <div class="clearfix"></div>
 
-                                <div class="col-md-4 col-sm-4 col-xs-12 profile_details" th:each="noticeList:${noticeList}">
+                                <div class="col-md-4 col-sm-4 col-xs-12 profile_details" th:each="noticeList:${noticeList}" th:if="${noticeList.classid==session.leaseholder.classid || noticeList.classid=='All'}">
                                     <div class="well profile_view">
                                         <div class="col-sm-12">
                                             <div class="left col-xs-12">

@@ -37,8 +37,8 @@ public class TeacherAddHomeworkController {
 
     //显示章节作业
     @RequestMapping("/teacherAddHomework")
-    public String teacherAddHomework(Model model,String chapterid,String kechenid) {
-        Chapter chapter = chapterService.findChapterById(chapterid,kechenid);
+    public String teacherAddHomework(Model model,String chapterid) {
+        Chapter chapter = chapterService.findChapterById(chapterid);
         model.addAttribute("chapter", chapter);
         List<Choice> choiceList = choiceService.getChoiceList();
         model.addAttribute("choiceList", choiceList);
@@ -51,7 +51,7 @@ public class TeacherAddHomeworkController {
 
     //添加选择题
     @RequestMapping(value="/teacherAddChoice.action", method = POST)
-    public String teacherAddChoice(HttpSession session, String choicetitle, String choicea,String choiceb,String choicec,String choiced,String chapterid,String kechenid){
+    public String teacherAddChoice( String choicetitle, String choicea,String choiceb,String choicec,String choiced,String chapterid,String kechenid){
         choice.setChoicetitle(choicetitle);
         choice.setChoicea(choicea);
         choice.setChoiceb(choiceb);
@@ -74,7 +74,7 @@ public class TeacherAddHomeworkController {
 
     //添加填空题
     @RequestMapping(value="/teacherAddFill.action", method = POST)
-    public String teacherAddFill(HttpSession session, String fillcontent, String chapterid1,String kechenid1){
+    public String teacherAddFill(String fillcontent, String chapterid1,String kechenid1){
         fill.setFillcontent(fillcontent);
         fill.setChapterid(chapterid1);
         fill.setKechenid(kechenid1);
@@ -93,7 +93,7 @@ public class TeacherAddHomeworkController {
 
     //添加设计题
     @RequestMapping(value="/teacherAddProgram.action", method = POST)
-    public String teacherAddProgram(HttpSession session, String programcontent, String chapterid2,String kechenid2){
+    public String teacherAddProgram(String programcontent, String chapterid2,String kechenid2){
         program.setProgramcontent(programcontent);
         program.setChapterid(chapterid2);
         program.setKechenid(kechenid2);

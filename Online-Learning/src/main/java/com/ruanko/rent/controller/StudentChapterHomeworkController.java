@@ -37,8 +37,8 @@ public class StudentChapterHomeworkController {
 
     //跳转到homework详情界面
     @RequestMapping("/studentChapterHomework")
-    public String showStudentChapterHomework(Model model, String chapterid,String kechenid) {
-        Chapter chapter = chapterService.findChapterById(chapterid,kechenid);
+    public String showStudentChapterHomework(Model model, String chapterid) {
+        Chapter chapter = chapterService.findChapterById(chapterid);
         model.addAttribute("chapter", chapter);
         List<Choice> choiceList = choiceService.getChoiceList();
         model.addAttribute("choiceList", choiceList);
@@ -67,7 +67,7 @@ public class StudentChapterHomeworkController {
         //保存到数据库
         try{
             homeworkService.save(homework);
-            return "redirect:/studentCourseDetail?id="+kechenid;
+            return "redirect:/student_homework";
         }catch(Exception e) {
             System.out.print(e);
             return "error";

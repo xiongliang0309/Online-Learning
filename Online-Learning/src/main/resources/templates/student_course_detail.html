@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>学生—课程详情 </title>
+    <title>学生—课程 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -17,13 +17,12 @@
     <link th:href="@{/vendors/nprogress/nprogress.css}" rel="stylesheet">
     <!-- iCheck -->
     <link th:href="@{/vendors/iCheck/skins/flat/green.css}" rel="stylesheet">
-
-    <!-- bootstrap-progressbar -->
-    <link th:href="@{/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet">
-    <!-- JQVMap -->
-    <link th:href="@{/vendors/jqvmap/dist/jqvmap.min.css}" rel="stylesheet"/>
-    <!-- bootstrap-daterangepicker -->
-    <link th:href="@{/vendors/bootstrap-daterangepicker/daterangepicker.css}" rel="stylesheet">
+    <!-- Datatables -->
+    <link th:href="@{/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link th:href="@{/build/css/custom.min.css}" rel="stylesheet">
@@ -35,7 +34,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/student" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
+                    <a href="/teacher" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -104,7 +103,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
-                            <a href="javascript:" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <img th:src="${session.leaseholder.icon}" alt="" ><span th:text="${session.leaseholder.name}"></span>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
@@ -146,11 +145,11 @@
                                 <ul class="stats-overview">
                                     <li>
                                         <span class="name"> 课程号 </span>
-                                        <span class="value text-success" th:text="${course.id}"></span>
+                                        <span class="value text-success" th:text="${course.kechenid}"></span>
                                     </li>
                                     <li>
                                         <span class="name"> 课程名字 </span>
-                                        <span class="value text-success" th:text="${course.name}"></span>
+                                        <span class="value text-success" th:text="${course.kechenname}"></span>
                                     </li>
                                     <li>
                                         <span class="name"> 上课班级 </span>
@@ -161,15 +160,19 @@
                                 <!-- start project list -->
                                 <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">                                    <thead>
                                 <tr class="success">
-                                    <th>章节号</th>
-                                    <th>章节名</th>
+                                    <th>课程号</th>
+                                    <th>作业号</th>
+                                    <th>作业名</th>
+                                    <th>布置人</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                     <tbody>
-                                    <tr th:each="chapterList:${chapterList}" th:if="${chapterList.kechenid==course.id}">
+                                    <tr th:each="chapterList:${chapterList}" th:if="${chapterList.kechenid==course.kechenid && chapterList.teachername==course.teachername}">
+                                        <td th:text="${chapterList.kechenid}"></td>
                                         <td th:text="${chapterList.chapterid}"></td>
                                         <td th:text="${chapterList.chaptername}"></td>
+                                        <td th:text="${chapterList.teachername}"></td>
                                         <td>
                                             <a th:if="${chapterList.isupload==false}" class="btn btn-dark btn-xs" disabled="disabled"><i class="fa fa-black-tie"></i> 通道已关闭，无法查看 </a>
                                             <a th:href="@{/studentChapterHomework(chapterid=${chapterList.chapterid},kechenid=${chapterList.kechenid})}" th:if="${chapterList.isupload==true}" class="btn btn-info btn-xs"><i class="fa fa-black-tie"></i> 章节练习 </a>
@@ -198,6 +201,16 @@
     </div>
 </div>
 
+
+<script>
+    function del() {
+        if (confirm("您确定要删除吗？")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 <!-- jQuery -->
 <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
 <!-- Bootstrap -->

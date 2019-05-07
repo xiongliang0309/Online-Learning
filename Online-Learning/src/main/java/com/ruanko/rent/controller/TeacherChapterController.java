@@ -1,8 +1,9 @@
 package com.ruanko.rent.controller;
 
+import com.ruanko.rent.entity.Addkechen;
 import com.ruanko.rent.entity.Admin;
-import com.ruanko.rent.entity.Course;
 import com.ruanko.rent.entity.Chapter;
+import com.ruanko.rent.service.AddkechenService;
 import com.ruanko.rent.service.CourseService;
 import com.ruanko.rent.service.ChapterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,54 +19,48 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public class TeacherChapterController {
-    @Autowired
-    private CourseService courseService;
 
     @Autowired
     private ChapterService chapterService;
 
     @Autowired
+    private AddkechenService addkechenService;
+
+    @Autowired
     private Chapter chapter;
 
     //显示课程章节
-    @RequestMapping("/teacherCourseChapter")
-    public String teacherCourseChapter(Model model, String id) {
-        Course course = courseService.findCourseById(id);
-        model.addAttribute("course", course);
+    @RequestMapping("/teacherKechenHomework")
+    public String teacherCourseChapter(Model model, String addkechenid) {
+        Addkechen addkechen = addkechenService.findAddkechenById(addkechenid);
+        model.addAttribute("addkechen", addkechen);
         List<Chapter> chapterList = chapterService.getChapterList();
         model.addAttribute("chapterList", chapterList);
         return "teacher_course_chapter";
     }
 
-    //删除章节
+    //删除作业
     @RequestMapping("/teacherDeleteChapter")
-    public String teacherDeleteChapter(String chapterid,String kechenid){
-        chapterService.delete(chapterid,kechenid);
-        return "redirect:/teacherCourseChapter?id="+kechenid;
+    public String teacherDeleteChapter(String chapterid,String addkechenid){
+        chapterService.delete(chapterid);
+        return "redirect:/teacherKechenHomework?addkechenid="+addkechenid;
     }
 
-    //添加课程章节
-    @RequestMapping("/teacherAddChapter")
-    public String teacherAddChapter(Model model, String id) {
-        Course course = courseService.findCourseById(id);
-        model.addAttribute("course", course);
-        List<Chapter> chapterList = chapterService.getChapterList();
-        model.addAttribute("chapterList", chapterList);
-        return "teacher_addchapter";
-    }
+    //添加课程作业
 
-
-    @RequestMapping(value="/addChapter.action", method = POST)
-    public String AddChapter(String chapterid, String chaptername,String kechenid){
-        chapter.setChapterid(chapterid);
+    @RequestMapping(value="/teacherAddChapter.action", method = POST)
+    public String AddChapter(HttpSession session, String chaptername,String kechenid,String addkechenid){
+        Admin admin = (Admin) session.getAttribute("admin");
         chapter.setChaptername(chaptername);
         chapter.setKechenid(kechenid);
+        chapter.setTeachername(admin.getName());
+        chapter.setIsupload(false);
 
 
         //保存到数据库
         try{
             chapterService.save(chapter);
-            return "redirect:/teacherCourseChapter?id="+kechenid;
+            return "redirect:/teacherKechenHomework?addkechenid="+addkechenid;
         }catch(Exception e) {
             System.out.print(e);
             return "error";
@@ -74,17 +69,19 @@ public class TeacherChapterController {
 
     //设为不可提交
    @RequestMapping("/teacherEditChapterFalse")
-    public String teacherEditChapterFalse(Model model, String  kechenid,String chapterid) {
-       Chapter chapter=chapterService.findChapterById(chapterid,kechenid);
+    public String teacherEditChapterFalse(HttpSession session, Model model, String  kechenid,String chapterid,String addkechenid) {
+       Chapter chapter=chapterService.findChapterById(chapterid);
+       Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("chapter", chapter);
         chapter.setKechenid(kechenid);
         chapter.setChapterid(chapterid);
         chapter.setIsupload(false);
+        chapter.setTeachername(admin.getName());
         //保存到数据库
         try{
              chapterService.edit(chapter);
             //      session.setAttribute("chapter", chapter);
-            return "redirect:/teacherCourseChapter?id="+kechenid;
+            return "redirect:/teacherKechenHomework?addkechenid="+addkechenid;
         }catch(Exception e) {
             System.out.print(e);
             return "error";
@@ -94,17 +91,19 @@ public class TeacherChapterController {
 
     //设为可以提交
     @RequestMapping("/teacherEditChapterTrue")
-    public String teacherEditChapterTrue(Model model, String  kechenid,String chapterid) {
-        Chapter chapter=chapterService.findChapterById(chapterid,kechenid);
+    public String teacherEditChapterTrue(HttpSession session,Model model, String  kechenid,String chapterid,String addkechenid) {
+        Chapter chapter=chapterService.findChapterById(chapterid);
+        Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("chapter", chapter);
         chapter.setKechenid(kechenid);
         chapter.setChapterid(chapterid);
         chapter.setIsupload(true);
+        chapter.setTeachername(admin.getName());
         //保存到数据库
         try{
             chapterService.edit(chapter);
             //      session.setAttribute("chapter", chapter);
-            return "redirect:/teacherCourseChapter?id="+kechenid;
+            return "redirect:/teacherKechenHomework?addkechenid="+addkechenid;
         }catch(Exception e) {
             System.out.print(e);
             return "error";

@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.util.List;
-
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 
 @Controller
@@ -22,10 +19,8 @@ public class StudentCourseDetailController {
     @Autowired
     private ChapterService chapterService;
 
-    @Autowired
-    private Chapter chapter;
 
-    //显示课程章节
+    //显示课程作业章节
     @RequestMapping("/studentCourseDetail")
     public String teacherCourseChapter(Model model, String id) {
         Course course = courseService.findCourseById(id);

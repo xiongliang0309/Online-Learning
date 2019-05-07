@@ -14,6 +14,7 @@ public class HelpDiscussController {
     @Autowired
     private DiscussService discussService;
 
+    //助教论坛显示
     @RequestMapping("/help_discuss")
     public String showHelpDiscussList(Model model) {
         List<Discuss> discussList = discussService.getDiscussList();

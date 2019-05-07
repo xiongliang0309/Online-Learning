@@ -60,10 +60,18 @@
                         <h3>基础功能</h3>
                         <ul class="nav side-menu">
                             <li><a href="/teacher"><i class="fa fa-home"></i> 系统总览 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/teacher_course"><i class="fa fa-book"></i> 我的课程<i class="fa fa-angle-right" style="float: right"></i> </a></li>
                             <li><a href="/teacher_self_info"><i class="fa fa-cogs"></i> 个人信息 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
+
+                    <div class="menu_section">
+                        <h3>课程管理</h3>
+                        <ul class="nav side-menu">
+                            <li><a href="/teacher_kechen"><i class="fa fa-book"></i> 我的课程 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                        </ul>
+                    </div>
+
+
 
                     <div class="menu_section">
                         <h3>作业管理</h3>
@@ -80,7 +88,6 @@
                     <div class="menu_section">
                         <h3>学生管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher_update_student"><i class="fa fa-home"></i> 加入学生 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
                             <li><a href="/teacher_notice"><i class="fa fa-check"></i> 发布通知<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
 
@@ -133,28 +140,7 @@
         <!-- page content -->
         <div class="right_col" role="main">
             <!-- top tiles -->
-            <div class="row tile_count">
-                <div class="col-md-3 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-users"></i> 通知数量</span>
-                    <div class="count" th:text="${noticeNum}"></div>
-                    <span class="count_bottom"> 系统中通知数量</span>
-                </div>
-                <div class="col-md-3 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-user"></i> 助教数量</span>
-                    <div class="count" th:text="${landlordNum}"></div>
-                    <span class="count_bottom"> 系统中助教账号数量</span>
-                </div>
-                <div class="col-md-3 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-home"></i> 学生数量</span>
-                    <div class="count" th:text="${leaseholderNum}"></div>
-                    <span class="count_bottom"> 系统中学生数量</span>
-                </div>
-                <div class="col-md-3 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-check"></i> 老师数量</span>
-                    <div class="count" th:text="${adminNum}"></div>
-                    <span class="count_bottom"> 系统中老师数量</span>
-                </div>
-            </div>
+
             <!-- /top tiles -->
 
             <div class="row">

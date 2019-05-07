@@ -17,8 +17,8 @@ public class ChapterService {
         return chapterDao.getAll();
     }
 
-    public Chapter findChapterById(String chapterid,String kechenid){
-        return  chapterDao.getOne(chapterid,kechenid);
+    public Chapter findChapterById(String chapterid){
+        return  chapterDao.getOne(chapterid);
     }
 
     public void save(Chapter chapter) {
@@ -29,7 +29,7 @@ public class ChapterService {
         chapterDao.update(chapter);
     }
 
-    public void delete(String chapterid,String kechenid) {
-        chapterDao.delete(chapterid,kechenid);
+    public void delete(String chapterid) {
+        chapterDao.delete(chapterid);
     }
 }

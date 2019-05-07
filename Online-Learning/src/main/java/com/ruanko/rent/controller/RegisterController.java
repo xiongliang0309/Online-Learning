@@ -13,12 +13,7 @@ import java.util.Date;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-/**
- * RegisterController Class
- *
- * @author zhangjianyun
- * @date 2018-9-20
- */
+
 @Controller
 public class RegisterController {
     @Autowired
@@ -34,6 +29,8 @@ public class RegisterController {
         return "register";
     }
 
+
+    //注册插入
     @RequestMapping(value="/registerCheck.action", method = POST)
     public String registerCheck(Leaseholder leaseholder, Landlord landlord, String option) {
         try {

@@ -40,7 +40,7 @@ public class TeacherSelfInfoController {
         try{
             adminService.edit(admin);
             session.setAttribute("admin", admin);
-            return "redirect:/teacher";
+            return "redirect:/teacher_self_info";
         }catch(Exception e) {
             System.out.print(e);
             return "error";
@@ -64,7 +64,7 @@ public class TeacherSelfInfoController {
 
             adminService.edit(admin);
             session.setAttribute("admin", admin);
-            return "redirect:/teacher";
+            return "redirect:/login";
         }
         else{
             return "error";

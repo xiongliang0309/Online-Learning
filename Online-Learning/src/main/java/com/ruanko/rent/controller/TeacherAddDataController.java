@@ -31,14 +31,9 @@ public class TeacherAddDataController {
     @Autowired
     private Studydata studydata;
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     //上传资料
-    @RequestMapping("/teacher_adddata")
-    public String showTeacherAddDiscuss() {
-        return "teacher_adddata";
-    }
-
     @RequestMapping(value="/teacherAddData.action", method = POST)
     public String teacherAddData(HttpSession session, String filename,@RequestParam("filepath") MultipartFile file){
         Admin admin = (Admin) session.getAttribute("admin");
@@ -70,7 +65,7 @@ public class TeacherAddDataController {
     //下载资料
     @GetMapping("/teacherDownloadFile")
     @ResponseBody
-    public String teacherDownloadFile(HttpServletRequest request, HttpServletResponse response,String filepath) {
+    public String teacherDownloadFile( HttpServletResponse response,String filepath) {
         String fileName = filepath; // 文件名
         if (fileName != null) {
             //设置文件路径

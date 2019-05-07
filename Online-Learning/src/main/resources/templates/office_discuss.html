@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>教师—学生管理 </title>
+    <title>教务—论坛中心 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -34,7 +34,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/teacher" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
+                    <a href="/office" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -42,11 +42,11 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img th:src="${session.admin.icon}" alt="..." class="img-circle profile_img">
+                        <img th:src="${session.office.icon}" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>欢迎使用！</span>
-                        <h2 th:text="${session.admin.name}"></h2>
+                        <h2 th:text="${session.office.name}"></h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -58,42 +58,52 @@
                     <div class="menu_section">
                         <h3>基础功能</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher"><i class="fa fa-home"></i> 系统总览 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/teacher_course"><i class="fa fa-book"></i> 我的课程<i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/teacher_self_info"><i class="fa fa-cogs"></i> 个人信息 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                        </ul>
-                    </div>
 
-                    <div class="menu_section">
-                        <h3>作业管理</h3>
-                        <ul class="nav side-menu">
-                            <li><a href="/teacher_check_homework"><i class="fa fa-user"></i> 批改作业 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/office"><i class="fa fa-home"></i> 系统总览 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
-                            <li><a href="/teacher_studydata"><i class="fa fa-laptop"></i> 学习资料<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
-
-                            <li><a href="/teacher_similar"><i class="fa fa-adjust"></i> 作业查重<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+                            <li><a href="/office_self_info"><i class="fa fa-cogs"></i> 个人信息 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
                         </ul>
                     </div>
 
                     <div class="menu_section">
-                        <h3>学生管理</h3>
+                        <h3>课程管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher_update_student"><i class="fa fa-home"></i> 加入学生 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
-                            <li><a href="/teacher_notice"><i class="fa fa-check"></i> 发布通知<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+                            <li><a href="/office_kechen"><i class="fa fa-book"></i> 课程中心 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
-                            <li><a href="/teacher_calculate"><i class="fa fa-list-ul"></i> 统计成绩 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/office_calculate"><i class="fa fa-list-ul"></i> 统计成绩 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+
+                        </ul>
+                    </div>
+
+
+
+                    <div class="menu_section">
+                        <h3>论坛管理</h3>
+                        <ul class="nav side-menu">
+
+                            <li><a href="/office_discuss"><i class="fa fa-pencil"></i> 论坛中心 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+
+                            <li><a href="/office_notice"><i class="fa fa-check"></i> 通知中心<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+
+
                         </ul>
                     </div>
 
                     <div class="menu_section">
-                        <h3>教学论坛</h3>
+                        <h3>角色管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher_discuss"><i class="fa fa-pencil"></i> 论坛中心 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-                            <li><a href="/teacher_mydiscuss"><i class="fa fa-calendar"></i> 我的论坛 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/office_update_student"><i class="fa fa-users"></i> 学生管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+
+                            <li><a href="/office_update_teacher"><i class="fa fa-bookmark-o"></i> 教师管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+
+                            <li><a href="/office_update_help"><i class="fa fa-hand-paper-o"></i> 助教管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+
                         </ul>
                     </div>
+
+
 
                 </div>
                 <!-- /sidebar menu -->
@@ -112,13 +122,13 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img th:src="${session.admin.icon}" alt="" ><span th:text="${session.admin.name}"></span>
+                                <img th:src="${session.office.icon}" alt="" ><span th:text="${session.office.name}"></span>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="/teacher_self_info"> 个人信息</a></li>
+                                <li><a href="/office_self_info"> 个人信息</a></li>
 
-                                <li><a href="/teacher_help"> 使用帮助</a></li>
+                                <li><a href="/office_help"> 使用帮助</a></li>
 
                                 <li><a href="/login"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
                             </ul>
@@ -134,7 +144,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>学生信息管理</h3>
+                        <h3>教学论坛</h3>
                     </div>
                 </div>
 
@@ -144,29 +154,64 @@
                     <div class="col-md-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>学生信息列表</h2>
+                                <h2>论坛中心</h2>
+                                <a data-toggle="modal" data-target="#adddiscuss" href="" style="float: right; margin-top: 4px;"><button class="btn btn-primary btn-xs"><i class="fa fa-check"> </i> 发起论坛</button></a>
+                                <!--开设论坛开始-->
+                                <div id="adddiscuss" class="modal fade">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <button class="close" data-dismiss="modal">
+                                                    <span>&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-title">
+                                                <h3 class="text-center">发起论坛</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-group" th:action="@{/officeAddDiscuss.action}" method="POST">
+                                                    <div class="form-group">
+                                                        <label for="discusstitle">论坛名称</label>
+                                                        <input type="text" class="form-control" id="discusstitle" name="discusstitle"  required/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="discusscontent">论坛内容</label>
+                                                        <textarea type="text" class="form-control" id="discusscontent" name="discusscontent"  required></textarea>
+                                                    </div>
+                                                    <div class="text-right">
+                                                        <button class="btn btn-primary" type="submit">发起</button>
+                                                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--开设论坛结束-->
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
 
                                 <!-- start project list -->
-                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">                                    <thead>
-                                    <tr>
-                                        <th>学号</th>
-                                        <th>姓名</th>
-                                        <th>班级</th>
-                                        <th>联系方式</th>
+                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">
+                                    <thead>
+                                    <tr class="success">
+                                        <th>论坛号</th>
+                                        <th>论坛名</th>
+                                        <th>发布时间</th>
+                                        <th>发布人</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="leaseholderList:${leaseholderList}">
-                                        <td th:text="${leaseholderList.id}"></td>
-                                        <td th:text="${leaseholderList.name}"></td>
-                                        <td th:text="${leaseholderList.classid}"></td>
-                                        <td th:text="${leaseholderList.phone}"></td>
+                                    <tr th:each="discussList:${discussList}">
+                                        <td th:text="${discussList.discussid}"></td>
+                                        <td th:text="${discussList.discusstitle}"></td>
+                                        <td th:text="${discussList.discussdate}"></td>
+                                        <td th:text="${discussList.discusser}"></td>
                                         <td>
-                                            <a th:href="@{/teacherAddToClass(id=${leaseholderList.id})}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>加入班级 </a>
+                                            <a th:href="@{/officeDiscussDetail(discussid=${discussList.discussid})}" class="btn btn-info btn-xs"><i class="fa fa-black-tie"></i> 论坛详情 </a>
+                                            <a th:href="@{/officeDeleteDiscuss(discussid=${discussList.discussid})}" onclick="return del()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -184,7 +229,7 @@
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                浪子短租网 - 南昌航空大学软酷实训
+                高校网络教学辅助平台 - 南昌航空大学
             </div>
             <div class="clearfix"></div>
         </footer>
@@ -192,6 +237,16 @@
     </div>
 </div>
 
+
+<script>
+    function del() {
+        if (confirm("您确定要删除吗？")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 <!-- jQuery -->
 <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
 <!-- Bootstrap -->

@@ -14,6 +14,7 @@ public class StudentNoticeListController {
     @Autowired
     private NoticeService noticeService;
 
+    //学生通知显示
     @RequestMapping("/student_noticelist")
     public String showStudentNoticeList(Model model) {
         List<Notice> noticeList = noticeService.getNoticeList();

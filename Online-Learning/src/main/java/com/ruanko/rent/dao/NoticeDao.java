@@ -14,7 +14,8 @@ public interface NoticeDao {
             @Result(property = "title",  column = "title"),
             @Result(property = "content", column = "content"),
             @Result(property = "noticer", column = "noticer"),
-            @Result(property = "noticedate", column = "noticedate")
+            @Result(property = "noticedate", column = "noticedate"),
+            @Result(property = "classid", column = "classid")
     })
     List<Notice> getAll();
 
@@ -24,14 +25,15 @@ public interface NoticeDao {
             @Result(property = "title",  column = "title"),
             @Result(property = "content", column = "content"),
             @Result(property = "noticer", column = "noticer"),
-            @Result(property = "noticedate", column = "noticedate")
+            @Result(property = "noticedate", column = "noticedate"),
+            @Result(property = "classid", column = "classid")
     })
     Notice getOne(String id);
 
-    @Insert("INSERT INTO notice(id,title, content, noticer, noticedate) VALUES(#{id}, #{title}, #{content}, #{noticer}, #{noticedate})")
+    @Insert("INSERT INTO notice(id,title, content, noticer, noticedate,classid) VALUES(#{id}, #{title}, #{content}, #{noticer}, #{noticedate}, #{classid})")
     void insert(Notice notice);
 
-    @Update("UPDATE notice SET id=#{id}, title = #{title}, content = #{content}, noticer = #{noticer}, noticedate = #{noticedate} WHERE id = #{id}")
+    @Update("UPDATE notice SET id=#{id}, title = #{title}, content = #{content}, noticer = #{noticer}, noticedate = #{noticedate} , classid = #{classid} WHERE id = #{id}")
     void update(Notice notice);
 
     @Delete("DELETE FROM notice WHERE id = #{id}")

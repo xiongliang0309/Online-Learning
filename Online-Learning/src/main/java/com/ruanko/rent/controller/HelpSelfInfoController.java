@@ -8,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpSession;
-
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
@@ -18,7 +16,7 @@ public class HelpSelfInfoController {
     @Autowired
     private LandlordService landlordService;
 
-    //跳转到房东个人信息页面
+    //跳转到助教个人信息页面
     @RequestMapping("/help_self_info")
     public String showLandlordSelfInfoPage()
     {

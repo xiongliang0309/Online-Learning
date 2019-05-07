@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>管理员界面 </title>
+    <title>教务—课程 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -34,7 +34,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/teacher" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
+                    <a href="/office" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -42,11 +42,11 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img th:src="${session.admin.icon}" alt="..." class="img-circle profile_img">
+                        <img th:src="${session.office.icon}" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>欢迎使用，管理员</span>
-                        <h2 th:text="${session.admin.name}"></h2>
+                        <span>欢迎使用！</span>
+                        <h2 th:text="${session.office.name}"></h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -58,33 +58,52 @@
                     <div class="menu_section">
                         <h3>基础功能</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/teacher"><i class="fa fa-home"></i> 系统总览 </a></li>
 
-                            <li><a href="/admin_self_info"><i class="fa fa-cogs"></i> 个人信息 </a></li>
+                            <li><a href="/office"><i class="fa fa-home"></i> 系统总览 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+
+                            <li><a href="/office_self_info"><i class="fa fa-cogs"></i> 个人信息 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+
                         </ul>
                     </div>
 
                     <div class="menu_section">
-                        <h3>作业管理</h3>
+                        <h3>课程管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/admin_leaseholder_info"><i class="fa fa-users"></i> 布置作业 </a></li>
 
-                            <li><a href="/admin_landlord_info"><i class="fa fa-user"></i> 批改作业 </a></li>
+                            <li><a href="/office_kechen"><i class="fa fa-book"></i> 课程中心 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
-                            <li><a href="/teacher_studydata"><i class="fa fa-laptop"></i> 学习资料 </a></li>
+                            <li><a href="/office_calculate"><i class="fa fa-list-ul"></i> 统计成绩 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+
+                        </ul>
+                    </div>
+
+
+
+                    <div class="menu_section">
+                        <h3>论坛管理</h3>
+                        <ul class="nav side-menu">
+
+                            <li><a href="/office_discuss"><i class="fa fa-pencil"></i> 论坛中心 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+
+                            <li><a href="/office_notice"><i class="fa fa-check"></i> 通知中心<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
+
+
                         </ul>
                     </div>
 
                     <div class="menu_section">
-                        <h3>学生管理</h3>
+                        <h3>角色管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/admin_house_info"><i class="fa fa-home"></i> 加入学生 </a></li>
+                            <li><a href="/office_update_student"><i class="fa fa-users"></i> 学生管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
-                            <li><a href="/teacher_notice"><i class="fa fa-check"></i> 发布通知 </a></li>
+                            <li><a href="/office_update_teacher"><i class="fa fa-bookmark-o"></i> 教师管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
-                            <li><a href="/admin_house_log"><i class="fa fa-list-ul"></i> 统计成绩 </a></li>
+                            <li><a href="/office_update_help"><i class="fa fa-hand-paper-o"></i> 助教管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+
                         </ul>
                     </div>
+
+
 
                 </div>
                 <!-- /sidebar menu -->
@@ -103,15 +122,15 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img th:src="${session.admin.icon}" alt="" ><span th:text="${session.admin.name}"></span>
+                                <img th:src="${session.office.icon}" alt="" ><span th:text="${session.office.name}"></span>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="/admin_self_info"> 个人信息</a></li>
+                                <li><a href="/office_self_info"> 个人信息</a></li>
 
-                                <li><a href="/teacher_help"> 使用帮助</a></li>
+                                <li><a href="/office_help"> 使用帮助</a></li>
 
-                                <li><a href="/index"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
+                                <li><a href="/login"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -125,7 +144,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>房屋信息审核</h3>
+                        <h3>我的通知</h3>
                     </div>
                 </div>
 
@@ -135,82 +154,40 @@
                     <div class="col-md-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>房屋信息详情</h2>
+                                <h2>通知详情</h2>
                                 <div class="clearfix"></div>
                             </div>
 
                             <div class="x_content">
 
-                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="col-md-10 col-md-offset-1 ">
+
                                     <ul class="stats-overview">
                                         <li>
-                                            <span class="name"> 房屋号 </span>
-                                            <span class="value text-success" th:text="${session.house.id}"></span>
+                                            <span class="name"> 通知对象 </span>
+                                            <span class="value text-success" th:text="${notice.classid}"></span>
                                         </li>
                                         <li>
                                             <span class="name"> 发布日期 </span>
-                                            <span class="value text-success" th:text="${session.house.publishdate}"></span>
+                                            <span class="value text-success" th:text="${notice.noticedate}"></span>
                                         </li>
                                         <li>
-                                            <span class="name"> 日租金 </span>
-                                            <span class="value text-success" th:text="|¥${session.house.price}|"></span>
+                                            <span class="name"> 发布人 </span>
+                                            <span class="value text-success" th:text="${notice.noticer}|"></span>
                                         </li>
                                     </ul>
                                     <br />
-                                    <img id="mainb" style="height:350px;" th:src="${session.house.picture}">
+                                    <div>
+                                        <h2 style="text-align: center" th:text="${notice.title}"></h2>
+                                        <div th:text="${notice.content}" style="text-indent: 2em; line-height: 30px"></div>
+                                    </div>
+                                    <br>
 
+                                    <div class="col-md-offset-10" style="text-align: center">
+                                        <p th:text="${notice.noticer}"></p>
+                                        <p th:text="${notice.noticedate}"></p>
+                                    </div>
                                 </div>
-
-                                <!-- start project-detail sidebar -->
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-
-                                    <section class="panel">
-
-
-                                        <div class="panel-body">
-                                            <div th:if="${session.house.ischeck == true}">
-                                                <h3 class="green"><i class="fa fa-check"></i> 已认证的房屋信息 </h3>
-                                                <p>该房屋信息经管理员审核并通过。</p>
-                                            </div>
-                                            <div th:if="${session.house.ischeck == false}">
-                                                <h3 class="red"><i class="fa fa-times"></i> 未认证的房屋信息 </h3>
-                                                <p>该房屋信息未经管理员审核或审核未通过。</p>
-                                            </div>
-
-                                            <br />
-
-                                            <div class="project_detail">
-                                                <p class="title">房屋名称</p>
-                                                <p th:text="${session.house.name}"></p>
-                                                <p class="title">发布人</p>
-                                                <p th:text="${session.house.landlord}" </p>
-                                                <p class="title">地址</p>
-                                                <p th:text="${session.house.location}"></p>
-                                                <p class="title">类型</p>
-                                                <p th:text="${session.house.category}"></p>
-                                                <p class="title">面积</p>
-                                                <p th:text="|${session.house.area}㎡|"></p>
-                                                <p class="title">楼层</p>
-                                                <p th:text="${session.house.floor}"></p>
-                                                <p class="title">审核状态</p>
-                                                <p th:if="${session.house.ischeck == true}">已通过管理员审核</p>
-                                                <p th:if="${session.house.ischeck == false}">未通过管理员审核</p>
-                                                <p class="title">租用状态</p>
-                                                <p th:if="${session.house.islease == true}">当前未被租用</p>
-                                                <p th:if="${session.house.islease == false}">当前已被租用</p>
-                                            </div>
-
-                                            <div class="text-center mtop20">
-                                                <a href="/admin_house_check" class="btn btn-sm btn-primary">返回</a>
-                                                <a th:href="@{/checkSuccess.action}" class="btn btn-sm btn-success">审核通过</a>
-                                                <a th:href="@{/checkFailed.action}" class="btn btn-sm btn-danger">审核不通过</a>
-                                            </div>
-                                        </div>
-
-                                    </section>
-                                </div>
-                                <!-- end project-detail sidebar -->
-
                             </div>
                         </div>
                     </div>
@@ -222,7 +199,7 @@
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                浪子短租网 - 南昌航空大学软酷实训
+                高校网络教学辅助平台 - 南昌航空大学
             </div>
             <div class="clearfix"></div>
         </footer>
@@ -230,6 +207,16 @@
     </div>
 </div>
 
+
+<script>
+    function del() {
+        if (confirm("您确定要删除吗？")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 <!-- jQuery -->
 <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
 <!-- Bootstrap -->

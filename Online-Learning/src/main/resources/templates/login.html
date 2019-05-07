@@ -27,47 +27,27 @@
         .loginpage {
             position: relative;
             height: 680px;
-            background: whitesmoke;
             width: 100%;
         }
 
-        .registerpage {
-            position: relative;
-            height: 720px;
-            background: url(1.jpg) 0/cover no-repeat;
-            width: 100%;
-        }
 
         .login {
             width: 600px;
             height: 450px;
             box-shadow: 0 0 10px #ccc;
             border-radius: 3px;
-            border: 1px solid rgba(21, 184, 190, 0.97);
+            border: 1px solid rgba(42, 48, 50, 0.97);
             margin-top: 100px;
             margin-left: 40px;
             background: white;
         }
 
-        .register {
-            width: 600px;
-            box-shadow: 0 0 10px #ccc;
-            border-radius: 5px;
-            border: 1px solid rgba(21, 184, 190, 0.97);
-            margin-top: 50px;
-            margin-left: -20px;
-            background: white;
-            margin-bottom: 50px;
-        }
 
         .register input {
             border-radius: 3px;
             border: 1px solid rgb(202, 199, 199);
         }
 
-        .reg-foot {
-            margin-bottom: 20px;
-        }
 
 
         .login input,
@@ -102,7 +82,7 @@
             margin-bottom: 0px;
             margin-top: 30px;
             font-size: 25px;
-            color: rgba(21, 184, 190, 0.97);
+            color: rgba(47, 47, 65, 0.75);
         }
 
         .register h2 {
@@ -122,58 +102,18 @@
         .register a {
             margin-left: 230px;
         }
-
-        .msg {
-            font-size: 20px;
-            font-weight: 30;
+        .onepage-bg{
+            height: 520px;
+            width: 100%;
+            position: absolute;
         }
 
-        .int {
-            height: 30px;
-            text-align: left;
-            width: 800px;
-        }
-
-        .high {
-            color: red;
-        }
-
-        .onError {
-            color: red;
-        }
-
-        .onSuccess {
-            color: green;
-        }
-
-        /* .notices {
-            margin-left: 50px;
-        }
-
-        .noticeInf {
-            background: gray;
-            width: 300px;
-            height: 150px;
-            margin: 20px;
-            border-radius: 5px;
-        }
-
-        #notice span,
-        #home span,
-        #count span,
-        #data span #talk span #admin span {
-            font-size: 20px;
-            font-weight: 20px;
-        }
-
-        .newnotice {
-            float: right;
-        } */
     </style>
 </head>
 
-<body >
-<div class="loginpage">
+<body>
+<div class="loginpage" >
+    <div class="onepage-bg" id="onepagebg"><img src="/picture/1.jpg" style="width:100%; height: 680px" alt=""></div>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -184,18 +124,19 @@
                     <form th:action="@{/loginCheck.action}" method="POST" role="form" class="login-form">
                         <div class="form-group">
                             <label for="id" class="sr-only">Username</label>
-                            <input type="text" name="id" placeholder="Username..." class="username form-control" id="id">
+                            <input type="text" name="id" placeholder="Username..." class="username form-control" id="id" required>
                         </div>
                         <div class="form-group">
                             <label for="password" class="sr-only">Username</label>
-                            <input type="password" name="password" placeholder="Password..." class="password form-control" id="password">
+                            <input type="password" name="password" placeholder="Password..." class="password form-control" id="password" required >
                         </div>
                         <select class="selectpicker show-tick form-control" name="option" id="option">
                             <option value="teacher">教师</option>
                             <option value="student">学生</option>
                             <option value="help">助教</option>
+                            <option value="office">教务</option>
                         </select>
-                        <button type="submit" class="btn btn-dark" onclick="return check()">登录</button><br><br>
+                        <button type="submit" class="btn btn-dark" >登录</button><br><br>
                         <a href="/register">还没有账号？去注册。。。</a>
                     </form>
                 </div>
@@ -205,19 +146,19 @@
     </div>
 </div>
 
-<script>
-    function check() {
-        var id=document.getElementById('id').value.replace(/(^\s*)|(\s*$)/g, '');
-        var password=document.getElementById('password').value.replace(/(^\s*)|(\s*$)/g, '');
-        if(id==''||id==undefined||id==null||password==''||password==undefined||password==null)
-        {
-            alert("请将信息填写完整！！！");
-            return false;
-        }
-        else
-            return true;
-    }
-</script>
+<!--<script>-->
+    <!--function check() {-->
+        <!--var id=document.getElementById('id').value.replace(/(^\s*)|(\s*$)/g, '');-->
+        <!--var password=document.getElementById('password').value.replace(/(^\s*)|(\s*$)/g, '');-->
+        <!--if(id==''||id==undefined||id==null||password==''||password==undefined||password==null)-->
+        <!--{-->
+            <!--alert("请将信息填写完整！！！");-->
+            <!--return false;-->
+        <!--}-->
+        <!--else-->
+            <!--return true;-->
+    <!--}-->
+<!--</script>-->
 
 <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
 <!-- Bootstrap -->

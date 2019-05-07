@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>学生——通知列表 </title>
+    <title>学生—论坛中心 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -34,7 +34,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/student" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
+                    <a href="/teacher" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -142,9 +142,10 @@
                             <div class="x_content">
 
                                 <!-- start project list -->
-                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">                                    <thead>
-                                    <tr>
-                                        <th>通知号</th>
+                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">
+                                    <thead>
+                                    <tr class="success">
+                                        <th>通知对象</th>
                                         <th>通知标题</th>
                                         <th>发布者</th>
                                         <th>发布时间</th>
@@ -152,8 +153,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="noticeList:${noticeList}">
-                                        <td th:text="${noticeList.id}"></td>
+                                    <tr th:each="noticeList:${noticeList}" th:if="${noticeList.classid==session.leaseholder.classid || noticeList.classid=='All'}">
+                                        <td th:text="${noticeList.classid}"></td>
                                         <td th:text="${noticeList.title}"></td>
                                         <td th:text="${noticeList.noticer}"></td>
                                         <td th:text="${noticeList.noticedate}"></td>
@@ -184,6 +185,16 @@
     </div>
 </div>
 
+
+<script>
+    function del() {
+        if (confirm("您确定要删除吗？")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 <!-- jQuery -->
 <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
 <!-- Bootstrap -->

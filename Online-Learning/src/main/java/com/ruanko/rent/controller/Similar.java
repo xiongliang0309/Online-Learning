@@ -6,7 +6,7 @@ import java.util.Set;
 
 /**
  * 字符串相似性匹配算法
- * Created by panther on 15-7-20.
+ * 余弦相似度算法
  */
 public class Similar {
     Map<Character, int[]> vectorMap = new HashMap<Character, int[]>();

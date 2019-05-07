@@ -5,11 +5,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class Course {
     private String id;
-    private String name;
+    private String kechenname;
     private String teachername;
     private String coursedate;
     private String classid;
     private  String intro;
+    private  String kechenid;
+
 
 
     public Course() {
@@ -22,14 +24,6 @@ public class Course {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getTeachername() {
@@ -62,16 +56,32 @@ public class Course {
 
     public void setIntro(String intro) { this.intro = intro; }
 
+    public String getKechenname() {
+        return kechenname;
+    }
+
+    public void setKechenname(String kechenname) {
+        this.kechenname = kechenname;
+    }
+
+    public String getKechenid() {
+        return kechenid;
+    }
+
+    public void setKechenid(String kechenid) {
+        this.kechenid = kechenid;
+    }
 
     @Override
     public String toString() {
-        return "Admin{" +
+        return "Course{" +
                 "id='" + id + '\'' +
-                ", name='" + name + '\'' +
+                ", kechenname='" + kechenname + '\'' +
                 ", teachername='" + teachername + '\'' +
                 ", coursedate='" + coursedate + '\'' +
                 ", classid='" + classid + '\'' +
                 ", intro='" + intro + '\'' +
+                ", kechenid='" + kechenid + '\'' +
                 '}';
     }
 }

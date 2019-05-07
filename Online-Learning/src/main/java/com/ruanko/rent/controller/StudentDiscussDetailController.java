@@ -27,7 +27,6 @@ public class StudentDiscussDetailController {
     @Autowired
     private Comment comment;
 
-    private Date date = new Date();
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 

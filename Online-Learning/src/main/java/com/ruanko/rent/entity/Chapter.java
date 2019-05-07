@@ -8,6 +8,7 @@ public class Chapter {
     private String chaptername;
     private String kechenid;
     private Boolean isupload;
+    private String teachername;
 
     public Chapter() {
         super();
@@ -45,6 +46,14 @@ public class Chapter {
         this.isupload = isupload;
     }
 
+    public String getTeachername() {
+        return teachername;
+    }
+
+    public void setTeachername(String teachername) {
+        this.teachername = teachername;
+    }
+
     @Override
     public String toString() {
         return "Chapter{" +
@@ -52,6 +61,7 @@ public class Chapter {
                 ", chaptername='" + chaptername + '\'' +
                 ", kechenid='" + kechenid + '\'' +
                 ", isupload='" + isupload + '\'' +
+                ", teachername='" + teachername + '\'' +
                 '}';
     }
 }

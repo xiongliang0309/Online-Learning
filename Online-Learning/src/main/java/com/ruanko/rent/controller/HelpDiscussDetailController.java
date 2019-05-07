@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,12 +26,11 @@ public class HelpDiscussDetailController {
     @Autowired
     private Comment comment;
 
-    private Date date = new Date();
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 
 
-    //跳转到Notice详情界面
+    //跳转到助教论坛详情界面
     @RequestMapping("/helpDiscussDetail")
     public String teacherDiscussDetail(Model model, String discussid) {
         Discuss discuss = discussService.findDiscussById(discussid);

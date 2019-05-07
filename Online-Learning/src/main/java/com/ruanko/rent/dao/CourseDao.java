@@ -12,11 +12,12 @@ public interface CourseDao {
     @Select("SELECT * FROM course")
     @Results({
             @Result(property = "id",  column = "id"),
-            @Result(property = "name", column = "name"),
+            @Result(property = "kechenname", column = "kechenname"),
             @Result(property = "teachername", column = "teachername"),
             @Result(property = "coursedate", column = "coursedate"),
             @Result(property = "classid", column = "classid"),
-            @Result(property = "intro", column = "intro")
+            @Result(property = "intro", column = "intro"),
+            @Result(property = "kechenid", column = "kechenid")
 
     })
     List<Course> getAll();
@@ -24,19 +25,20 @@ public interface CourseDao {
     @Select("SELECT * FROM course WHERE id = #{id}")
     @Results({
             @Result(property = "id",  column = "id"),
-            @Result(property = "name", column = "name"),
+            @Result(property = "kechenname", column = "kechenname"),
             @Result(property = "teachername", column = "teachername"),
             @Result(property = "coursedate", column = "coursedate"),
             @Result(property = "classid", column = "classid"),
-            @Result(property = "intro", column = "intro")
+            @Result(property = "intro", column = "intro"),
+            @Result(property = "kechenid", column = "kechenid")
 
     })
     Course getOne(String id);
 
-    @Insert("INSERT INTO course(id, name, teachername, coursedate, classid, intro) VALUES(#{id}, #{name}, #{teachername}, #{coursedate}, #{classid}, #{intro})")
+    @Insert("INSERT INTO course(id, kechenname, teachername, coursedate, classid, intro,kechenid) VALUES(#{id}, #{kechenname}, #{teachername}, #{coursedate}, #{classid}, #{intro}, #{kechenid})")
     void insert(Course course);
 
-    @Update("UPDATE course SET id=#{id}, name = #{name}, teachername = #{teachername},coursedate=#{coursedate},classid=#{classid},intro=#{intro}")
+    @Update("UPDATE course SET id=#{id}, kechenname = #{kechenname}, teachername = #{teachername},coursedate=#{coursedate},classid=#{classid},intro=#{intro},kechenid=#{kechenid}")
     void update(Course course);
 
     @Delete("DELETE FROM course WHERE id = #{id}")

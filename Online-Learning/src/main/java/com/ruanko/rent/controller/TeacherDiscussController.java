@@ -1,24 +1,16 @@
 package com.ruanko.rent.controller;
 
-import com.ruanko.rent.entity.Admin;
 import com.ruanko.rent.entity.Discuss;
-import com.ruanko.rent.entity.Notice;
-import com.ruanko.rent.entity.Score;
 import com.ruanko.rent.service.AdminService;
 import com.ruanko.rent.service.DiscussService;
-import com.ruanko.rent.service.NoticeService;
-import com.ruanko.rent.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public class TeacherDiscussController {

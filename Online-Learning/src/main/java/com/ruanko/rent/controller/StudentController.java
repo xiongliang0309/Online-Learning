@@ -14,7 +14,7 @@ public class StudentController {
     @Autowired
     private NoticeService noticeService;
 
-    //跳转到leaseholder页面
+    //跳转到student页面
     @RequestMapping("/student")
     public String showLeaseholderPage(Model model) {
         List<Notice> noticeList = noticeService.getNoticeList();
@@ -22,7 +22,7 @@ public class StudentController {
         return "student";
     }
 
-    //跳转到leaseholder_help页面
+    //跳转到student_help页面
     @RequestMapping("/student_help")
     public String showLeaseholderHelpPage() {
         return "student_help";

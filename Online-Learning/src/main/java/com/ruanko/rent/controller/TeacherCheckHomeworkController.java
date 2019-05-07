@@ -1,25 +1,21 @@
 package com.ruanko.rent.controller;
 
 import com.ruanko.rent.entity.Homework;
-import com.ruanko.rent.entity.Landlord;
 import com.ruanko.rent.service.HomeworkService;
-import com.ruanko.rent.service.LandlordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public class TeacherCheckHomeworkController {
     @Autowired
     private HomeworkService homeworkService;
 
-    //老师批改学生作业
+    //老师批改学生作业列表
     @RequestMapping("/teacher_check_homework")
     public String teacherCheckHomework(Model model) {
         List<Homework> homeworkList = homeworkService.getHomeworkList();

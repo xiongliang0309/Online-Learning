@@ -13,14 +13,11 @@ public class HelpShowNoticeDetailInfoController {
     @Autowired
     private NoticeService noticeService;
 
-    //跳转到Notice详情界面
+    //跳转到助教Notice详情界面
     @RequestMapping("/helpShowNoticeDetailInfo")
     public String teacherShowNoticeDetailInfo(Model model, String id) {
         Notice notice = noticeService.findNoticeById(id);
         model.addAttribute("notice", notice);
         return "help_notice_detail_info";
     }
-
-
-
 }

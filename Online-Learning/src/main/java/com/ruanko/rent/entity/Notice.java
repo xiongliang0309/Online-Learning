@@ -11,6 +11,7 @@ public class Notice {
     private String content;
     private String noticer;
     private String noticedate;
+    private String classid;
 
     public Notice() {
         super();
@@ -56,6 +57,14 @@ public class Notice {
         this.noticedate = noticedate;
     }
 
+    public String getClassid() {
+        return classid;
+    }
+
+    public void setClassid(String classid) {
+        this.classid = classid;
+    }
+
     @Override
     public String toString() {
         return "Notice{" +
@@ -64,6 +73,7 @@ public class Notice {
                 ", content='" + content + '\'' +
                 ", noticer='" + noticer + '\'' +
                 ", noticedate='" + noticedate + '\'' +
+                ", classid='" + classid + '\'' +
                 '}';
     }
 }
