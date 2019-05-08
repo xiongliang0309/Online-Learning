@@ -13,6 +13,7 @@ public class Homework {
     private String score;
     private String classid;
     private String commitdate;
+    private String teachername;
 
 
 
@@ -94,6 +95,14 @@ public class Homework {
         this.commitdate = commitdate;
     }
 
+    public String getTeachername() {
+        return teachername;
+    }
+
+    public void setTeachername(String teachername) {
+        this.teachername = teachername;
+    }
+
     @Override
     public String toString() {
         return "Homework{" +
@@ -106,6 +115,7 @@ public class Homework {
                 ", score='" + score + '\'' +
                 ", classid='" + classid + '\'' +
                 ", commitdate='" + commitdate + '\'' +
+                ", teachername='" + teachername + '\'' +
                 '}';
     }
 }

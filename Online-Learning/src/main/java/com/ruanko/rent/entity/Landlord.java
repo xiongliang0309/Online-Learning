@@ -11,6 +11,8 @@ public class Landlord {
     private String email;
     private String icon = "/picture/user.png";
     private String registerdate;
+    private String teachername;
+    private String kechenid;
 
     public Landlord() {
         super();
@@ -72,6 +74,22 @@ public class Landlord {
         this.registerdate = registerdate;
     }
 
+    public String getTeachername() {
+        return teachername;
+    }
+
+    public void setTeachername(String teachername) {
+        this.teachername = teachername;
+    }
+
+    public String getKechenid() {
+        return kechenid;
+    }
+
+    public void setKechenid(String kechenid) {
+        this.kechenid = kechenid;
+    }
+
     @Override
     public String toString() {
         return "Landlord{" +
@@ -82,6 +100,9 @@ public class Landlord {
                 ", email='" + email + '\'' +
                 ", icon='" + icon + '\'' +
                 ", registerdate='" + registerdate + '\'' +
+                ", teachername='" + teachername + '\'' +
+                ", kechenid='" + kechenid + '\'' +
+
                 '}';
     }
 }

@@ -1,6 +1,8 @@
 package com.ruanko.rent.controller;
 
+import com.ruanko.rent.entity.Course;
 import com.ruanko.rent.entity.Homework;
+import com.ruanko.rent.service.CourseService;
 import com.ruanko.rent.service.HomeworkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,23 +23,37 @@ public class OfficeCalculateController {
 
     @Autowired
     private HomeworkService homeworkService;
+    @Autowired
+    private CourseService courseService;
 
     //教务统计成绩
     @RequestMapping("/office_calculate")
     public String showStudentScoreList(Model model) {
+        List<Course> courseList = courseService.getCourseList();
+        model.addAttribute("courseList", courseList);
+        return "office_calculate";
+    }
+
+    //统计成绩
+    @RequestMapping("/officeClassScore")
+    public String officeClassScore(Model model,String id) {
+        Course course=courseService.findCourseById(id);
+        model.addAttribute("course",course);
         List<Homework> homeworkList = homeworkService.getHomeworkList();
         model.addAttribute("homeworkList", homeworkList);
-        return "office_calculate";
+        return "office_class_score";
     }
 
 
 
     //教务导出excel
     @RequestMapping("/export_excel2")
-    public void officeDownloadAllClassmate(HttpServletResponse response) throws IOException {
+    public void officeDownloadAllClassmate(HttpServletResponse response,String classid,String kechenid) throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("信息表");
-        List<Homework> homeworkList = homeworkService.getHomeworkList();
+      //  List<Homework> homeworkList = homeworkService.getHomeworkList();
+        List<Homework> scoreList = homeworkService.getScoreList(classid,kechenid);
+
         String fileName = "scoreinf"  + ".xls";//设置要导出的文件的名字
         //新增数据行，并且设置单元格数据
 
@@ -56,7 +72,7 @@ public class OfficeCalculateController {
         }
 
         //在表中存放查询到的数据放入对应的列
-        for (Homework homework : homeworkList) {
+        for (Homework homework : scoreList) {
             HSSFRow row1 = sheet.createRow(rowNum);
             row1.createCell(0).setCellValue(homework.getStudentid());
             row1.createCell(1).setCellValue(homework.getStudentname());

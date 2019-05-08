@@ -134,55 +134,108 @@
         </div>
         <!-- /top navigation -->
 
-        <!-- page content -->
+
         <div class="right_col" role="main">
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>学生成绩统计</h3>
+                        <h3>成绩统计</h3>
                     </div>
-
                 </div>
+
                 <div class="clearfix"></div>
 
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>学生成绩列表</h2>
-                                <a href="/export_excel" style="float: right; margin-top: 4px;"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i> 导出excel</button></a>
+                                <h2>班级列表</h2>
                                 <div class="clearfix"></div>
                             </div>
+
                             <div class="x_content">
 
-                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">                                    <thead>
+                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">
+                                    <thead>
                                     <tr class="success">
-                                        <th>学号</th>
-                                        <th>班级</th>
-                                        <th>姓名</th>
                                         <th>课程号</th>
-                                        <th>章节号</th>
-                                        <th>成绩</th>
+                                        <th>课程名</th>
+                                        <th>教师</th>
+                                        <th>上课班级</th>
+                                        <th>开课时间</th>
+                                        <th>操作</th>
                                     </tr>
                                     </thead>
-
                                     <tbody>
-                                    <tr th:each="homeworkList:${homeworkList}">
-                                        <td th:text="${homeworkList.studentid}"></td>
-                                        <td th:text="${homeworkList.classid}"></td>
-                                        <td th:text="${homeworkList.studentname}"></td>
-                                        <td th:text="${homeworkList.kechenid}"></td>
-                                        <td th:text="${homeworkList.chapterid}"></td>
-                                        <td th:text="${homeworkList.score}"></td>
+                                    <tr th:each="courseList:${courseList}" th:if="${courseList.teachername==session.admin.name}">
+                                        <td th:text="${courseList.kechenid}"></td>
+                                        <td th:text="${courseList.kechenname}"></td>
+                                        <td th:text="${courseList.teachername}"></td>
+                                        <td th:text="${courseList.classid}"></td>
+                                        <td th:text="${courseList.coursedate}"></td>
+                                        <td>
+                                            <a th:href="@{/teacherClassScore(id=${courseList.id})}" class="btn btn-primary btn-xs"><i class="fa fa-book"></i> 成绩列表 </a>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- page content -->
+        <!--<div class="right_col" role="main">-->
+            <!--<div class="">-->
+                <!--<div class="page-title">-->
+                    <!--<div class="title_left">-->
+                        <!--<h3>学生成绩统计</h3>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+                <!--<div class="clearfix"></div>-->
+
+                <!--<div class="row">-->
+                    <!--<div class="col-md-12 col-sm-12 col-xs-12">-->
+                        <!--<div class="x_panel">-->
+                            <!--<div class="x_title">-->
+                                <!--<h2>学生成绩列表</h2>-->
+                                <!--<a th:href="@{/export_excel(classid=${'152011'},kechenid=${'1'},chapterid=${'3'})}" style="float: right; margin-top: 4px;"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i> 导出excel</button></a>-->
+                                <!--<div class="clearfix"></div>-->
+                            <!--</div>-->
+                            <!--<div class="x_content">-->
+
+                                <!--<table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">                                    <thead>-->
+                                    <!--<tr class="success">-->
+                                        <!--<th>学号</th>-->
+                                        <!--<th>班级</th>-->
+                                        <!--<th>姓名</th>-->
+                                        <!--<th>课程号</th>-->
+                                        <!--<th>章节号</th>-->
+                                        <!--<th>成绩</th>-->
+                                    <!--</tr>-->
+                                    <!--</thead>-->
+
+                                    <!--<tbody>-->
+                                    <!--<tr th:each="homeworkList:${homeworkList}">-->
+                                        <!--<td th:text="${homeworkList.studentid}"></td>-->
+                                        <!--<td th:text="${homeworkList.classid}"></td>-->
+                                        <!--<td th:text="${homeworkList.studentname}"></td>-->
+                                        <!--<td th:text="${homeworkList.kechenid}"></td>-->
+                                        <!--<td th:text="${homeworkList.chapterid}"></td>-->
+                                        <!--<td th:text="${homeworkList.score}"></td>-->
+                                    <!--</tr>-->
+                                    <!--</tbody>-->
+                                <!--</table>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
         <!-- /page content -->
 
         <!-- footer content -->

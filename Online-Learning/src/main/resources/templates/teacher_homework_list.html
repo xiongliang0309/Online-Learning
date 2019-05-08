@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>教务—教师管理 </title>
+    <title>教师—批改作业 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -34,7 +34,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/office" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
+                    <a href="/teacher" class="site_title"><i class="fa fa-home"></i> <span>网络教学辅助平台</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -42,68 +42,77 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img th:src="${session.office.icon}" alt="..." class="img-circle profile_img">
+                        <img th:src="${session.admin.icon}" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>欢迎使用！</span>
-                        <h2 th:text="${session.office.name}"></h2>
+                        <h2 th:text="${session.admin.name}"></h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
 
-                <br />
+                <br/>
 
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <h3>基础功能</h3>
                         <ul class="nav side-menu">
-
-                            <li><a href="/office"><i class="fa fa-home"></i> 系统总览 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-
-                            <li><a href="/office_self_info"><i class="fa fa-cogs"></i> 个人信息 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-
+                            <li><a href="/teacher"><i class="fa fa-home"></i> 系统总览 <i class="fa fa-angle-right"
+                                                                                      style="float: right"></i> </a>
+                            </li>
+                            <li><a href="/teacher_self_info"><i class="fa fa-cogs"></i> 个人信息 <i
+                                    class="fa fa-angle-right" style="float: right"></i> </a></li>
                         </ul>
                     </div>
 
                     <div class="menu_section">
                         <h3>课程管理</h3>
                         <ul class="nav side-menu">
-
-                            <li><a href="/office_kechen"><i class="fa fa-book"></i> 课程中心 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-
-                            <li><a href="/office_calculate"><i class="fa fa-list-ul"></i> 统计成绩 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-
-                        </ul>
-                    </div>
-
-
-
-                    <div class="menu_section">
-                        <h3>论坛管理</h3>
-                        <ul class="nav side-menu">
-
-                            <li><a href="/office_discuss"><i class="fa fa-pencil"></i> 论坛中心 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
-
-                            <li><a href="/office_notice"><i class="fa fa-check"></i> 通知中心<i class="fa fa-angle-right" style="float: right"></i>  </a></li>
-
-
+                            <li><a href="/teacher_kechen"><i class="fa fa-book"></i> 我的课程 <i class="fa fa-angle-right"
+                                                                                             style="float: right"></i>
+                            </a></li>
                         </ul>
                     </div>
 
                     <div class="menu_section">
-                        <h3>角色管理</h3>
+                        <h3>作业管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/office_update_class"><i class="fa fa-users"></i> 班级管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/teacher_check_homework"><i class="fa fa-user"></i> 批改作业 <i
+                                    class="fa fa-angle-right" style="float: right"></i> </a></li>
 
-                            <li><a href="/office_update_teacher"><i class="fa fa-bookmark-o"></i> 教师管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/teacher_studydata"><i class="fa fa-laptop"></i> 学习资料<i
+                                    class="fa fa-angle-right" style="float: right"></i> </a></li>
 
-                            <li><a href="/office_update_help"><i class="fa fa-hand-paper-o"></i> 助教管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/teacher_similar"><i class="fa fa-adjust"></i> 作业查重<i class="fa fa-angle-right"
+                                                                                               style="float: right"></i>
+                            </a></li>
 
                         </ul>
                     </div>
 
+                    <div class="menu_section">
+                        <h3>学生管理</h3>
+                        <ul class="nav side-menu">
 
+                            <li><a href="/teacher_notice"><i class="fa fa-check"></i> 发布通知<i class="fa fa-angle-right"
+                                                                                             style="float: right"></i>
+                            </a></li>
+
+                            <li><a href="/teacher_calculate"><i class="fa fa-list-ul"></i> 统计成绩 <i
+                                    class="fa fa-angle-right" style="float: right"></i> </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="menu_section">
+                        <h3>教学论坛</h3>
+                        <ul class="nav side-menu">
+                            <li><a href="/teacher_discuss"><i class="fa fa-pencil"></i> 论坛中心 <i
+                                    class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/teacher_mydiscuss"><i class="fa fa-calendar"></i> 我的论坛 <i
+                                    class="fa fa-angle-right" style="float: right"></i> </a></li>
+                        </ul>
+                    </div>
 
                 </div>
                 <!-- /sidebar menu -->
@@ -121,14 +130,15 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img th:src="${session.office.icon}" alt="" ><span th:text="${session.office.name}"></span>
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <img th:src="${session.admin.icon}" alt=""><span th:text="${session.admin.name}"></span>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="/office_self_info"> 个人信息</a></li>
+                                <li><a href="/teacher_self_info"> 个人信息</a></li>
 
-                                <li><a href="/office_help"> 使用帮助</a></li>
+                                <li><a href="/teacher_help"> 使用帮助</a></li>
 
                                 <li><a href="/login"><i class="fa fa-sign-out pull-right"></i> 注销登录</a></li>
                             </ul>
@@ -139,37 +149,59 @@
         </div>
         <!-- /top navigation -->
 
-        <!-- page content -->
+
+        <!--page content-->
         <div class="right_col" role="main">
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>使用帮助</h3>
+                        <h3>我的作业管理</h3>
                     </div>
 
                 </div>
-
                 <div class="clearfix"></div>
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>系统简介</h2>
+                                <h2>批改学生作业</h2>
                                 <div class="clearfix"></div>
                             </div>
+
                             <div class="x_content">
 
-                                <div class="col-md-8 col-lg-12 col-sm-8">
-                                    <blockquote>
-                                        <p>高校网络教学平台是一个面向于广大高校的辅助学习平台，该平台为高校的教学提供了更加现代化的教学方式，使得高校的教学变得更加的方便，同时也加强了学生与老师之间的交流</p>
-                                        <p>该系统的主要功能是在功能上实现教师可以修改个人基本信息、加入学生、查看系统帮助，开设课程，布置作业、批改作业、发放通知、发起讨论、成绩统计，上传下载资料。学生可以修改个人基本信息、参与讨论、查看系统帮助、查看通知、下载资料、查看成绩、提交作业。助教可以修改个人基本信息、查看系统帮助、批改作业、参与讨论、查看通知。
-                                        </p>
-                                    </blockquote>
-                                </div>
+                                <table id="datatable"
+                                       class="table  table-hover table-bordered table-striped table-responsive">
+                                    <thead>
+                                    <tr class="success">
+                                        <th>学号</th>
+                                        <th>学生姓名</th>
+                                        <th>课程号</th>
+                                        <th>章节号</th>
+                                        <th>教师</th>
+                                        <th>成绩</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
 
-                                <div class="clearfix"></div>
-
+                                    <tbody>
+                                    <tr th:each="homeworkList:${homeworkList}" th:if="${homeworkList.kechenid==addkechen.kechenid&&homeworkList.teachername==session.admin.name}">
+                                        <td th:text="${homeworkList.studentid}"></td>
+                                        <td th:text="${homeworkList.studentname}"></td>
+                                        <td th:text="${homeworkList.kechenid}"></td>
+                                        <td th:text="${homeworkList.chapterid}"></td>
+                                        <td th:text="${homeworkList.teachername}"></td>
+                                        <td th:text="${homeworkList.score}"></td>
+                                        <td>
+                                            <a th:href="@{/studentDownloadHomework(chapterid=${homeworkList.chapterid},kechenid=${homeworkList.kechenid},studentid=${homeworkList.studentid},answerfile=${homeworkList.answerfile})}"
+                                               class="btn btn-success btn-xs"><i class="fa fa-download"></i> 下载答题卡 </a>
+                                            <a th:href="@{/teacherCheckHomework(chapterid=${homeworkList.chapterid},kechenid=${homeworkList.kechenid},studentid=${homeworkList.studentid},addkechenid=${addkechen.addkechenid})}"
+                                               class="btn btn-info btn-xs"><i class="fa fa-check"></i> 批改作业 </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -189,16 +221,6 @@
     </div>
 </div>
 
-
-<script>
-    function del() {
-        if (confirm("您确定要删除吗？")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-</script>
 <!-- jQuery -->
 <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
 <!-- Bootstrap -->

@@ -29,31 +29,22 @@ public class OfficeUpdateStudentController {
     private Date date = new Date();
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    //显示学生
-    @RequestMapping("/office_update_student")
-    public String officeStudentList(Model model) {
-        List<Leaseholder> leaseholderList = leaseholderService.getLeaseholderList();
-        model.addAttribute("leaseholderList", leaseholderList);
-        List<Classes> classesList = classesService.getClassesList();
-        model.addAttribute("classesList", classesList);
-
-        return "office_update_student";
-    }
 
     //添加学生
     @RequestMapping(value="/officeAddStudent.action", method = POST)
-    public String officeAddStudent(HttpSession session, String id,String password,String name,String phone,String email,String registerdate,String classid){
-        leaseholder.setClassid(classid);
+    public String officeAddStudent(String id,String password,String name,String phone,String email,String classid){
+
         leaseholder.setPhone(phone);
         leaseholder.setRegisterdate(sdf.format(date));
         leaseholder.setEmail(email);
         leaseholder.setId(id);
         leaseholder.setName(name);
         leaseholder.setPassword(password);
+        leaseholder.setClassid(classid);
         //保存到数据库
         try{
             leaseholderService.save(leaseholder);
-            return "redirect:/office_update_student";
+            return "redirect:/officeClassStudent?classid="+classid;
         }catch(Exception e) {
             System.out.print(e);
             return "error";
@@ -62,9 +53,9 @@ public class OfficeUpdateStudentController {
 
     // 删除学生
     @RequestMapping("/officeDeleteStudent")
-    public String officeDeleteStudent(String id){
+    public String officeDeleteStudent(String id,String classid){
         leaseholderService.delete(id);
-        return "redirect:/office_update_student";
+        return "redirect:/officeClassStudent?classid="+classid;
     }
 
 }

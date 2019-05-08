@@ -59,4 +59,30 @@ public class OfficeKechenController {
         return "redirect:/office_kechen";
     }
 
+
+    //编辑课程
+    @RequestMapping("/officeEditKechen")
+    public String officeEditKechen(Model model,String kechenid){
+        Kechen kechen=kechenService.findKechenById(kechenid);
+        model.addAttribute("kechen",kechen);
+        return "office_edit_kechen";
+    }
+
+    @RequestMapping(value="/officeEditKechen.action", method = POST)
+    public String teacherEditKechen(String kechenid, String kechenname,String kechenintro,String xuefen){
+        kechen.setKechenid(kechenid);
+        kechen.setKechenname(kechenname);
+        kechen.setKechenintro(kechenintro);
+        kechen.setXuefen(xuefen);
+
+        //保存到数据库
+        try{
+            kechenService.save(kechen);
+
+            return "redirect:/office_kechen";
+        }catch(Exception e) {
+            System.out.print(e);
+            return "error";
+        }
+    }
 }

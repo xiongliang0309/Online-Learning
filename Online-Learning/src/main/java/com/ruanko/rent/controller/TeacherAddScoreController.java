@@ -17,14 +17,14 @@ public class TeacherAddScoreController {
 
 //教师批改作业评分
     @RequestMapping(value="/teacherAddScore.action", method = POST)
-    public String teacherAddScore(String score, String chapterid,String kechenid,String studentid){
+    public String teacherAddScore(String score, String chapterid,String kechenid,String studentid,String addkechenid){
         Homework homework = homeworkService.findHomeworkById(chapterid,kechenid,studentid);
         homework.setScore(score);
 
         //保存到数据库
         try{
             homeworkService.edit(homework);
-            return "redirect:/teacher_check_homework";
+            return "redirect:/teacherKechenHomeworkList?addkechenid="+addkechenid;
         }catch(Exception e) {
             System.out.print(e);
             return "error";

@@ -7,6 +7,7 @@ import java.util.Set;
 /**
  * 字符串相似性匹配算法
  * 余弦相似度算法
+ * 点乘和叉乘的商cosa=A*B/|A|*|B|
  */
 public class Similar {
     Map<Character, int[]> vectorMap = new HashMap<Character, int[]>();

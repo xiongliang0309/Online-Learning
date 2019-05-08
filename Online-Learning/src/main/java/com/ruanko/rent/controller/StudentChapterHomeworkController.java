@@ -37,7 +37,7 @@ public class StudentChapterHomeworkController {
 
     //跳转到homework详情界面
     @RequestMapping("/studentChapterHomework")
-    public String showStudentChapterHomework(Model model, String chapterid) {
+    public String showStudentChapterHomework(Model model, String chapterid,String teachername) {
         Chapter chapter = chapterService.findChapterById(chapterid);
         model.addAttribute("chapter", chapter);
         List<Choice> choiceList = choiceService.getChoiceList();
@@ -46,13 +46,14 @@ public class StudentChapterHomeworkController {
         model.addAttribute("fillList", fillList);
         List<Program> programList = programService.getProgramList();
         model.addAttribute("programList", programList);
+        model.addAttribute("teachername", teachername);
         return "student_homework_detail";
     }
 
 
     //提交作业
     @RequestMapping(value="/studentAddHomework.action", method = POST)
-    public String studentAddHomework(HttpSession session, String answercontent,String chapterid,String kechenid, @RequestParam("answerfile") MultipartFile file){
+    public String studentAddHomework(HttpSession session, String answercontent,String chapterid,String kechenid, @RequestParam("answerfile") MultipartFile file,String teachername){
         Leaseholder leaseholder = (Leaseholder) session.getAttribute("leaseholder");
         homework.setAnswercontent(answercontent);
         homework.setStudentid(leaseholder.getId());
@@ -63,6 +64,7 @@ public class StudentChapterHomeworkController {
         homework.setCommitdate(sdf.format(new Date()));
         String newPath = FileUtil.uploadFile(file);
         homework.setAnswerfile(newPath);
+        homework.setTeachername(teachername);
 
         //保存到数据库
         try{

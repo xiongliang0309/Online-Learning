@@ -94,7 +94,7 @@
                     <div class="menu_section">
                         <h3>角色管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/office_update_student"><i class="fa fa-users"></i> 学生管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/office_update_class"><i class="fa fa-users"></i> 班级管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
                             <li><a href="/office_update_teacher"><i class="fa fa-bookmark-o"></i> 教师管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
@@ -190,11 +190,9 @@
                                                         <label for="name">邮箱</label>
                                                         <input type="email" class="form-control" id="email" name="email"  required />
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group" style="display: none">
                                                         <label for="classid">班级</label>
-                                                        <select class="selectpicker show-tick form-control" name="classid" id="classid" >
-                                                            <option th:value="${classesList.classid}" th:text="${classesList.classid}" th:each="classesList:${classesList}"></option>
-                                                        </select>
+                                                        <input type="text" class="form-control" id="classid" name="classid"  required  th:value="${classes.classid}">
                                                     </div>
                                                     <div class="text-right">
                                                         <button class="btn btn-primary" type="submit">添加</button>
@@ -222,15 +220,14 @@
                                 </tr>
                                 </thead>
                                     <tbody>
-                                    <tr th:each="leaseholderList:${leaseholderList}">
+                                    <tr th:each="leaseholderList:${leaseholderList}" th:if="${leaseholderList.classid==classes.classid}">
                                         <td th:text="${leaseholderList.id}"></td>
                                         <td th:text="${leaseholderList.name}"></td>
                                         <td th:text="${leaseholderList.phone}"></td>
                                         <td th:text="${leaseholderList.email}"></td>
                                         <td th:text="${leaseholderList.classid}"></td>
                                         <td>
-                                            <a th:href="@{/officeDeleteStudent(id=${leaseholderList.id})}" onclick="return del()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
-
+                                            <a th:href="@{/officeDeleteStudent(id=${leaseholderList.id},classid=${classes.classid})}" onclick="return del()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
                                         </td>
                                     </tr>
                                     </tbody>

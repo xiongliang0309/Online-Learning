@@ -135,24 +135,33 @@
 
                             <div class="x_content">
 
-                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">
+                                <table id="datatable"
+                                       class="table  table-hover table-bordered table-striped table-responsive">
                                     <thead>
                                     <tr class="success">
+                                        <th>学号</th>
+                                        <th>学生姓名</th>
                                         <th>课程号</th>
-                                        <th>课程名</th>
-                                        <th>学分</th>
+                                        <th>章节号</th>
                                         <th>教师</th>
+                                        <th>成绩</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
+
                                     <tbody>
-                                    <tr th:each="addkechenList:${addkechenList}" th:if="${addkechenList.teachername==session.landlord.teachername&&addkechenList.kechenid==session.landlord.kechenid}">
-                                        <td th:text="${addkechenList.kechenid}"></td>
-                                        <td th:text="${addkechenList.kechenname}"></td>
-                                        <td th:text="${addkechenList.xuefen}"></td>
-                                        <td th:text="${addkechenList.teachername}"></td>
+                                    <tr th:each="homeworkList:${homeworkList}" th:if="${homeworkList.kechenid==addkechen.kechenid&&homeworkList.teachername==session.landlord.teachername}">
+                                        <td th:text="${homeworkList.studentid}"></td>
+                                        <td th:text="${homeworkList.studentname}"></td>
+                                        <td th:text="${homeworkList.kechenid}"></td>
+                                        <td th:text="${homeworkList.chapterid}"></td>
+                                        <td th:text="${homeworkList.teachername}"></td>
+                                        <td th:text="${homeworkList.score}"></td>
                                         <td>
-                                            <a th:href="@{/helpKechenHomeworkList(addkechenid=${addkechenList.addkechenid})}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 查看作业 </a>
+                                            <a th:href="@{/studentDownloadHomework(chapterid=${homeworkList.chapterid},kechenid=${homeworkList.kechenid},studentid=${homeworkList.studentid},answerfile=${homeworkList.answerfile})}"
+                                               class="btn btn-success btn-xs"><i class="fa fa-download"></i> 下载答题卡 </a>
+                                            <a th:href="@{/helpCheckHomework(chapterid=${homeworkList.chapterid},kechenid=${homeworkList.kechenid},studentid=${homeworkList.studentid},addkechenid=${addkechen.addkechenid})}"
+                                               class="btn btn-info btn-xs"><i class="fa fa-check"></i> 批改作业 </a>
                                         </td>
                                     </tr>
                                     </tbody>

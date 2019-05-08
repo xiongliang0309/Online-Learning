@@ -16,7 +16,10 @@ public interface LandlordDao {
             @Result(property = "phone", column = "phone"),
             @Result(property = "email", column = "email"),
             @Result(property = "icon", column = "icon"),
-            @Result(property = "registerdate", column = "registerdate")
+            @Result(property = "registerdate", column = "registerdate"),
+            @Result(property = "teachername", column = "teachername"),
+            @Result(property = "kechenid", column = "kechenid")
+
     })
     List<Landlord> getAll();
 
@@ -28,14 +31,16 @@ public interface LandlordDao {
             @Result(property = "phone", column = "phone"),
             @Result(property = "email", column = "email"),
             @Result(property = "icon", column = "icon"),
-            @Result(property = "registerdate", column = "registerdate")
+            @Result(property = "registerdate", column = "registerdate"),
+            @Result(property = "teachername", column = "teachername"),
+            @Result(property = "kechenid", column = "kechenid")
     })
     Landlord getOne(String id);
 
-    @Insert("INSERT INTO landlord(id, password, name, phone, email, icon, registerdate) VALUES(#{id}, #{password}, #{name}, #{phone}, #{email}, #{icon}, #{registerdate})")
+    @Insert("INSERT INTO landlord(id, password, name, phone, email, icon, registerdate,teachername,kechenid) VALUES(#{id}, #{password}, #{name}, #{phone}, #{email}, #{icon}, #{registerdate},#{teachername},#{kechenid})")
     void insert(Landlord landlord);
 
-    @Update("UPDATE landlord SET id=#{id},password = #{password}, name = #{name}, phone = #{phone}, email = #{email}, icon = #{icon}, registerdate = #{registerdate} WHERE id = #{id}")
+    @Update("UPDATE landlord SET id=#{id},password = #{password}, name = #{name}, phone = #{phone}, email = #{email}, icon = #{icon}, registerdate = #{registerdate}, teachername=#{teachername},kechenid=#{kechenid}  WHERE id = #{id}")
     void update(Landlord landlord);
 
     @Delete("DELETE FROM landlord WHERE id = #{id}")

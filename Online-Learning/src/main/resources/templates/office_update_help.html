@@ -94,7 +94,7 @@
                     <div class="menu_section">
                         <h3>角色管理</h3>
                         <ul class="nav side-menu">
-                            <li><a href="/office_update_student"><i class="fa fa-users"></i> 学生管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
+                            <li><a href="/office_update_class"><i class="fa fa-users"></i> 班级管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
                             <li><a href="/office_update_teacher"><i class="fa fa-bookmark-o"></i> 教师管理 <i class="fa fa-angle-right" style="float: right"></i> </a></li>
 
@@ -190,6 +190,18 @@
                                                         <label for="name">邮箱</label>
                                                         <input type="email" class="form-control" id="email" name="email"  required />
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label for="teachername">导师</label>
+                                                        <select class="selectpicker show-tick form-control" name="teachername" id="teachername" >
+                                                            <option th:value="${adminList.name}" th:text="${adminList.name}" th:each="adminList:${adminList}"></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="kechenid">课程</label>
+                                                        <select class="selectpicker show-tick form-control" name="kechenid" id="kechenid" >
+                                                            <option th:value="${kechenList.kechenid}" th:text="${kechenList.kechenname}" th:each="kechenList:${kechenList}"></option>
+                                                        </select>
+                                                    </div>
                                                     <div class="text-right">
                                                         <button class="btn btn-primary" type="submit">添加</button>
                                                         <button class="btn btn-danger" data-dismiss="modal">取消</button>
@@ -211,6 +223,8 @@
                                     <th>姓名</th>
                                     <th>电话</th>
                                     <th>邮箱</th>
+                                    <th>助教导师</th>
+                                    <th>课程号</th>
                                     <th>录入日期</th>
                                     <th>操作</th>
                                 </tr>
@@ -221,6 +235,8 @@
                                         <td th:text="${landlordList.name}"></td>
                                         <td th:text="${landlordList.phone}"></td>
                                         <td th:text="${landlordList.email}"></td>
+                                        <td th:text="${landlordList.teachername}"></td>
+                                        <td th:text="${landlordList.kechenid}"></td>
                                         <td th:text="${landlordList.registerdate}"></td>
                                         <td>
                                             <a th:href="@{/officeDeleteHelp(id=${landlordList.id})}" onclick="return del()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>

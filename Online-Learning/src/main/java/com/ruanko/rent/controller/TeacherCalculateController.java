@@ -1,6 +1,8 @@
 package com.ruanko.rent.controller;
 
+import com.ruanko.rent.entity.Course;
 import com.ruanko.rent.entity.Homework;
+import com.ruanko.rent.service.CourseService;
 import com.ruanko.rent.service.HomeworkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,22 +23,41 @@ public class TeacherCalculateController {
 
     @Autowired
     private HomeworkService homeworkService;
+    @Autowired
+    private CourseService courseService;
 
     //统计成绩
     @RequestMapping("/teacher_calculate")
     public String showStudentScoreList(Model model) {
+        List<Course> courseList = courseService.getCourseList();
+        model.addAttribute("courseList", courseList);
+        return "teacher_calculate";
+    }
+
+    //统计成绩
+    @RequestMapping("/teacherClassScore")
+    public String teacherClassScore(Model model,String id) {
+        Course course=courseService.findCourseById(id);
+        model.addAttribute("course",course);
         List<Homework> homeworkList = homeworkService.getHomeworkList();
         model.addAttribute("homeworkList", homeworkList);
-        return "teacher_calculate";
+        return "teacher_class_score";
     }
 
 //导出excel
     @RequestMapping("/export_excel")
-    public void downloadAllClassmate(HttpServletResponse response) throws IOException {
+    public void downloadAllClassmate(HttpServletResponse response,String classid,String kechenid) throws IOException {
+       System.out.println(classid);
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("信息表");
 
+       // Homework homework=homeworkService.findClassScore(classid,kechenid,chapterid);
         List<Homework> homeworkList = homeworkService.getHomeworkList();
+       // Homework score = homeworkService.getScoreList(classid,kechenid,chapterid);
+        List<Homework> scoreList = homeworkService.getScoreList(classid,kechenid);
+        System.out.println(scoreList);
+        // System.out.println(score);
+        System.out.println(homeworkList);
         String fileName = "scoreinf"  + ".xls";//设置要导出的文件的名字
         //新增数据行，并且设置单元格数据
 
@@ -55,7 +76,7 @@ public class TeacherCalculateController {
         }
 
         //在表中存放查询到的数据放入对应的列
-        for (Homework homework : homeworkList) {
+        for (Homework homework :scoreList) {
             HSSFRow row1 = sheet.createRow(rowNum);
             row1.createCell(0).setCellValue(homework.getStudentid());
             row1.createCell(1).setCellValue(homework.getStudentname());

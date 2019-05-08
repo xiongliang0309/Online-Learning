@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>教务—论坛中心 </title>
+    <title>教务—课程 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -144,126 +144,57 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>论坛中心</h3>
+                        <h3>学生成绩统计</h3>
                     </div>
-                </div>
 
+                </div>
                 <div class="clearfix"></div>
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>论坛详情</h2>
+                                <h2>学生成绩列表</h2>
+                                <a th:href="@{/export_excel2(classid=${course.classid},kechenid=${course.kechenid})}"
+                                   style="float: right; margin-top: 4px;">
+                                    <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-folder"> </i>
+                                        导出excel
+                                    </button>
+                                </a>
                                 <div class="clearfix"></div>
                             </div>
-
                             <div class="x_content">
 
-                                <div class="col-md-10 col-md-offset-1 ">
+                                <table id="datatable"
+                                       class="table  table-hover table-bordered table-striped table-responsive">
+                                    <thead>
+                                    <tr class="success">
+                                        <th>学号</th>
+                                        <th>班级</th>
+                                        <th>姓名</th>
+                                        <th>课程号</th>
+                                        <th>章节号</th>
+                                        <th>成绩</th>
+                                    </tr>
+                                    </thead>
 
-                                    <ul class="stats-overview">
-                                        <li>
-                                            <span class="name"> 论坛号 </span>
-                                            <span class="value text-success" th:text="${discuss.discussid}"></span>
-                                        </li>
-                                        <li>
-                                            <span class="name"> 论坛名 </span>
-                                            <span class="value text-success" th:text="${discuss.discusstitle}"></span>
-                                        </li>
-                                        <li>
-                                            <span class="name"> 发布人 </span>
-                                            <span class="value text-success" th:text="${discuss.discusser}"></span>
-                                        </li>
-                                    </ul>
-                                    <br/>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="x_panel">
-                                                <div>
-                                                    <b th:text="${discuss.discusser}"></b><b>:</b>
-                                                    <div th:text="${discuss.discusscontent}"
-                                                         style="text-indent: 2em; line-height: 30px"></div>
-                                                </div>
-                                                <div class="col-md-offset-10" style="text-align: center">
-                                                    <p th:text="${discuss.discussdate}"></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="x_panel">
-                        <div class="x_title">
-                            <h2>留言</h2>
-                            <div class="clearfix"></div>
-                        </div>
-
-                        <div class="x_content">
-                            <div class="col-md-10 col-md-offset-1">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="x_panel">
-                                            <div class="col-md-12 col-sm-12 col-xs-12 profile_details">
-                                                <div class="col-md-12">
-                                                    <form class="form-horizontal form-label-left"  th:action="@{/officeAddComment.action}" method="POST">
-                                                        <div class="item form-group">
-                                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                <textarea  id="commentcontent" name="commentcontent" class="form-control col-md-7 col-xs-12" rows="3" placeholder="说点什么吧。。。。"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="item form-group" style="display: none">
-                                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                <input type="text" class="form-control col-md-7 col-xs-12" id="discussid" name="discussid" th:value="${discuss.discussid}"/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="col-md-2 col-md-offset-10">
-                                                                <input type="submit" class="btn btn-sm btn-dark" value="我也要留言^_^"/>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10 col-md-offset-1" th:each="commentList:${commentList}"
-                                 th:if="${commentList.discussid == discuss.discussid}">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="x_panel">
-                                            <div class="col-md-12 col-sm-12 col-xs-12 profile_details">
-                                                <div class="col-sm-12">
-                                                    <b th:text="${commentList.commenter}" style="color: #2e99ff"></b><b>:</b><span
-                                                        th:text="${commentList.commentcontent}"
-                                                        style="text-indent: 2em; line-height: 30px"></span>
-                                                    <span>-------</span>
-                                                    <span th:text="${commentList.commentdate}"></span>
-                                                    <a th:href="@{/officeDeleteComment(commentid=${commentList.commentid},discussid=${discuss.discussid})}"  onclick="return del()" type="button" class="btn btn-default btn-xs">删除</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <tbody>
+                                    <tr th:each="homeworkList:${homeworkList}" th:if="${homeworkList.classid==course.classid&&homeworkList.kechenid==course.kechenid}">
+                                        <td th:text="${homeworkList.studentid}"></td>
+                                        <td th:text="${homeworkList.classid}"></td>
+                                        <td th:text="${homeworkList.studentname}"></td>
+                                        <td th:text="${homeworkList.kechenid}"></td>
+                                        <td th:text="${homeworkList.chapterid}"></td>
+                                        <td th:text="${homeworkList.score}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
         <!-- /page content -->
 
         <!-- footer content -->

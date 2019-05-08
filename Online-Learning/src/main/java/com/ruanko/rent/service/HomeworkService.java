@@ -23,6 +23,10 @@ public class HomeworkService {
         return  homeworkDao.getOne(chapterid,kechenid,studentid);
     }
 
+    public List<Homework> getScoreList(String classid, String kechenid){
+        return  homeworkDao.getScore(classid,kechenid);
+    }
+
     public void save(Homework homework) {
         homeworkDao.insert(homework);
     }

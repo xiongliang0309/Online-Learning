@@ -175,7 +175,7 @@
                                         <td th:text="${chapterList.teachername}"></td>
                                         <td>
                                             <a th:if="${chapterList.isupload==false}" class="btn btn-dark btn-xs" disabled="disabled"><i class="fa fa-black-tie"></i> 通道已关闭，无法查看 </a>
-                                            <a th:href="@{/studentChapterHomework(chapterid=${chapterList.chapterid},kechenid=${chapterList.kechenid})}" th:if="${chapterList.isupload==true}" class="btn btn-info btn-xs"><i class="fa fa-black-tie"></i> 章节练习 </a>
+                                            <a th:href="@{/studentChapterHomework(chapterid=${chapterList.chapterid},kechenid=${chapterList.kechenid},teachername=${chapterList.teachername})}" th:if="${chapterList.isupload==true}" class="btn btn-info btn-xs"><i class="fa fa-black-tie"></i> 章节练习 </a>
                                         </td>
                                     </tr>
                                     </tbody>

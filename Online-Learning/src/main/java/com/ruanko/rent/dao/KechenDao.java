@@ -29,7 +29,7 @@ public interface KechenDao {
     })
     Kechen getOne(String kechenid);
 
-    @Insert("INSERT INTO kechen(kechenid, kechenname, kechenintro, xuefen) VALUES(#{kechenid}, #{kechenname}, #{kechenintro}, #{xuefen})")
+    @Insert("INSERT INTO kechen(kechenid, kechenname, kechenintro, xuefen) VALUES (#{kechenid}, #{kechenname}, #{kechenintro}, #{xuefen}) ON DUPLICATE KEY UPDATE  kechenname=#{kechenname},kechenintro=#{kechenintro},xuefen=#{xuefen}")
     void insert(Kechen kechen);
 
     @Update("UPDATE kechen SET kechenid=#{kechenid}, kechenname = #{kechenname}, kechenintro = #{kechenintro},xuefen=#{xuefen}")

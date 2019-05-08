@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>教务—论坛中心 </title>
+    <title>教务—教师管理 </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -144,7 +144,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>论坛中心</h3>
+                        <h3>学生管理</h3>
                     </div>
                 </div>
 
@@ -154,116 +154,66 @@
                     <div class="col-md-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>论坛详情</h2>
+                                <h2>班级管理</h2>
+                                <a data-toggle="modal" data-target="#addclass" href="" style="float: right; margin-top: 4px;"><button class="btn btn-primary btn-xs"><i class="fa fa-check"> </i> 添加班级</button></a>
+                                <!--添加学生开始-->
+                                <div id="addclass" class="modal fade">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <button class="close" data-dismiss="modal">
+                                                    <span>&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-title">
+                                                <h3 class="text-center">添加班级</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-group" th:action="@{/officeAddClass.action}" method="POST">
+                                                    <div class="form-group">
+                                                        <label for="classid">班级号</label>
+                                                        <input type="text" class="form-control" id="classid" name="classid"  required/>
+                                                    </div>
+                                                    <div class="text-right">
+                                                        <button class="btn btn-primary" type="submit">添加</button>
+                                                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--添加班级结束-->
                                 <div class="clearfix"></div>
                             </div>
-
                             <div class="x_content">
 
-                                <div class="col-md-10 col-md-offset-1 ">
+                                <!-- start project list -->
+                                <table id="datatable" class="table  table-hover table-bordered table-striped table-responsive">
+                                    <thead>
+                                    <tr class="success">
+                                        <th>班级号</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="classesList:${classesList}">
+                                        <td th:text="${classesList.classid}"></td>
+                                        <td>
+                                            <a th:href="@{/officeClassStudent(classid=${classesList.classid})}" class="btn btn-primary btn-xs"><i class="fa fa-book"></i> 花名册 </a>
+                                            <a th:href="@{/officeDeleteClasses(classid=${classesList.classid})}" onclick="return del()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!-- end project list -->
 
-                                    <ul class="stats-overview">
-                                        <li>
-                                            <span class="name"> 论坛号 </span>
-                                            <span class="value text-success" th:text="${discuss.discussid}"></span>
-                                        </li>
-                                        <li>
-                                            <span class="name"> 论坛名 </span>
-                                            <span class="value text-success" th:text="${discuss.discusstitle}"></span>
-                                        </li>
-                                        <li>
-                                            <span class="name"> 发布人 </span>
-                                            <span class="value text-success" th:text="${discuss.discusser}"></span>
-                                        </li>
-                                    </ul>
-                                    <br/>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="x_panel">
-                                                <div>
-                                                    <b th:text="${discuss.discusser}"></b><b>:</b>
-                                                    <div th:text="${discuss.discusscontent}"
-                                                         style="text-indent: 2em; line-height: 30px"></div>
-                                                </div>
-                                                <div class="col-md-offset-10" style="text-align: center">
-                                                    <p th:text="${discuss.discussdate}"></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="x_panel">
-                        <div class="x_title">
-                            <h2>留言</h2>
-                            <div class="clearfix"></div>
-                        </div>
-
-                        <div class="x_content">
-                            <div class="col-md-10 col-md-offset-1">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="x_panel">
-                                            <div class="col-md-12 col-sm-12 col-xs-12 profile_details">
-                                                <div class="col-md-12">
-                                                    <form class="form-horizontal form-label-left"  th:action="@{/officeAddComment.action}" method="POST">
-                                                        <div class="item form-group">
-                                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                <textarea  id="commentcontent" name="commentcontent" class="form-control col-md-7 col-xs-12" rows="3" placeholder="说点什么吧。。。。"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="item form-group" style="display: none">
-                                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                <input type="text" class="form-control col-md-7 col-xs-12" id="discussid" name="discussid" th:value="${discuss.discussid}"/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="col-md-2 col-md-offset-10">
-                                                                <input type="submit" class="btn btn-sm btn-dark" value="我也要留言^_^"/>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10 col-md-offset-1" th:each="commentList:${commentList}"
-                                 th:if="${commentList.discussid == discuss.discussid}">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="x_panel">
-                                            <div class="col-md-12 col-sm-12 col-xs-12 profile_details">
-                                                <div class="col-sm-12">
-                                                    <b th:text="${commentList.commenter}" style="color: #2e99ff"></b><b>:</b><span
-                                                        th:text="${commentList.commentcontent}"
-                                                        style="text-indent: 2em; line-height: 30px"></span>
-                                                    <span>-------</span>
-                                                    <span th:text="${commentList.commentdate}"></span>
-                                                    <a th:href="@{/officeDeleteComment(commentid=${commentList.commentid},discussid=${discuss.discussid})}"  onclick="return del()" type="button" class="btn btn-default btn-xs">删除</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
         <!-- /page content -->
 
         <!-- footer content -->
